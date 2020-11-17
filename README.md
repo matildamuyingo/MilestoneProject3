@@ -38,3 +38,10 @@
 
 ## Wireframes
 
+- [All the wireframes for this project can be found on this link](https://wireframe.cc/pro/pp/af3d20833395115)
+
+- **Can't view?**
+  - Click link to open PDF of wireframes
+
+
+
