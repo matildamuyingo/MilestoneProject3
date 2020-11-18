@@ -5,10 +5,13 @@
 ### Design
 
 #### Colors
+  - #689f38 - light-green darken-2  
+  - #388e3c - green darken-2
 
 #### Typography
 - Fonts used:
-  - 'IBM Plex Sans' and 'Questrial'
+  - 'IBM Plex Sans'
+  - 'Questrial'
 
 ## User Stories
 

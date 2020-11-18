@@ -12,6 +12,8 @@ font-family: 'Questrial', sans-serif;
 
 /* ------------------- Content ------------------------- */
 
+/*-----------------Home Page (and more general styling) -----------------*/
+
 h3.main-heading-text {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 50px;
@@ -29,6 +31,12 @@ h3.main-heading-text {
 
 .sign-up-par {
     padding: 15px 0;
+}
+
+/* ---------------------Register --------------------*/
+
+.register-row {
+    margin-bottom: 0;
 }
 
 

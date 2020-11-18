@@ -2,34 +2,30 @@
 {% block content %}
 
     <div class="row center-align">
-        <h3 class="main-heading-text">Log in to your account</h3>
+        <h3 class="main-heading-text">Register a new account</h3>
     </div>
 
 	<div class="row">
 	
-		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
         <div class="card-panel  lime lighten-4">
-			<!--
-            <div class="row">
-                <!--First Name-->
-            <!-- 
+			
+            <div class="row register-row">
+                <!--First Name--> 
 				<div class="input-field col s6">
 					<input placeholder="First Name" id="first_name" name="first_name" type="text" class="validate" required>
 					<label for="first_name">First Name</label>
 				</div>
-            -->
 
                 <!--Last Name--> 
-            <!--
 				<div class="input-field col s6">
 					<input id="last_name" name="last_name" type="text" class="validate" required>
 					<label for="last_name">Last Name</label>
 				</div>
 			</div>
-            -->
 
             <!--Username Field--> 
-			<div class="row">
+			<div class="row register-row">
 				<div class="input-field col s12">
 					<input id="username" name="username" type="text" class="validate" required>
 					<label for="username">Username</label>
@@ -37,18 +33,18 @@
 			</div>
 
             <!--Password Field--> 
-			<div class="row">
+			<div class="row register-row">
 				<div class="input-field col s12">
 					<input id="password" name="password" type="password" class="validate" required>
 					<label for="password">Password</label>
 				</div>
 			</div>
 
-            <p class="center-align sign-up-par">Don't have an account?<a href="{{ url_for('register') }}"> Click here to register</a></p>
+            <p class="center-align sign-up-par">Already have an account?<a href="{{ url_for('login') }}"> Click here to log in</a></p>
 
             <!--Submit Button--> 
             <div class="row center-align">
-                <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Log In</button>
+                <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Sign Up</button>
             </div>
         </div>
 		</form>
