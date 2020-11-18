@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <!--Heading-->    
+    <h3 class="center-align">Welcome to Bookers!</h3>
+    
+    <!--Info-Columns--> 
+    <div class="row top-space">
+
+        <div class="col s12 m5 offset-m1">
+            <h4>Create a Profile</h4>
+            <p>Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae</p>
+        </div>
+
+        <div class="col s12 m5">
+            <h4>Read other's Book Reviews</h4>
+            <p>Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae</p>
+        </div>
+
+    <div class="row top-space">
+
+        <div class="col s12 m5 offset-m1">
+            <h4>Update your reading preferences</h4>
+            <p>Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae</p>
+        </div>
+
+        <div class="col s12 m5">
+            <h4>Save books for a later read</h4>
+            <p>Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae</p>
+        </div>
+
+    </div>
+
+    <!--Bottom Log in, Register Buttons--> 
+    <div class="row center-align top-space">
+        <a href="#" class="btn-large"><i>Register User</i></a>
+        <a href="{{ url_for('login') }}" class="btn-large"><i>Log In</i></a>
+    </div>
+
+{% endblock %}
