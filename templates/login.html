@@ -2,12 +2,12 @@
 {% block content %}
 
     <div class="row center-align">
-        <h3 class="main-heading-text">Login</h3>
+        <h3 class="main-heading-text">Log in to your account</h3>
     </div>
 
 	<div class="row">
 	
-		<form class="col s12 m8 offset-m2">
+		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
         <div class="card-panel  lime lighten-4">
 			<!--
             <div class="row">
@@ -44,9 +44,11 @@
 				</div>
 			</div>
 
+            <p class="center-align sign-up-par">Don't have an account?<a href="#">Click here to register</a></p>
+
             <!--Submit Button--> 
             <div class="row center-align">
-                <button type="submit" class="btn-large green darken-2 duo-buttons">Log In</button>
+                <button type="submit" class="btn-large green darken-2 duo-buttons z-depth-3">Log In</button>
             </div>
         </div>
 		</form>

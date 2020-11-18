@@ -7,6 +7,8 @@
 #### Colors
 
 #### Typography
+- Fonts used:
+  - 'IBM Plex Sans' and 'Questrial'
 
 ## User Stories
 
