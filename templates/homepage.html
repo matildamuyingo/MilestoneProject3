@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
     <!--Heading-->    
-    <h3 class="center-align">Welcome to Bookers!</h3>
-    
+    <div class="row center-align">
+        <h3 class="main-heading-text">Welcome to Bookers!</h3>
+    </div>
+
     <!--Info-Columns--> 
     <div class="row top-space">
 
@@ -34,8 +35,8 @@
 
     <!--Bottom Log in, Register Buttons--> 
     <div class="row center-align top-space">
-        <a href="#" class="btn-large"><i>Register User</i></a>
-        <a href="{{ url_for('login') }}" class="btn-large"><i>Log In</i></a>
+        <a href="#" class="btn-large duo-buttons"><i>Register User</i></a>
+        <a href="{{ url_for('login') }}" class="btn-large duo-buttons"><i>Log In</i></a>
     </div>
 
 {% endblock %}

@@ -1,4 +1,27 @@
+/* ------------------- Imported Fonts ------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,300&family=Questrial&display=swap');
+/*
+font-family: 'IBM Plex Sans', sans-serif;
+font-family: 'Questrial', sans-serif;
+*/
+/* -------------------Header------------------------- */
+
+.nav-wrapper {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* ------------------- Content ------------------------- */
+
+h3.main-heading-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 50px;
+}
 
 .top-space {
     margin-top: 80px;
+}
+
+.duo-buttons {
+    width: 20vw;
+    font-family: 'IBM Plex Sans', sans-serif;
 }

@@ -53,7 +53,17 @@
 ### Bugs
 
  - #### Discovered Bugs
+   
+
  - #### Solved Bugs
+    - The text font and styling for the page h3 elements are not loading
+        - Solved by commenting out the following code from the style.css file
+```
+/*
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Questrial', sans-serif;
+*/
+```
 
 ### Device Compability
 ***
@@ -67,6 +77,7 @@
 - [MongoDB]() Database
 - [FontAwesome]()
 - [Materializecss.com]()
+- [Google Fonts](https://fonts.google.com/)
 
 ### Content
 
