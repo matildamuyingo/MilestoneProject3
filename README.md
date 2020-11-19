@@ -50,6 +50,10 @@
 - **Can't view?**
   - Click link to open PDF of wireframes
 
+  ## Documentation
+
+- Added a requirements.txt file to save dependencies
+
 ***
 ## Testing
 
