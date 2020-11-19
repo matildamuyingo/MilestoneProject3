@@ -53,6 +53,7 @@
   ## Documentation
 
 - Added a requirements.txt file to save dependencies
+- Created a DataBase in MySQL to test out the building
 
 ***
 ## Testing
@@ -87,6 +88,7 @@
 - [FontAwesome]()
 - [Materializecss.com]()
 - [Google Fonts](https://fonts.google.com/)
+- [Mysqltutorial.org](https://www.mysqltutorial.org/mysql-create-table/) Refreshed memory about database creation
 
 ### Content
 
