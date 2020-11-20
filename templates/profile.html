@@ -1,17 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 
+    <!--Page Heading-->
     <div class="row center-align">
         <h3 class="main-heading-text">{{ first_name }}'s Profile</h3>
     </div>
 
     <div class="row">
-        
+
+            <!--About Me Section-->
             <div class="col s12 m4 lime lighten-4">
+
+                <!--About Me Heading-->
                 <h4 class="center-align">About Me</h4>
-                    <div class="image-container">
-                        <img class="responsive-img profile-image" src="https://cdn3.vectorstock.com/i/1000x1000/72/32/open-book-on-white-background-vector-8107232.jpg">     
-                    </div>
+
+                <!--Profile Picture-->
+                <div class="image-container">
+                    <img class="responsive-img profile-image" src="https://cdn3.vectorstock.com/i/1000x1000/72/32/open-book-on-white-background-vector-8107232.jpg">     
+                </div>
+
+                <!--Profile Information-->
                 <div>
                     <p>
                         Full Name: <br>
@@ -24,18 +32,25 @@
                         Favorite Genre: <br>
                     </p>
                 </div>
+
+                <!--Edit Button for About Me-->
 				<div class="row center-align">
 					<a href="#" class="btn-large edit-buttons light-green darken-2 z-depth-3"><i>Edit Info</i></a>
 				</div>
             </div>
         
-
+            <!--My Books Section-->
             <div class="col s12 m8 blue-grey lighten-5">
                 <h4 class="center-align">My Books</h4>
 
+                <!--Saved Books Row-->
                 <div class="row">
-                    <div class="col s12 m6 l4">
-                        
+
+                     <!--Saved Books Heading-->
+                    <h5>Saved Books</h5>
+                    
+                     <!--Saved Books Loop-->
+                    <div class="col s12 m6 l4">     
                         <div class="card horizontal">
                             
                                 <div class="card-stacked">
@@ -74,11 +89,29 @@
                     </div>
 
                 </div>
-                
-                    <div class="row center-align top-space">
-                        <a href="#"
-                            class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>Add a New Book</i></a>
+
+                <!--Have Read Row-->
+                <div class="row">
+                    <h5>Have Read</h5>
+                    <div class="col s12 m6 l4">
+                        
+                        <div class="card horizontal">
+                            
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <p>I am a very simple card. I am good at containing small bits of information.</p>
+                                    </div>
+                                    
+                                </div>
+                        </div>
                     </div>
+                </div>
+                
+                <!--Add more Books Button-->
+                <div class="row center-align top-space">
+                    <a href="#"
+                        class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>Add a New Book</i></a>
+                </div>
 
             </div>
     </div>

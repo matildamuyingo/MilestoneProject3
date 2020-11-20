@@ -19,7 +19,8 @@
 				<a href="{{ url_for('homepage') }}" class="brand-logo center">Logo</a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">m</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="{{ url_for('homepage') }}">Start</a></li>
+					<li><a href="{{ url_for('homepage') }}">Homepage</a></li>
+					<li><a href="{{ url_for('startpage') }}">Startpage</a></li>
                     <!-- Dropdown Trigger -->
 					<li><a class="dropdown-trigger" href="#"
 							data-target="dropdown1">Books<i class="material-icons right"></i></a></li>
@@ -40,7 +41,8 @@
 		</ul>
 		
 		<ul class="sidenav" id="mobile-demo">
-			<li><a href="{{ url_for('homepage') }}">Start</a></li>
+			<li><a href="{{ url_for('homepage') }}">Homepage</a></li>
+            <li><a href="{{ url_for('startpage') }}">Startpage</a></li>
 			<!-- Dropdown Trigger -->
 			<li><a class="dropdown-trigger" href="#" data-target="dropdown1">Books<i class="material-icons right"></i></a></li>
 			<li><a href="{{ url_for('profile') }}">Profile</a></li>
@@ -48,6 +50,10 @@
 			<li><a href="{{ url_for('login') }}">Log In</a></li>
 		</ul>
     </header>
+
+    <div class="add-book-icon">
+        <a href="#" class="add-book-link tooltipped" data-position="left" data-tooltip="Add a New Book"><i class="fas fa-plus-circle"></i></a>
+    </div>
 
     
         {% block content %}

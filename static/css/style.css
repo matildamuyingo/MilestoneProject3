@@ -12,6 +12,25 @@ font-family: 'Questrial', sans-serif;
 
 /* ------------------- Content ------------------------- */
 
+body {
+    position: relative;
+}
+
+.row .col {
+    padding: 0;
+}
+
+.add-book-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.add-book-link {
+    color: #000;
+    font-size: 50px;
+}
+
 /*-----------------Home Page (and more general styling) -----------------*/
 
 h3.main-heading-text {
@@ -54,6 +73,18 @@ h3.main-heading-text {
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
+/* ---------------------Startpage --------------------*/
+
+.review-list-image {
+    height: 100px;
+    overflow: hidden;
+}
+
+.review-list-image img {
+    height: 150px;
+    margin-left: 0;
+    margin-right: auto;
+}
 
 /* ---------------------Media --------------------*/
 
