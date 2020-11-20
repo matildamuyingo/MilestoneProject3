@@ -39,6 +39,21 @@ h3.main-heading-text {
     margin-bottom: 0;
 }
 
+/* --------------------- Profile --------------------*/
+
+.image-container {
+    width: 150px;
+}
+
+.profile-image {
+    border-radius: 10px;
+}
+
+.edit-button {
+    width: 15vw;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
 
 /* ---------------------Media --------------------*/
 

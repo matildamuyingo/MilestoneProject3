@@ -23,7 +23,7 @@
                     <!-- Dropdown Trigger -->
 					<li><a class="dropdown-trigger" href="#"
 							data-target="dropdown1">Books<i class="material-icons right"></i></a></li>
-					<li><a href="#">Profile</a></li>
+					<li><a href="{{ url_for('profile') }}">Profile</a></li>
 					<li><a href="#">Log Out</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
 					
@@ -43,7 +43,7 @@
 			<li><a href="{{ url_for('homepage') }}">Start</a></li>
 			<!-- Dropdown Trigger -->
 			<li><a class="dropdown-trigger" href="#" data-target="dropdown1">Books<i class="material-icons right"></i></a></li>
-			<li><a href="#">Profile</a></li>
+			<li><a href="{{ url_for('profile') }}">Profile</a></li>
 			<li><a href="#">Log Out</a></li>
 			<li><a href="{{ url_for('login') }}">Log In</a></li>
 		</ul>
