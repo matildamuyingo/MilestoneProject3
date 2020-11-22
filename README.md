@@ -50,6 +50,30 @@
 - **Can't view?**
   - Click link to open PDF of wireframes
 
+
+## DataBase
+
+In the early stages of the project, the use of MySQL as a database for the project was tested out.
+The test DataBase Name is Mile and currently contains the tables Users and UserInfo
+  					
+|   Users     | UserInfo                                    | Reviews                    | Authors         | Books                                        | Genres         |
+|-------------|---------------------------------------------|----------------------------|-----------------|----------------------------------------------|----------------|
+| first_name  | username (username)                         | heading                    | author_id       | book_id                                      | genre_id       |
+| last_name   | user_height                                 | title (books.title)        | first_name      | author_id (authors.author_id)                | genre_name     |
+| username    | hair_color                                  | author (books.author_name) | last_name       | title                                        | total_in_genre |
+| email       | fav_book (books.title)                      | genre (books.genre)        | number_of_books | author_name (authors.first_name,+ last_name) |                |
+| password    | fav_author (authors.first_name + last_name) | written_by (username)      |                 | genre (genres.genre_id)                      |                |
+|             | fav_genre (genre_name)                      | rating                     |                 |                                              |                |
+|             | user_pic                                    | review                     |                 |                                              |                |
+|             | total_likes                                 |                            |                 |                                              |                |
+|             | date_joined                                 |                            |                 |                                              |                |
+|             | age                                         |                            |                 |                                              |                |
+
+  ## Documentation
+
+- Added a requirements.txt file to save dependencies
+- Created a DataBase in MySQL to test out the building
+
 ***
 ## Testing
 
@@ -58,7 +82,7 @@
 ### Bugs
 
  - #### Discovered Bugs
-   
+    - The dropdown menu does not display in the navbar 
 
  - #### Solved Bugs
     - The text font and styling for the page h3 elements are not loading
@@ -83,10 +107,13 @@
 - [FontAwesome]()
 - [Materializecss.com]()
 - [Google Fonts](https://fonts.google.com/)
+- [Mysqltutorial.org](https://www.mysqltutorial.org/mysql-create-table/) Refreshed memory about database creation
+- [W3Schools.com](https://www.w3schools.com/sql/sql_foreignkey.asp) About MySQL and foreign keys
 
 ### Content
 
 ### Code
+
 
 ## Acknoledgements
 
