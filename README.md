@@ -84,6 +84,24 @@ The test DataBase Name is Mile and currently contains the tables Users and UserI
  - #### Discovered Bugs
     - The dropdown menu does not display in the navbar 
 
+    - The function of displaying a longer form when the checkbox is clicked, needs to include a function for the extended form to disappear, but this is not working as expected.
+```
+$('#read-check').click(function() {
+        $('.fin-read').removeClass('no-display').addClass('full-display');
+        /*
+        var isCheck = $(this).hasClass('no-display');
+        if (isCheck == true){
+            $('.fin-read').removeClass('no-display').addClass('full-display');
+            console.log("Removed, works fine");
+        } 
+        else {
+            $('.fin-read').removeClass('full-display').addClass('no-display');
+            console.log("Displayed, works fine");
+        }
+        */
+    });
+```
+
  - #### Solved Bugs
     - The text font and styling for the page h3 elements are not loading
         - Solved by commenting out the following code from the style.css file

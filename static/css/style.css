@@ -28,6 +28,7 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
+    z-index: 10;
 }
 
 .add-book-link {
@@ -68,6 +69,11 @@ h3.main-heading-text {
     border-radius: 10px;
 }
 
+.profile-information {
+    float: right;
+    font-style: italic;
+}
+
 .edit-button {
     width: 15vw;
     font-family: 'IBM Plex Sans', sans-serif;
@@ -84,6 +90,16 @@ h3.main-heading-text {
     height: 150px;
     margin-left: 0;
     margin-right: auto;
+}
+
+/* --------------------JavaScript------------------*/
+
+.no-display {
+    display: none;
+}
+
+.full-display {
+    display: block;
 }
 
 /* ---------------------Media --------------------*/

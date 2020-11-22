@@ -81,7 +81,7 @@ def login():
                 # password and username does not match
                 flash("Wrong password or username")
                 return redirect(url_for('login'))
-        else: 
+        else:
             # the username does not exist
             flash('Wrong password or username')
             return redirect(url_for('login'))
@@ -91,7 +91,10 @@ def login():
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
-    return render_template('profile.html')
+    books = list(mongo.db.books.find())
+    userinfo = mongo.db.users.find_one({
+        'username': session['user']})
+    return render_template('profile.html', books=books, userinfo=userinfo)
 
 
 @app.route('/add_book', methods=["GET", "POST"])
@@ -103,12 +106,14 @@ def add_book():
             'author_first_name': request.form.get('author_first_name').lower(),
             'author_last_name': request.form.get('author_last_name').lower(),
             'genre': request.form.get('genre').lower(),
-            'read_book': request.form.get('read-check')
+            'read_book': request.form.get('read-check'),
+            'rating': request.form.get('book_rating'),
+            'review': request.form.get('book_review'),
+            'added_by': session['user']
         }
         # Insert the form information to the database
         mongo.db.books.insert_one(addBook)
 
-        # Save the username as session user
         flash('Book added successfully!')
         return redirect(url_for('profile'))
     return render_template('add_book.html')
@@ -121,12 +126,15 @@ def logout():
     session.pop('user')
     return redirect(url_for('login'))
 
+
 @app.route('/startpage')
 def startpage():
-    return render_template('startpage.html')
+    books = list(mongo.db.books.find())
+    all_users = list(mongo.db.users.find())
+    return render_template('startpage.html', books=books, all_users=all_users)
 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-    port=int(os.environ.get("PORT")),
-    debug=True)
+            port=int(os.environ.get("PORT")),
+            debug=True)

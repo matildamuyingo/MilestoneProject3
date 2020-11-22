@@ -16,7 +16,11 @@
 		
 		<nav>
 			<div class="nav-wrapper green darken-2 grey-text text-lighten-5">
+                {% if session.user %}
+				<a href="{{ url_for('startpage') }}" class="brand-logo center">Logo</a>
+                {% else %}
 				<a href="{{ url_for('homepage') }}" class="brand-logo center">Logo</a>
+                {% endif %}
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">m</i></a>
 				<ul class="right hide-on-med-and-down">
                 {% if session.user %}

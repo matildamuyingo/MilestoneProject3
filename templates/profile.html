@@ -3,7 +3,7 @@
 
     <!--Page Heading-->
     <div class="row center-align">
-        <h3 class="main-heading-text">{{ username }}'s Profile</h3>
+        <h3 class="main-heading-text">{{ userinfo.first_name.capitalize() }}'s Profile</h3>
     </div>
 
     <div class="row">
@@ -20,23 +20,27 @@
                 </div>
 
                 <!--Profile Information-->
+                
                 <div>
                     <p>
-                        Full Name: <span>{{ first_name }}+{{ last_name }}</span><br>
-                        Age: <br>
-                        Username: <br>
-                        Height: <br>
-                        Hair Color: <br>
-                        Favorite Book: <br>
-                        Favorite Author: <br>
-                        Favorite Genre: <br>
+                        Full Name: <span class="profile-information">{{ userinfo.first_name.capitalize() }} {{ userinfo.last_name.capitalize() }}</span><br>
+                        Age: <span class="profile-information"></span><br>
+                        Username: <span class="profile-information">{{ userinfo.username }}</span><br>
+                        Height: <span class="profile-information"></span><br>
+                        Hair Color: <span class="profile-information"></span><br>
+                        Favorite Book: <span class="profile-information"></span><br>
+                        Favorite Author: <span class="profile-information"></span><br>
+                        Favorite Genre: <span class="profile-information"></span><br>
                     </p>
                 </div>
-
+                
+                
+                {% if session.user|lower == userinfo.username|lower %}
                 <!--Edit Button for About Me-->
 				<div class="row center-align">
 					<a href="#" class="btn-large edit-buttons light-green darken-2 z-depth-3"><i>Edit Info</i></a>
 				</div>
+                {% endif %}
             </div>
         
             <!--My Books Section-->
@@ -49,62 +53,63 @@
                      <!--Saved Books Heading-->
                     <h5>Saved Books</h5>
                     
-                     <!--Saved Books Loop-->
-                    <div class="col s12 m6 l4">     
-                        <div class="card horizontal">
-                            
-                                <div class="card-stacked">
-                                    <div class="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.</p>
-                                    </div>
-                                    
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m6 l4">
-                        
-                        <div class="card horizontal">
-                            
-                                <div class="card-stacked">
-                                    <div class="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.</p>
-                                    </div>
-                                    
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m6 l4">
-                        
-                        <div class="card horizontal">
-                            
-                                <div class="card-stacked">
-                                    <div class="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.</p>
-                                    </div>
-                                    
-                                </div>
-                        </div>
-                    </div>
+                     <!--Saved Books Loop-->`
+                    {% if books|length > 0 %}
+					<ul>
+                        {% for book in books %}
+                        {% if not book.read_book == "on" %}
+						<li>
+							<div class="col s12 m6 l4">
+								<div class="card horizontal">
+					
+									<div class="card-stacked">
+										<div class="card-content">
+                                            <h5>{{ book.book_title.capitalize() }}</h5>
+                                            <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
+											<p>{{ book.review }}</p>
+										</div>
+					
+									</div>
+								</div>
+							</div>
+						</li>
+                        {% endif %}
+                        {% endfor %}
+					</ul>
+                    {% else %}
+                        <h5>No Books Added</h5>
+                    {% endif %}
 
                 </div>
 
                 <!--Have Read Row-->
                 <div class="row">
                     <h5>Have Read</h5>
-                    <div class="col s12 m6 l4">
-                        
-                        <div class="card horizontal">
-                            
-                                <div class="card-stacked">
-                                    <div class="card-content">
-                                        <p>I am a very simple card. I am good at containing small bits of information.</p>
-                                    </div>
-                                    
-                                </div>
-                        </div>
-                    </div>
+                    {% if books|length > 0 %}
+					<ul>
+                        {% for book in books %}
+                        {% if book.read_book == "on" %}
+						<li>
+							<div class="col s12 m6 l4">
+								<div class="card horizontal">
+					
+									<div class="card-stacked">
+										<div class="card-content">
+                                            <h5>{{ book.book_title.capitalize() }}</h5>
+                                            <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
+											<p>{{ book.review }}</p>
+										</div>
+					
+									</div>
+								</div>
+							</div>
+						</li>
+                        {% endif %}
+                        {% endfor %}
+					</ul>
+                    {% else %}
+                        <h5>No Books Added</h5>
+                    {% endif %}
                 </div>
                 
                 <!--Add more Books Button-->
