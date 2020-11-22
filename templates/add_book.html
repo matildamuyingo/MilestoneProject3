@@ -7,15 +7,15 @@
 
 	<div class="row">
 	
-		<form class="col s12 m8 offset-m2" method="POST" action="#">
+		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_book') }}">
         <div class="card-panel  lime lighten-4">
 			
 
             <!--Book Title--> 
 			<div class="row register-row">
 				<div class="input-field col s12">
-					<input id="book-title" name="book-title" type="text" class="validate" required>
-					<label for="book-title">Book Title</label>
+					<input id="book_title" name="book_title" type="text" class="validate" required>
+					<label for="book_title">Book Title</label>
 				</div>
 			</div>
 
@@ -23,14 +23,14 @@
             <div class="row register-row">
                 <!--Author First Name--> 
 				<div class="input-field col s6">
-					<input id="author-first-name" name="author-first-name" type="text" class="validate" required>
-					<label for="author-first-name">Author's First Name</label>
+					<input id="author_first_name" name="author_first_name" type="text" class="validate" required>
+					<label for="author_first_name">Author's First Name</label>
 				</div>
 
                 <!--Author Last Name--> 
 				<div class="input-field col s6">
-					<input id="author-last-name" name="author-last-name" type="text" class="validate" required>
-					<label for="author-last-name">Author's Last Name</label>
+					<input id="author_last_name" name="author_last_name" type="text" class="validate" required>
+					<label for="author_last_name">Author's Last Name</label>
 				</div>
 			</div>
 

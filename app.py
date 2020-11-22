@@ -94,6 +94,26 @@ def profile():
     return render_template('profile.html')
 
 
+@app.route('/add_book', methods=["GET", "POST"])
+def add_book():
+    if request.method == "POST":
+        # The user information from the form that is going to be added
+        addBook = {
+            'book_title': request.form.get('book_title').lower(),
+            'author_first_name': request.form.get('author_first_name').lower(),
+            'author_last_name': request.form.get('author_last_name').lower(),
+            'genre': request.form.get('genre').lower(),
+            'read_book': request.form.get('read-check')
+        }
+        # Insert the form information to the database
+        mongo.db.books.insert_one(addBook)
+
+        # Save the username as session user
+        flash('Book added successfully!')
+        return redirect(url_for('profile'))
+    return render_template('add_book.html')
+
+
 @app.route('/logout')
 def logout():
     # remove the user from session cookies
@@ -104,11 +124,6 @@ def logout():
 @app.route('/startpage')
 def startpage():
     return render_template('startpage.html')
-
-
-@app.route('/add_book')
-def add_book():
-    return render_template('add_book.html')
 
 
 if __name__ == "__main__":
