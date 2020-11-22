@@ -19,14 +19,17 @@
 				<a href="{{ url_for('homepage') }}" class="brand-logo center">Logo</a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">m</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="{{ url_for('homepage') }}">Homepage</a></li>
+                {% if session.user %}
 					<li><a href="{{ url_for('startpage') }}">Startpage</a></li>
                     <!-- Dropdown Trigger -->
 					<li><a class="dropdown-trigger" href="#" data-target="dropdown1">Books<i class="material-icons right"></i></a></li>
 					<li><a href="{{ url_for('profile') }}">Profile</a></li>
 					<li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('homepage') }}">Homepage</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
-					
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+				{% endif %}
 				</ul>
                 
 			</div>
@@ -34,25 +37,32 @@
 
         <ul id="dropdown1" class="dropdown-content">
 			<li><a href="{{ url_for('add_book') }}">Add Book</a></li>
-			<li><a href="#">two</a></li>
+			<li><a href="#">All Reviews</a></li>
 			<li class="divider"></li>
-			<li><a href="#">three</a></li>
+			<li><a href="#">All Books</a></li>
 		</ul>
 		
 		<ul class="sidenav" id="mobile-demo">
-			<li><a href="{{ url_for('homepage') }}">Homepage</a></li>
-            <li><a href="{{ url_for('startpage') }}">Startpage</a></li>
-			<!-- Dropdown Trigger -->
-			<li><a class="dropdown-trigger" href="#" data-target="dropdown1">Books<i class="material-icons right"></i></a></li>
-			<li><a href="{{ url_for('profile') }}">Profile</a></li>
-			<li><a href="{{ url_for('logout') }}">Log Out</a></li>
-			<li><a href="{{ url_for('login') }}">Log In</a></li>
+			{% if session.user %}
+					<li><a href="{{ url_for('startpage') }}">Startpage</a></li>
+                    <!-- Dropdown Trigger -->
+					<li><a class="dropdown-trigger" href="#" data-target="dropdown1">Books<i class="material-icons right"></i></a></li>
+					<li><a href="{{ url_for('profile') }}">Profile</a></li>
+					<li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('homepage') }}">Homepage</a></li>
+                    <li><a href="{{ url_for('login') }}">Log In</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+				{% endif %}
 		</ul>
     </header>
 
+    {% if session.user %}
+    <!--Add Book Icon-->
     <div class="add-book-icon">
         <a href="{{ url_for('add_book') }}" class="add-book-link tooltipped" data-position="left" data-tooltip="Add a New Book"><i class="fas fa-plus-circle"></i></a>
     </div>
+    {% endif %}
 
     <section>
         <!--Flash messages-->
