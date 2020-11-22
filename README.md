@@ -94,6 +94,9 @@ The test DataBase Name is Mile and currently contains the tables Users and UserI
 */
 ```
 
+    - The images for the list with reviews and users were not lining up with the card-left-border. 
+        - I started with adding (.row .col) to the style.css document and set padding:0. This solved the problem but removed the padding for every col and row on the page. To solve it I created a new class called no-padding and applied it to the concerned elements 
+
 ### Device Compability
 ***
 ## Credit
