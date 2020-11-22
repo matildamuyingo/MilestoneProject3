@@ -1,5 +1,4 @@
 import os
-import pymysql
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -9,11 +8,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
-connection = pymysql.connect(host='localhost',
-                             user='root',
-                             db='Mile')
 
 app = Flask(__name__)
+
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
+
+mongo = PyMongo(app)
 
 
 @app.route('/')
@@ -29,23 +31,31 @@ def login():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        new_user_reg = {
-            'fName': request.form.get("first_name"),
-            'lName': request.form.get("last_name"),
-            'uName': request.form.get("username"),
-            'email': request.form.get("email"),
-            'password': generate_password_hash(request.form.get("password"))
-        }
+        existing_username = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
 
-        try:
-            with connection.cursor() as cursor:
-                new_user = """INSERT INTO Users(first_name, last_name, username, email, password)
-                            VALUES (%s, %s,%s, %s, %s,);""", new_user_reg
-                cursor.execute(new_user)
-                for row in cursor:
-                    print(row)
-        finally:
-            connection.close()
+        existing_email = mongo.db.users.find_one(
+            {"email": request.form.get("email")})
+
+        if existing_username:
+            flash("Username already taken")
+            return redirect(url_for("register"))
+        elif existing_email:
+            flash("Email already taken")
+            return redirect(url_for("register"))
+
+        register_user = {
+            'first_name': request.form.get('first_name').lower(),
+            'last_name': request.form.get('last_name').lower(),
+            'username': request.form.get('username').lower(),
+            'email': request.form.get('email'),
+            'password': generate_password_hash(request.form.get('password'))
+        }
+        mongo.db.users.inser_one(register_user)
+
+        session['user'] = request.form.get('username').lower()
+        flash('Registration Successful!')
+        return redirect(url_for('profile', username=session['user']))
     return render_template('register.html')
 
 
