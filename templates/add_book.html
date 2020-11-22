@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="row center-align">
+        <h3 class="main-heading-text">Add a New Book</h3>
+    </div>
+
+	<div class="row">
+	
+		<form class="col s12 m8 offset-m2" method="POST" action="#">
+        <div class="card-panel  lime lighten-4">
+			
+
+            <!--Book Title--> 
+			<div class="row register-row">
+				<div class="input-field col s12">
+					<input id="book-title" name="book-title" type="text" class="validate" required>
+					<label for="book-title">Book Title</label>
+				</div>
+			</div>
+
+            <!--Name Fields--> 
+            <div class="row register-row">
+                <!--Author First Name--> 
+				<div class="input-field col s6">
+					<input id="author-first-name" name="author-first-name" type="text" class="validate" required>
+					<label for="author-first-name">Author's First Name</label>
+				</div>
+
+                <!--Author Last Name--> 
+				<div class="input-field col s6">
+					<input id="author-last-name" name="author-last-name" type="text" class="validate" required>
+					<label for="author-last-name">Author's Last Name</label>
+				</div>
+			</div>
+
+            <!--Genre--> 
+			<div class="row register-row">
+				<div class="input-field col s12">
+					<input id="genre" name="genre" type="password" class="validate" required>
+					<label for="genre">Genre</label>
+				</div>
+			</div>
+
+            <!--Read Checkbox-->
+            <p class="sign-up-par">
+				<label for="read-check">
+                    <input id="read-check" name="read-check" type="checkbox" class="filled-in light-green darken-2" checked="checked" />
+                    <span>Finished reading?</span>
+				</label>
+            </p>
+            
+
+            <!--Submit Button--> 
+            <div class="row center-align">
+                <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Add Book</button>
+            </div>
+        </div>
+		</form>
+	
+	</div>
+
+
+{% endblock %}

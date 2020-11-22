@@ -22,8 +22,7 @@
 					<li><a href="{{ url_for('homepage') }}">Homepage</a></li>
 					<li><a href="{{ url_for('startpage') }}">Startpage</a></li>
                     <!-- Dropdown Trigger -->
-					<li><a class="dropdown-trigger" href="#"
-							data-target="dropdown1">Books<i class="material-icons right"></i></a></li>
+					<li><a class="dropdown-trigger" href="#" data-target="dropdown1">Books<i class="material-icons right"></i></a></li>
 					<li><a href="{{ url_for('profile') }}">Profile</a></li>
 					<li><a href="#">Log Out</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -34,7 +33,7 @@
 		</nav>
 
         <ul id="dropdown1" class="dropdown-content">
-			<li><a href="#">one</a></li>
+			<li><a href="{{ url_for('add_book') }}">Add Book</a></li>
 			<li><a href="#">two</a></li>
 			<li class="divider"></li>
 			<li><a href="#">three</a></li>
@@ -52,7 +51,7 @@
     </header>
 
     <div class="add-book-icon">
-        <a href="#" class="add-book-link tooltipped" data-position="left" data-tooltip="Add a New Book"><i class="fas fa-plus-circle"></i></a>
+        <a href="{{ url_for('add_book') }}" class="add-book-link tooltipped" data-position="left" data-tooltip="Add a New Book"><i class="fas fa-plus-circle"></i></a>
     </div>
 
     
