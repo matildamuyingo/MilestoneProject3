@@ -84,6 +84,8 @@ The test DataBase Name is Mile and currently contains the tables Users and UserI
  - #### Discovered Bugs
     - The dropdown menu does not display in the navbar 
 
+    - The icon in the bottom right corner does not disappear if the user already have a session stored. 
+
     - The function of displaying a longer form when the checkbox is clicked, needs to include a function for the extended form to disappear, but this is not working as expected.
 ```
 $('#read-check').click(function() {

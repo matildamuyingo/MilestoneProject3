@@ -6,10 +6,10 @@
         <h3 class="main-heading-text">Startpage</h3>
     </div>
 
-    <div class="row">
+    <div class="row grey lighten-5">
         <!--Review Cards-->
-        <div class="col s12 m6">
-            <h4 class="center-align">All Reviews</h4> 
+        <div class="col s12 m6 no-padding">
+            <h4 class="center-align sub-about-heading promt-font grey lighten-2">All Reviews</h4> 
 
 			{% if books|length > 0 %}
 			<ul>
@@ -17,7 +17,7 @@
 				<li>
 					<a href="#">
 						<div class="col s10 m10 offset-s1 offset-m1 no-padding">
-							<div class="card horizontal light-green lighten-4">
+							<div class="card horizontal book-card-style">
 								<div class="card-image col s4 m4 review-list-image no-padding">
 									<img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg">
 									        </div>
@@ -48,17 +48,18 @@
         </div>
 
         <!--User List-->
-        <div class="col s12 m6">
-            <h4 class="center-align">All Users</h4> 
+        <div class="col s12 m6 no-padding">
+            <h4 class="center-align sub-about-heading promt-font grey lighten-2">All Users</h4> 
 
             <!--User Cards-->
 			{% if all_users|length > 0 %}
 			<ul>
 				{% for user in all_users %}
+
 				<li>
-					<a href="#">
+					<a href="{{ url_for('profile', username=other) }}" method="GET">
 						<div class="col s10 m10 offset-s1 offset-m1 no-padding">
-							<div class="card horizontal light-green lighten-4">
+							<div class="card horizontal book-card-style">
 								<div class="card-image col s4 m4 review-list-image no-padding">
 									<img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg">
 									        </div>
@@ -75,7 +76,6 @@
 							</div>
 					</a>
 				</li>
-		
 				{% endfor %}
 			</ul>
 			{% else %}

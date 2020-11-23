@@ -18,6 +18,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# Route for homepage - Only displayed when logged out
 @app.route('/')
 def homepage():
     return render_template('homepage.html')
@@ -26,10 +27,11 @@ def homepage():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+
         # Check for a username match
         existing_username = mongo.db.users.find_one(
             {'username': request.form.get('username').lower()})
-        
+
         # Check for an email match
         existing_email = mongo.db.users.find_one(
             {'email': request.form.get('email').lower()})
@@ -45,12 +47,14 @@ def register():
             return redirect(url_for('register'))
 
         # The user information from the form that is going to be added
+        time_of_reg = ObjectId.getTimestamp()
         register_user = {
             'first_name': request.form.get('first_name').lower(),
             'last_name': request.form.get('last_name').lower(),
             'username': request.form.get('username').lower(),
             'email': request.form.get('email'),
-            'password': generate_password_hash(request.form.get('password'))
+            'password': generate_password_hash(request.form.get('password')),
+            'date_joined': time_of_reg
         }
         # Insert the form information to the database
         mongo.db.users.insert_one(register_user)
@@ -64,6 +68,12 @@ def register():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    # If there is a stored session, redirect the user straight to profile
+    returning_user = mongo.db.users.find_one(
+        {'username': session['user']})
+    if returning_user:
+        return redirect(url_for('profile', username=session['user']))
+
     if request.method == "POST":
         # Check if the username exists
         existing_user = mongo.db.users.find_one(
@@ -72,11 +82,10 @@ def login():
         if existing_user:
             # Check if password matches username
             if check_password_hash(
-                existing_user['password'], request.form.get('password')):
-                    session['user'] = request.form.get('username').lower()
-                    flash('Welcome, {}'.format(request.form.get('username')))
-                    return redirect(url_for(
-                        'profile', username=session['user']))
+                    existing_user['password'], request.form.get('password')):
+                session['user'] = request.form.get('username').lower()
+                return redirect(url_for(
+                    'profile', username=session['user']))
             else:
                 # password and username does not match
                 flash("Wrong password or username")
@@ -89,12 +98,18 @@ def login():
     return render_template('login.html')
 
 
-@app.route("/profile", methods=["GET", "POST"])
-def profile():
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # Gets a list with all books added to the database
     books = list(mongo.db.books.find())
-    userinfo = mongo.db.users.find_one({
-        'username': session['user']})
-    return render_template('profile.html', books=books, userinfo=userinfo)
+    username = mongo.db.users.find_one(
+        {'username': session['user']})
+
+    if session['user'] == username['username']:
+        return render_template(
+            'profile.html', username=username, books=books)
+
+    return redirect(url_for('login'))
 
 
 @app.route('/add_book', methods=["GET", "POST"])
@@ -115,7 +130,7 @@ def add_book():
         mongo.db.books.insert_one(addBook)
 
         flash('Book added successfully!')
-        return redirect(url_for('profile'))
+        return redirect(url_for('profile', username=session['user']))
     return render_template('add_book.html')
 
 
@@ -131,7 +146,13 @@ def logout():
 def startpage():
     books = list(mongo.db.books.find())
     all_users = list(mongo.db.users.find())
+
     return render_template('startpage.html', books=books, all_users=all_users)
+
+
+def userProfile(username):
+    username = mongo.db.users.find_one({'username': username})
+    return redirect(url_for('profile', username=username))
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 /* ------------------- Imported Fonts ------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,300&family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
 /*
 font-family: 'IBM Plex Sans', sans-serif;
 font-family: 'Questrial', sans-serif;
@@ -18,6 +19,10 @@ body {
 
 .no-padding {
     padding: 0;
+}
+
+.add-padding {
+    padding: 10px;
 }
 
 .top-space {
@@ -44,6 +49,13 @@ h3.main-heading-text {
     margin-top: 50px;
 }
 
+.promt-font {
+    font-family: 'Prompt', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
 .duo-buttons {
     width: 30vw;
     font-family: 'IBM Plex Sans', sans-serif;
@@ -65,18 +77,47 @@ h3.main-heading-text {
     width: 150px;
 }
 
+.sub-about-heading {
+    margin-top: 0;
+    padding: 20px;
+}
+
 .profile-image {
     border-radius: 10px;
+    margin-top: 20px;
+}
+
+.profile-info-par {
+    margin-top: 50px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    font-weight: 500;
 }
 
 .profile-information {
     float: right;
     font-style: italic;
+    font-weight: 300;
 }
 
 .edit-button {
     width: 15vw;
     font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.book-sm-heading {
+    margin-left: 20px;
+}
+
+.book-card-style {
+    border-radius: 10px;
+    transition: 0.3s;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12)
+}
+
+.book-card-style:hover {
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+    transform: translate(2px,-5px);
 }
 
 /* ---------------------Startpage --------------------*/
