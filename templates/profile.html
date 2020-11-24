@@ -72,7 +72,7 @@
                                                     <div class="card-content">
                                                         <h5>{{ book.book_title.capitalize() }}</h5>
                                                         <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
-                                                        <p>{{ book.review }}</p>
+                                                        
                                                     </div>
                                 
                                                 </div>
@@ -111,7 +111,39 @@
                                                 <div class="card-content">
                                                     <h5>{{ book.book_title.capitalize() }}</h5>
                                                     <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
-                                                    <p>{{ book.review }}</p>
+                                                    <p>
+                                                        {% if book.rating == 1 %}
+                                                            <div>
+                                                                <i class="fas fa-star"></i>
+                                                            </div>
+                                                        {% elif book.rating == 2 %}
+                                                            <div>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                            </div>
+                                                        {% elif book.rating == 3 %}
+                                                            <div>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                            </div>
+                                                        {% elif book.rating == 4 %}
+                                                            <div>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                            </div>
+                                                        {% elif book.rating == 5 %}
+                                                            <div>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                            </div>
+                                                        {% endif %}
+                                                    {{ book.review }}</p>
                                                 </div>
                             
                                             </div>
