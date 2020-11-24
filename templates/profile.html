@@ -60,27 +60,33 @@
                      <!--Saved Books Loop-->`
                     {% if books|length > 0 %}
 					<ul>
-                        {% for book in books %}
-                            {% if not book.read_book == "on" %}
-                                {% if book.added_by|lower == session.user|lower %}
-                                <li>
-                                    <div class="col s12 m6 l4">
-                                        <div class="card horizontal book-card-style">
+                        {% for book in books if book.added_by|lower == username.username|lower %}
                             
-                                            <div class="card-stacked">
-                                                <div class="card-content">
-                                                    <h5>{{ book.book_title.capitalize() }}</h5>
-                                                    <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
-                                                    <p>{{ book.review }}</p>
+                                {% if not book.read_book == "on" %}
+                                    
+                                    <li>
+                                        <div class="col s12 m6 l4">
+                                            <div class="card horizontal book-card-style">
+                                
+                                                <div class="card-stacked">
+                                                    <div class="card-content">
+                                                        <h5>{{ book.book_title.capitalize() }}</h5>
+                                                        <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
+                                                        <p>{{ book.review }}</p>
+                                                    </div>
+                                
                                                 </div>
-                            
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
+
                                 {% endif %}
-                            {% endif %}
+
+                            
+                        {% else %}
+                            <h5 class="center-align">No Books Added</h5>
                         {% endfor %}
+                        
 					</ul>
                     {% else %}
                         <h5 class="center-align">No Books Added</h5>
@@ -93,9 +99,10 @@
                     <h5 class="book-sm-heading promt-font">Have Read</h5>
                     {% if books|length > 0 %}
 					<ul>
-                        {% for book in books %}
+                        {% for book in books if book.added_by|lower == username.username|lower %}
+
                             {% if book.read_book == "on" %}
-                                {% if book.added_by|lower == session.user|lower %}
+
                                 <li>
                                     <div class="col s12 m6 l4">
                                         <div class="card horizontal book-card-style">
@@ -111,11 +118,10 @@
                                         </div>
                                     </div>
                                 </li>
-                                    {% if book.added_by|length == 0 %}
-                                    <h5 class="center-align">No Books Added</h5>
-                                    {% endif %}
-                                {% endif %}
+
                             {% endif %}
+                        {% else %}
+                            <h5 class="center-align">No Books Added</h5>
                         {% endfor %}
 					</ul>
                     {% else %}
@@ -123,11 +129,13 @@
                     {% endif %}
                 </div>
                 
+                {% if session.user|lower == username.username|lower %}
                 <!--Add more Books Button-->
                 <div class="row center-align top-space">
                     <a href="{{ url_for('add_book') }}"
                         class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>Add a New Book</i></a>
                 </div>
+                {% endif %}
 
             </div>
     </div>

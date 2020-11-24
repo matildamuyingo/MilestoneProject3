@@ -113,6 +113,28 @@ $('#read-check').click(function() {
     font-family: 'Questrial', sans-serif;
 */
 ```
+    - Displaying a text about there being no books added on a user profile, if that specific user haven't added any books
+**The code was changed from**
+```
+{% if books|length > 0 %}
+					<ul>
+                        {% for book in books %}
+                            {% if book.added_by|lower == username.username|lower %}
+                            {% else %}
+                                <h5 class="center-align">No Books Added</h5>
+```
+This resulted in the text 'No Books Added' being displayed as many times as the amount of books in the database
+**To**
+```
+{% if books|length > 0 %}
+					<ul>
+                        {% for book in books if book.added_by|lower == username.username|lower %}
+                        {% else %}
+                            <h5 class="center-align">No Books Added</h5>
+```
+The condition for the for loop was changed so that only the books that have the same 'added_by' as the profile username will be iterated through.
+
+The result is that the text is shown only once and then ends the loop
 
     - The images for the list with reviews and users were not lining up with the card-left-border. 
         - I started with adding (.row .col) to the style.css document and set padding:0. This solved the problem but removed the padding for every col and row on the page. To solve it I created a new class called no-padding and applied it to the concerned elements 
