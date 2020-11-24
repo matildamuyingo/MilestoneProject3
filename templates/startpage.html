@@ -18,16 +18,18 @@
 					<a href="#">
 						<div class="col s10 m10 offset-s1 offset-m1 no-padding">
 							<div class="card horizontal book-card-style">
+                                <!--Book Image-->
 								<div class="card-image col s4 m4 review-list-image no-padding">
-									<img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg">
-									        </div>
+									<img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" alt="">
+								</div>
 			
 									<div class="card-stacked col s8 m8 no-padding">
 										<div class="card-content">
 											<h5>{{ book.book_title.capitalize() }}</h5>
-											<p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}
+											<p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }} <br>
+                                            Added By: {{ book.added_by }}
 											</p>
-											<p>{{ book.review }}</p>
+											<p class="book-review-prev">{{ book.review }}</p>
 										</div>
 									</div>
 								</div>
@@ -57,17 +59,19 @@
 				{% for user in all_users %}
 
 				<li>
-					<a href="{{ url_for('profile', username=other) }}" method="GET">
+					<a href="{{ url_for('profile', username=user.username) }}" method="GET">
 						<div class="col s10 m10 offset-s1 offset-m1 no-padding">
 							<div class="card horizontal book-card-style">
-								<div class="card-image col s4 m4 review-list-image no-padding">
-									<img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg">
-									        </div>
+                                <!--User Icon-->
+								<div class="card-image col s4 m4 user-list-icon no-padding center-align">
+									<i class="far fa-user"></i>
+								</div>
 			
 									<div class="card-stacked col s8 m8 no-padding">
 										<div class="card-content">
 											<h5>{{ user.username }}</h5>
-											<p>{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }}
+											<p>{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }} <br>
+                                                Date Joined: {{ user.date_joined }}
 											</p>
 											
 										</div>

@@ -17,8 +17,8 @@
                 <h4 class="center-align promt-font light-green lighten-4 sub-about-heading">About Me</h4>
 
                 <!--Profile Picture-->
-                <div class="image-container col s12">
-                    <img class="responsive-img profile-image col s6 offset-s3" src="https://cdn3.vectorstock.com/i/1000x1000/72/32/open-book-on-white-background-vector-8107232.jpg">     
+                <div class="image-container col s12 center-align">
+                    <i class="far fa-user"></i>
                 </div>
 
                 <!--Profile Information-->
@@ -61,29 +61,29 @@
                     {% if books|length > 0 %}
 					<ul>
                         {% for book in books %}
-                        {% if not book.read_book == "on" %}
-                        {% if book.added_by|lower == session.user|lower %}
-						<li>
-							<div class="col s12 m6 l4">
-								<div class="card horizontal book-card-style">
-					
-									<div class="card-stacked">
-										<div class="card-content">
-                                            <h5>{{ book.book_title.capitalize() }}</h5>
-                                            <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
-											<p>{{ book.review }}</p>
-										</div>
-					
-									</div>
-								</div>
-							</div>
-						</li>
-                        {% endif %}
-                        {% endif %}
+                            {% if not book.read_book == "on" %}
+                                {% if book.added_by|lower == session.user|lower %}
+                                <li>
+                                    <div class="col s12 m6 l4">
+                                        <div class="card horizontal book-card-style">
+                            
+                                            <div class="card-stacked">
+                                                <div class="card-content">
+                                                    <h5>{{ book.book_title.capitalize() }}</h5>
+                                                    <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
+                                                    <p>{{ book.review }}</p>
+                                                </div>
+                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endif %}
+                            {% endif %}
                         {% endfor %}
 					</ul>
                     {% else %}
-                        <h5>No Books Added</h5>
+                        <h5 class="center-align">No Books Added</h5>
                     {% endif %}
 
                 </div>
@@ -94,25 +94,28 @@
                     {% if books|length > 0 %}
 					<ul>
                         {% for book in books %}
-                        {% if book.read_book == "on" %}
-                        {% if book.added_by|lower == session.user|lower %}
-						<li>
-							<div class="col s12 m6 l4">
-								<div class="card horizontal book-card-style">
-					
-									<div class="card-stacked">
-										<div class="card-content">
-                                            <h5>{{ book.book_title.capitalize() }}</h5>
-                                            <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
-											<p>{{ book.review }}</p>
-										</div>
-					
-									</div>
-								</div>
-							</div>
-						</li>
-                        {% endif %}
-                        {% endif %}
+                            {% if book.read_book == "on" %}
+                                {% if book.added_by|lower == session.user|lower %}
+                                <li>
+                                    <div class="col s12 m6 l4">
+                                        <div class="card horizontal book-card-style">
+                            
+                                            <div class="card-stacked">
+                                                <div class="card-content">
+                                                    <h5>{{ book.book_title.capitalize() }}</h5>
+                                                    <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
+                                                    <p>{{ book.review }}</p>
+                                                </div>
+                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                    {% if book.added_by|length == 0 %}
+                                    <h5 class="center-align">No Books Added</h5>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
                         {% endfor %}
 					</ul>
                     {% else %}

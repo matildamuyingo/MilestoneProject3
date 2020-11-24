@@ -82,9 +82,9 @@ h3.main-heading-text {
     padding: 20px;
 }
 
-.profile-image {
-    border-radius: 10px;
-    margin-top: 20px;
+.image-container i {
+    font-size: 80px;
+    margin-top: 30px;
 }
 
 .profile-info-par {
@@ -110,7 +110,7 @@ h3.main-heading-text {
 }
 
 .book-card-style {
-    border-radius: 10px;
+    border-radius: 7px;
     transition: 0.3s;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12)
 }
@@ -122,15 +122,29 @@ h3.main-heading-text {
 
 /* ---------------------Startpage --------------------*/
 
-.review-list-image {
+.user-list-icon {
     height: 100px;
     overflow: hidden;
 }
 
+.review-list-image {
+    height: 100%;
+}
+
 .review-list-image img {
-    height: 150px;
-    margin-left: 0;
-    margin-right: auto;
+    margin: 10px;
+    width: 80px;
+    max-height: 200px;
+}
+
+.user-list-icon i {
+    font-size: 60px;
+    position: absolute;
+    bottom: 0;
+}
+
+.book-review-prev {
+    padding-top: 20px;
 }
 
 /* --------------------JavaScript------------------*/

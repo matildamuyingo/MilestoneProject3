@@ -47,14 +47,13 @@ def register():
             return redirect(url_for('register'))
 
         # The user information from the form that is going to be added
-        time_of_reg = ObjectId.getTimestamp()
+
         register_user = {
             'first_name': request.form.get('first_name').lower(),
             'last_name': request.form.get('last_name').lower(),
             'username': request.form.get('username').lower(),
             'email': request.form.get('email'),
             'password': generate_password_hash(request.form.get('password')),
-            'date_joined': time_of_reg
         }
         # Insert the form information to the database
         mongo.db.users.insert_one(register_user)
@@ -68,11 +67,7 @@ def register():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    # If there is a stored session, redirect the user straight to profile
-    returning_user = mongo.db.users.find_one(
-        {'username': session['user']})
-    if returning_user:
-        return redirect(url_for('profile', username=session['user']))
+
 
     if request.method == "POST":
         # Check if the username exists
@@ -101,13 +96,18 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # Gets a list with all books added to the database
-    books = list(mongo.db.books.find())
-    username = mongo.db.users.find_one(
-        {'username': session['user']})
 
-    if session['user'] == username['username']:
+    books = list(mongo.db.books.find())
+    user = mongo.db.users.find_one(
+        {'username': username})
+    print(f"This is the session user: {user}")
+
+    if session['user'] == user['username']:
         return render_template(
-            'profile.html', username=username, books=books)
+            'profile.html', username=user, books=books)
+    else:
+        return render_template(
+            'profile.html', username=user, books=books)
 
     return redirect(url_for('login'))
 
