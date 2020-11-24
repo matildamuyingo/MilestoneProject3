@@ -154,6 +154,7 @@ The result is that the text is shown only once and then ends the loop
 - [Google Fonts](https://fonts.google.com/)
 - [Mysqltutorial.org](https://www.mysqltutorial.org/mysql-create-table/) Refreshed memory about database creation
 - [W3Schools.com](https://www.w3schools.com/sql/sql_foreignkey.asp) About MySQL and foreign keys
+- [This Page](https://kb.objectrocket.com/mongo-db/how-to-insert-a-document-into-a-mongodb-collection-using-python-367) How to import date and how to insert it in MongoDB when adding user
 
 ### Content
 

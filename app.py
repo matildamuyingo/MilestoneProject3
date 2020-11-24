@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -47,6 +48,7 @@ def register():
             return redirect(url_for('register'))
 
         # The user information from the form that is going to be added
+        datetime_now = datetime.now()
 
         register_user = {
             'first_name': request.form.get('first_name').lower(),
@@ -54,6 +56,7 @@ def register():
             'username': request.form.get('username').lower(),
             'email': request.form.get('email'),
             'password': generate_password_hash(request.form.get('password')),
+            'date_joined': datetime_now
         }
         # Insert the form information to the database
         mongo.db.users.insert_one(register_user)
@@ -67,7 +70,6 @@ def register():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-
 
     if request.method == "POST":
         # Check if the username exists
@@ -122,7 +124,7 @@ def add_book():
             'author_last_name': request.form.get('author_last_name').lower(),
             'genre': request.form.get('genre').lower(),
             'read_book': request.form.get('read-check'),
-            'rating': request.form.get('book_rating'),
+            'rating': request.form.get('rating-drop'),
             'review': request.form.get('book_review'),
             'added_by': session['user']
         }
@@ -130,8 +132,11 @@ def add_book():
         mongo.db.books.insert_one(addBook)
 
         flash('Book added successfully!')
-        return redirect(url_for('profile', username=session['user']))
-    return render_template('add_book.html')
+        return redirect(url_for(
+            'profile', username=session['user']))
+    ratings = mongo.db.ratings.find()
+    genres = mongo.db.genres.find().sort('genre_name', 1)
+    return render_template('add_book.html', ratings=ratings, genres=genres)
 
 
 @app.route('/logout')
