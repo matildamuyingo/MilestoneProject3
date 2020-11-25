@@ -136,8 +136,14 @@ The condition for the for loop was changed so that only the books that have the 
 
 The result is that the text is shown only once and then ends the loop
 
-    - The images for the list with reviews and users were not lining up with the card-left-border. 
-        - I started with adding (.row .col) to the style.css document and set padding:0. This solved the problem but removed the padding for every col and row on the page. To solve it I created a new class called no-padding and applied it to the concerned elements 
+- When adding editing buttons to the cards created by the current user, the a tag that wraps every list item was pushed to only cover the image in the card, and the image size was reduced to about half.
+    - The bug was solved by moving the a tag so that it wraps the card content/text instead of the whole card.
+
+    - **Bug solved by moving the a tag from right after the opening li tag, to after the code for the editing buttons**
+
+
+- The images for the list with reviews and users were not lining up with the card-left-border. 
+    - I started with adding (.row .col) to the style.css document and set padding:0. This solved the problem but removed the padding for every col and row on the page. To solve it I created a new class called no-padding and applied it to the concerned elements 
 
 ### Device Compability
 ***
@@ -166,4 +172,18 @@ The result is that the text is shown only once and then ends the loop
 
 
 
-
+<!--Delete Book Modal
+        <div id="modal1" class="modal center-align">
+            <div class="modal-content">
+            <h4>Delete Book</h4>
+            <p>Are you sure you want to delete this book? <br>
+            <span>(The book can not be restored when deleted)</span></p>
+            </div>
+            
+            <div class="modal-footer center-align">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                <a href="{{ url_for('delete_book', book_id=book._id) }}" class="modal-close waves-effect waves-green btn-flat">Delete Book</a>
+            </div>
+            
+        </div>
+        -->

@@ -41,6 +41,23 @@ body {
     font-size: 50px;
 }
 
+.sub-book-edit-buttons {
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.delete-book-button,
+.edit-book-button {
+    padding: 1px 7px;
+    z-index: 9;
+}
+
+.book-hover-link {
+    z-index: 5;
+}
+
 /*-----------------Home Page (and more general styling) -----------------*/
 
 h3.main-heading-text {
@@ -112,7 +129,8 @@ h3.main-heading-text {
 .book-card-style {
     border-radius: 7px;
     transition: 0.3s;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12)
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12);
+    max-height: 250px;
 }
 
 .book-card-style:hover {
@@ -155,6 +173,10 @@ h3.main-heading-text {
 
 .full-display {
     display: block;
+}
+
+select {
+  font-family: 'FontAwesome', 'Second Font name';
 }
 
 /* ---------------------Media --------------------*/

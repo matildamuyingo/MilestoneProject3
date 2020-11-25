@@ -56,8 +56,10 @@ def register():
             'username': request.form.get('username').lower(),
             'email': request.form.get('email'),
             'password': generate_password_hash(request.form.get('password')),
-            'date_joined': datetime_now
+            'date_joined': datetime_now,
+            'user_icon': request.form.get('user_icon')
         }
+        print(register_user)
         # Insert the form information to the database
         mongo.db.users.insert_one(register_user)
 
@@ -65,7 +67,8 @@ def register():
         session['user'] = request.form.get('username').lower()
         flash('Registration Successful!')
         return redirect(url_for('profile', username=session['user']))
-    return render_template('register.html')
+    icons = mongo.db.icons.find()
+    return render_template('register.html', icons=icons)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -98,11 +101,9 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # Gets a list with all books added to the database
-
     books = list(mongo.db.books.find())
     user = mongo.db.users.find_one(
         {'username': username})
-    print(f"This is the session user: {user}")
 
     if session['user'] == user['username']:
         return render_template(
@@ -117,6 +118,9 @@ def profile(username):
 @app.route('/add_book', methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
+        # Set the image variable to the form input
+        image = request.form.get('book_image')
+
         # The user information from the form that is going to be added
         addBook = {
             'book_title': request.form.get('book_title').lower(),
@@ -126,8 +130,17 @@ def add_book():
             'read_book': request.form.get('read-check'),
             'rating': request.form.get('rating-drop'),
             'review': request.form.get('book_review'),
-            'added_by': session['user']
+            'added_by': session['user'],
+            'book_image': image
         }
+        # if the user did not upload an image, use this url
+        if not image:
+            addBook['book_image'] = (
+                'https://edit.org/images/cat/book-covers-big-2019101610.jpg')
+        # if the user uploaded an image, use the uploaded image
+        else:
+            addBook['book_image'] = request.form.get('book_image')
+
         # Insert the form information to the database
         mongo.db.books.insert_one(addBook)
 
@@ -137,6 +150,13 @@ def add_book():
     ratings = mongo.db.ratings.find()
     genres = mongo.db.genres.find().sort('genre_name', 1)
     return render_template('add_book.html', ratings=ratings, genres=genres)
+
+
+@app.route('/delete_book/<book_id>')
+def delete_book(book_id):
+    mongo.db.books.delete_one({'_id': ObjectId(book_id)})
+    flash('Deleted Book')
+    return redirect(url_for('profile', username=session['user']))
 
 
 @app.route('/logout')
@@ -153,11 +173,6 @@ def startpage():
     all_users = list(mongo.db.users.find())
 
     return render_template('startpage.html', books=books, all_users=all_users)
-
-
-def userProfile(username):
-    username = mongo.db.users.find_one({'username': username})
-    return redirect(url_for('profile', username=username))
 
 
 if __name__ == "__main__":

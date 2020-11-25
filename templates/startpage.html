@@ -14,22 +14,33 @@
 			{% if books|length > 0 %}
 			<ul>
 				{% for book in books %}
+                   
 				<li>
-					<a href="#">
 						<div class="col s10 m10 offset-s1 offset-m1 no-padding">
 							<div class="card horizontal book-card-style">
+                            
                                 <!--Book Image-->
 								<div class="card-image col s4 m4 review-list-image no-padding">
-									<img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" alt="">
+									<img src="{{book.book_image}}" alt="">
 								</div>
-			
+			        
 									<div class="card-stacked col s8 m8 no-padding">
+                                        <!--If the book was added by the current user the editing buttons will be displayed-->
+                                        {% if session.user == book.added_by %}
+                                            <div class="sub-book-edit-buttons no-display">
+                                                <a class="edit-book-button light-blue lighten-1 light-green-text text-lighten-5"><i class="far fa-edit"></i></a>
+                                                <a class="delete-book-button red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
+                                            </div>
+                                        {% endif %}
+                                        <!--Link that wraps card text-->
+                                        <a href="#" class="book-hover-link">
 										<div class="card-content">
 											<h5>{{ book.book_title.capitalize() }}</h5>
 											<p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }} <br>
                                             Added By: {{ book.added_by }}
 											</p>
 											<p class="book-review-prev">
+                                            <!--Changes the number of stars displayed depending on the rating-->
                                             {% if book.rating == 1 %}
                                                             <div>
                                                                 <i class="fas fa-star"></i>
@@ -64,12 +75,13 @@
                                             {{ book.review }}
                                             </p>
 										</div>
+                                        </a>
 									</div>
 								</div>
 							</div>
-					</a>
+
 				</li>
-		
+                    
 				{% endfor %}
 			</ul>
 			{% else %}
@@ -90,14 +102,14 @@
 			{% if all_users|length > 0 %}
 			<ul>
 				{% for user in all_users %}
-
+                    {% if loop.index < 7 %}
 				<li>
 					<a href="{{ url_for('profile', username=user.username) }}" method="GET">
 						<div class="col s10 m10 offset-s1 offset-m1 no-padding">
 							<div class="card horizontal book-card-style">
                                 <!--User Icon-->
 								<div class="card-image col s4 m4 user-list-icon no-padding center-align">
-									<i class="far fa-user"></i>
+									<i class="{{ user.user_icon }}"></i>
 								</div>
 			
 									<div class="card-stacked col s8 m8 no-padding">
@@ -113,17 +125,18 @@
 							</div>
 					</a>
 				</li>
+                    {% endif %}
 				{% endfor %}
 			</ul>
 			{% else %}
 			<h5 class="center-align">No Users Added</h5>
 			{% endif %}
-
             <!--Users More-->
-            <div class="row center-align top-space">
-				<a href="#"
-					class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>See All Users</i></a>
-			</div>
+                <div class="row center-align top-space">
+                    <a href="#"
+                        class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>See All Users</i></a>
+                </div>
+
         </div>
     </div>
 

@@ -18,7 +18,7 @@
 
                 <!--Profile Picture-->
                 <div class="image-container col s12 center-align">
-                    <i class="far fa-user"></i>
+                    <i class="{{ username.user_icon }}"></i>
                 </div>
 
                 <!--Profile Information-->
@@ -69,9 +69,17 @@
                                             <div class="card horizontal book-card-style">
                                 
                                                 <div class="card-stacked">
+                                                <!--Card Editing Buttons-->
+                                                    {% if session.user == username.username %}
+                                                        <div class="sub-book-edit-buttons no-display">
+                                                            <a href="#" class="edit-book-button light-blue lighten-1 light-green-text text-lighten-5"><i class="far fa-edit"></i></a>
+                                                            <a href="#modal1" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
+                                                        </div>
+                                                    {% endif %}
                                                     <div class="card-content">
                                                         <h5>{{ book.book_title.capitalize() }}</h5>
                                                         <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
+                                                        <a href="{{ url_for('delete_book', book_id=book._id) }}" class="waves-effect waves-green btn-flat">Delete Book</a>
                                                         
                                                     </div>
                                 
@@ -108,6 +116,13 @@
                                         <div class="card horizontal book-card-style">
                             
                                             <div class="card-stacked">
+                                                    <!--Card Editing Buttons-->
+                                                    {% if session.user == username.username %}
+                                                        <div class="sub-book-edit-buttons no-display">
+                                                            <a href="#" class="edit-book-button light-blue lighten-1 light-green-text text-lighten-5"><i class="far fa-edit"></i></a>
+                                                            <a href="#modal1" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
+                                                        </div>
+                                                    {% endif %}
                                                 <div class="card-content">
                                                     <h5>{{ book.book_title.capitalize() }}</h5>
                                                     <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
