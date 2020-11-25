@@ -57,7 +57,12 @@ def register():
             'email': request.form.get('email'),
             'password': generate_password_hash(request.form.get('password')),
             'date_joined': datetime_now,
-            'user_icon': request.form.get('user_icon')
+            'user_icon': request.form.get('user_icon'),
+            'user_age': "",
+            'user_gender': "",
+            'fav_book': "",
+            'fav_author': "",
+            'fav_genre': ""
         }
         print(register_user)
         # Insert the form information to the database
@@ -119,19 +124,51 @@ def profile(username):
 def edit_profile(username):
     books = list(mongo.db.books.find())
     genres = list(mongo.db.genres.find())
+    authors = list(mongo.db.authors.find())
+    icons = mongo.db.icons.find()
 
     user = mongo.db.users.find_one(
         {'username': username})
 
-    if session['user'] == user['username']:
-        return render_template(
-            'edit_profile.html', username=user, books=books, genres=genres)
+    if request.method == "POST":
+
+        u_name = user['username']
+        email = user['email']
+        password = user['password']
+        joined = user['date_joined']
+
+        update_info = {
+            'first_name': request.form.get('first_name').capitalize(),
+            'last_name': request.form.get('last_name').capitalize(),
+            'username': u_name,
+            'email': email,
+            'password': password,
+            'date_joined': joined,
+            'user_icon': request.form.get('user_icon'),
+            'user_age': request.form.get('user_age'),
+            'user_gender': request.form.get('user_gender'),
+            'fav_book': request.form.get('fav_book'),
+            'fav_author': request.form.get('fav_author'),
+            'fav_genre': request.form.get('fav_genre')
+        }
+        mongo.db.users.replace_one({'_id': ObjectId(user['_id'])}, update_info)
+        flash('User info updated!')
+
+
     else:
-        return render_template(
-            'edit_profile.html', username=user, books=books, genres=genres)
+        if session['user'] == user['username']:
+            return render_template(
+                'edit_profile.html', username=user, books=books,
+                genres=genres, icons=icons, authors=authors)
+
+        else:
+            return render_template(
+                'edit_profile.html', username=user, books=books,
+                genres=genres, icons=icons, authors=authors)
 
     return render_template(
-        'edit_profile.html', username=user, books=books, genres=genres)
+        'edit_profile.html', username=user, books=books,
+        genres=genres, icons=icons, authors=authors)
 
 
 @app.route('/add_book', methods=["GET", "POST"])
@@ -139,15 +176,20 @@ def add_book():
     if request.method == "POST":
         # Set the image variable to the form input
         image = request.form.get('book_image')
+        rating = request.form.get('rating-drop')
+        if rating:
+            rating = int(request.form.get('rating-drop'))
 
         # The user information from the form that is going to be added
         addBook = {
-            'book_title': request.form.get('book_title').lower(),
-            'author_first_name': request.form.get('author_first_name').lower(),
-            'author_last_name': request.form.get('author_last_name').lower(),
+            'book_title': request.form.get('book_title').capitalize(),
+            'author_first_name': request.form.get(
+                'author_first_name').capitalize(),
+            'author_last_name': request.form.get(
+                'author_last_name').capitalize(),
             'genre': request.form.get('genre').lower(),
             'read_book': request.form.get('read-check'),
-            'rating': request.form.get('rating-drop'),
+            'rating': rating,
             'review': request.form.get('book_review'),
             'added_by': session['user'],
             'book_image': image
@@ -155,13 +197,29 @@ def add_book():
         # if the user did not upload an image, use this url
         if not image:
             addBook['book_image'] = (
-                'https://edit.org/images/cat/book-covers-big-2019101610.jpg')
+                'https://vignette.wikia.nocookie.net/darkseries/images/9/96/No_book_cover_lg.jpg/revision/latest?cb=20170826200421')
+
         # if the user uploaded an image, use the uploaded image
         else:
             addBook['book_image'] = request.form.get('book_image')
 
-        # Insert the form information to the database
+        # Insert the form information about the book to the database
         mongo.db.books.insert_one(addBook)
+
+        # add the authors full name into the database
+        addAuthor = {
+            'author_name': request.form.get(
+                'author_first_name').title() + (" ")
+            + request.form.get('author_last_name').title()
+        }
+
+        # Check if the author already exists in the database
+        existing_author = mongo.db.authors.find_one(
+            {'author_name': addAuthor['author_name'].title()})
+
+        # If the author does not exist, insert name
+        if not existing_author:
+            mongo.db.authors.insert_one(addAuthor)
 
         flash('Book added successfully!')
         return redirect(url_for(

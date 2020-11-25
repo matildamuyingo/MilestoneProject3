@@ -145,6 +145,32 @@ The result is that the text is shown only once and then ends the loop
 - The images for the list with reviews and users were not lining up with the card-left-border. 
     - I started with adding (.row .col) to the style.css document and set padding:0. This solved the problem but removed the padding for every col and row on the page. To solve it I created a new class called no-padding and applied it to the concerned elements 
 
+- when trying to update the user data, the login information that needs to be unchanged was being overwritten. This bug was solved by storing the static values in variables and then updating them with the same value as what they previously contained
+```
+    if request.method == "POST":
+
+        u_name = user['username']
+        email = user['email']
+        password = user['password']
+        joined = user['date_joined']
+
+        update_info = {
+            'first_name': request.form.get('first_name').capitalize(),
+            'last_name': request.form.get('last_name').capitalize(),
+            'username': u_name,
+            'email': email,
+            'password': password,
+            'date_joined': joined,
+            'user_icon': request.form.get('user_icon'),
+            'user_age': request.form.get('user_age'),
+            'user_gender': request.form.get('user_gender'),
+            'fav_book': request.form.get('fav_book'),
+            'fav_author': request.form.get('fav_author'),
+            'fav_genre': request.form.get('fav_genre')
+        }
+        mongo.db.users.replace_one({'_id': ObjectId(user['_id'])}, update_info)
+```
+
 ### Device Compability
 ***
 ## Credit
