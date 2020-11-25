@@ -82,6 +82,8 @@ The test DataBase Name is Mile and currently contains the tables Users and UserI
 ### Bugs
 
  - #### Discovered Bugs
+    - Cards are pushed down on the profile page on computer sometimes
+    - The user info edit form is not sending information correctly to mongodb
     - The dropdown menu does not display in the navbar 
 
     - The icon in the bottom right corner does not disappear if the user already have a session stored. 

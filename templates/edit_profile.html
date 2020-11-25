@@ -7,7 +7,7 @@
 
 	<div class="row">
 	
-		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile', username=username.username) }}">
+		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile', username=session.user) }}">
         <div class="card-panel  lime lighten-4">
 
 			
@@ -26,9 +26,13 @@
 				
 				<div class="input-field col s8 offset-s2 m4">
 					<select class="icons" id="user_icon" name="user_icon">
-                            <option value="{{ username.user_icon }}" disabled selected>Choose your option</option>
+                            <option value="" disabled>Choose your option</option>
                         {% for icon in icons %}
-                            <option value="{{ icon.icon_link }}" minlength="5" data-icon="{{icon.icon_path}}">{{icon.icon_name.capitalize()}}</option>
+                            {% if icon.icon_name == username.user_icon %}
+                                <option value="{{ icon.icon_link }}" selected>{{ icon.icon_name }}</option>
+                        {% else %}
+                                <option value="{{ icon.icon_link }}" selected>{{ icon.icon_name }}</option>
+                            {% endif %}
                         {% endfor %}
 				    </select>
 					<label for="user_icon">Select a profile icon</label>
@@ -51,9 +55,13 @@
 
                 <div class="input-field col s6">
                     <select id="user_gender" name="user_gender">
-                            <option value="" minlength="5" maxlength="10" disabled>Gender</option>
+                            <option value="" minlength="5" disabled>Gender</option>
                         {% for gender in genders %}
-                            <option value="{{ gender.gender }}">{{ gender.gender }}</option>
+                            {% if book.book_title.capitalize() == username.fav_book.capitalize() %}
+                                <option value="{{ gender.gender }}" selected>{{ gender.gender }}</option>
+                        {% else %}
+                                <option value="{{ gender.gender }}">{{ gender.gender }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                         <label for="user_gender">Gender</label>
@@ -66,7 +74,11 @@
                     <select id="fav_book" name="fav_book" minlength="5" maxlength="30">
                             <option value="" disabled>Favorite Book</option>
                         {% for book in books %}
-                            <option value="{{ book.book_title.capitalize() }}">{{ book.book_title.capitalize() }}</option>
+                            {% if book.book_title.capitalize() == username.fav_book.capitalize() %}
+                                <option value="{{ username.fav_book }}" selected>{{ book.book_title.capitalize() }}</option>
+                        {% else %}
+                                <option value="{{ username.fav_book }}">{{ book.book_title.capitalize() }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                         <label for="fav_book">Favorite Book</label>
@@ -77,10 +89,14 @@
                     <select id="fav_author" name="fav_author" minlength="5" maxlength="30">
                             <option value="" disabled>Favorite Author</option>
                         {% for author in authors %}
-                            <option value="{{ author.author_name }}">{{ author.author_name }}</option>
+                            {% if author.author_name == username.fav_author %}
+                                <option value="{{ username.fav_author }}" selected>{{ author.author_name }}</option>
+                            {% else %}
+                                <option value="{{ username.fav_author }}">{{ author.author_name }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
-                        <label for="fav_author">Favorite Auhtor</label>
+                        <label for="fav_author">Favorite Author</label>
                 </div>
 			
             </div>
@@ -90,16 +106,16 @@
 			<div class="row register-row">
 				<div class="input-field col s12">
 					<select id="fav_genre" name="fav_genre" minlength="5" maxlength="30">
-                        <option value="" disabled>Book Genre</option>
-                    {% for genre in genres %}
-                        {% if genre.genre_name == username.fav_genre %}
-                        <option value="{{ username.fav_genre }}" selected>{{ genre.genre_name }}</option>
-                        {% else %}
-                        <option value="{{ username.fav_genre }}" selected>{{ genre.genre_name }}</option>
-                        {% endif %}
-                    {% endfor %}
-			    </select>
-				<label for="fav_genre">Favorite Genre</label>
+			                        <option value="" disabled>Book Genre</option>
+			                        {% for genre in genres %}
+			                            {% if genre.genre_name == username.fav_genre %}
+			                                <option value="{{ username.fav_genre }}" selected>{{ genre.genre_name }}</option>
+			                            {% else %}
+			                                <option value="{{ username.fav_genre }}">{{ genre.genre_name }}</option>
+			                            {% endif %}
+			                        {% endfor %}
+						    </select>
+					<label for="fav_genre">Favorite Genre</label>
 				</div>
 			</div>
 

@@ -64,7 +64,7 @@ def register():
             'fav_author': "",
             'fav_genre': ""
         }
-        print(register_user)
+
         # Insert the form information to the database
         mongo.db.users.insert_one(register_user)
 
@@ -151,9 +151,11 @@ def edit_profile(username):
             'fav_author': request.form.get('fav_author'),
             'fav_genre': request.form.get('fav_genre')
         }
-        mongo.db.users.replace_one({'_id': ObjectId(user['_id'])}, update_info)
+        mongo.db.users.update(
+            {'_id': ObjectId(user['_id'])}, update_info)
         flash('User info updated!')
-
+        return render_template('profile.html', username=user, books=books,
+                genres=genres, icons=icons, authors=authors)
 
     else:
         if session['user'] == user['username']:
