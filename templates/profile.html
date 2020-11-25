@@ -42,7 +42,7 @@
                 {% if session.user|lower == username.username|lower %}
                 <!--Edit Button for About Me-->
 				<div class="row center-align">
-					<a href="#" class="btn-large edit-buttons light-green darken-2 z-depth-3"><i>Edit Info</i></a>
+					<a href="{{ url_for('edit_profile',  username=username.username) }}" class="btn-large edit-buttons light-green darken-2 z-depth-3"><i>Edit Info</i></a>
 				</div>
                 {% endif %}
             </div>

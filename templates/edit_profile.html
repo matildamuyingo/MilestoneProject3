@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="row center-align">
+        <h3 class="main-heading-text">Edit your profile information</h3>
+    </div>
+
+	<div class="row">
+	
+		<form class="col s12 m8 offset-m2" method="POST" action="#">
+        <div class="card-panel  lime lighten-4">
+
+			
+            <div class="row register-row">
+                <!--First Name--> 
+				<div class="input-field col s6 m4">
+					<input id="first_name" name="first_name" type="text" class="validate">
+					<label for="first_name">First Name</label>
+				</div>
+
+				<!--Last Name-->
+				<div class="input-field col s6 m4">
+					<input id="last_name" name="last_name" type="text" class="validate">
+					<label for="last_name">Last Name</label>
+				</div>
+				
+				<div class="input-field col s8 offset-s2 m4">
+					<select class="icons" id="user_icon" name="user_icon">
+                            <option value="" disabled selected>Choose your option</option>
+                        {% for icon in icons %}
+                            <option value="{{ icon.icon_link }}" data-icon="{{icon.icon_path}}">{{icon.icon_name.capitalize()}}</option>
+                        {% endfor %}
+				    </select>
+					<label for="user_icon">Select a profile icon</label>
+				</div>
+			</div>
+
+            <div class="row register-row">
+                <!--Age Field--> 
+                <div class="input-field col s6">
+                    <select id="user_age" name="user_age">
+                            <option value="" disabled selected>Age</option>
+                        {% for gender in genders %}
+                            <option value="">Age option</option>
+                        {% endfor %}
+                    </select>
+                        <label for="user_age">Age</label>
+                </div>
+
+                <!--Gender Field--> 
+
+                <div class="input-field col s6">
+                    <select id="user_gender" name="user_gender">
+                            <option value="" disabled selected>Gender</option>
+                        {% for gender in genders %}
+                            <option value="{{ gender.gender }}">{{ gender.gender }}</option>
+                        {% endfor %}
+                    </select>
+                        <label for="user_gender">Gender</label>
+                </div>
+            </div>
+
+            <!--Favorite Book--> 
+			<div class="row register-row">
+				<div class="input-field col s6">
+                    <select id="fav_book" name="fav_book">
+                            <option value="" disabled selected>Favorite Book</option>
+                        {% for book in books %}
+                            <option value="{{ book.book_title }}">{{ book.book_title }}</option>
+                        {% endfor %}
+                    </select>
+                        <label for="fav_book">Favorite Book</label>
+                </div>
+			
+                <!--Favorite Author--> 
+                <div class="input-field col s6">
+                    <select id="fav_author" name="fav_author">
+                            <option value="" disabled selected>Favorite Author</option>
+                        {% for author in authors %}
+                            <option value="{{ author.author_name }}">{{ author.author_name }}</option>
+                        {% endfor %}
+                    </select>
+                        <label for="fav_author">Favorite Auhtor</label>
+                </div>
+			
+            </div>
+
+
+            <!--Favorite Genre--> 
+			<div class="row register-row">
+				<div class="input-field col s12">
+					<select id="genre" name="genre">
+                        <option value="" disabled selected>Book Genre</option>
+                    {% for genre in genres %}
+                        <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                    {% endfor %}
+			    </select>
+				<label for="genre">Book Genre</label>
+				</div>
+			</div>
+
+            <!--Submit Button--> 
+            <div class="row center-align">
+                <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Update Info</button>
+            </div>
+        </div>
+		</form>
+	
+	</div>
+
+
+{% endblock %}

@@ -115,6 +115,25 @@ def profile(username):
     return redirect(url_for('login'))
 
 
+@app.route('/edit_profile/<username>', methods=["GET", "POST"])
+def edit_profile(username):
+    books = list(mongo.db.books.find())
+    genres = list(mongo.db.genres.find())
+
+    user = mongo.db.users.find_one(
+        {'username': username})
+
+    if session['user'] == user['username']:
+        return render_template(
+            'edit_profile.html', username=user, books=books, genres=genres)
+    else:
+        return render_template(
+            'edit_profile.html', username=user, books=books, genres=genres)
+
+    return render_template(
+        'edit_profile.html', username=user, books=books, genres=genres)
+
+
 @app.route('/add_book', methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
