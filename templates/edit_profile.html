@@ -30,9 +30,9 @@
                             <option value="" disabled>Choose your option</option>
                         {% for icon in icons %}
                             {% if icon.icon_link == username.user_icon %}
-                                <option value="{{ icon.icon_link }}" selected>{{ icon.icon_name }}</option>
+                                <option value="{{ icon.icon_link }}" selected>{{ icon.icon_name.capitalize() }}</option>
                         {% else %}
-                                <option value="{{ icon.icon_link }}">{{ icon.icon_name }}</option>
+                                <option value="{{ icon.icon_link }}">{{ icon.icon_name.capitalize() }}</option>
                             {% endif %}
                         {% endfor %}
 				    </select>
@@ -43,13 +43,8 @@
             <div class="row register-row">
                 <!--Age Field--> 
                 <div class="input-field col s6">
-                    <select id="user_age" name="user_age">
-                            <option value="" disabled>Age</option>
-                        {% for age in ages %}
-                            <option value="">Age option</option>
-                        {% endfor %}
-                    </select>
-                        <label for="user_age">Age</label>
+                    <input id="user_age" name="user_age" pattern="\d*" value="{{ username.user_age }}" type="text" class="validate">
+					<label for="user_age">Age</label>
                 </div>
 
                 <!--Gender Field--> 

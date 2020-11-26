@@ -122,9 +122,9 @@ def profile(username):
 
 @app.route('/edit_profile/<username>', methods=["GET", "POST"])
 def edit_profile(username):
-    books = list(mongo.db.books.find())
-    genres = list(mongo.db.genres.find())
-    authors = list(mongo.db.authors.find())
+    books = list(mongo.db.books.find().sort('book_title', 1))
+    genres = list(mongo.db.genres.find().sort('genre_name', 1))
+    authors = list(mongo.db.authors.find().sort('author_name', 1))
     genders = list(mongo.db.genders.find())
     icons = list(mongo.db.icons.find())
     user = mongo.db.users.find_one(
@@ -145,13 +145,13 @@ def edit_profile(username):
             'password': password,
             'date_joined': joined,
             'user_icon': request.form.get('user_icon'),
-            'user_age': request.form.get('user_age'),
+            'user_age': int(request.form.get('user_age')),
             'user_gender': request.form.get('user_gender'),
             'fav_book': request.form.get('fav_book'),
             'fav_author': request.form.get('fav_author'),
             'fav_genre': request.form.get('fav_genre')
         }
-        print(update_info)
+
         mongo.db.users.update(
             {'_id': ObjectId(user['_id'])}, update_info)
         flash('User info updated!')
@@ -183,12 +183,12 @@ def add_book():
 
         # The user information from the form that is going to be added
         addBook = {
-            'book_title': request.form.get('book_title').capitalize(),
+            'book_title': request.form.get('book_title').title(),
             'author_first_name': request.form.get(
                 'author_first_name').capitalize(),
             'author_last_name': request.form.get(
                 'author_last_name').capitalize(),
-            'genre': request.form.get('genre').lower(),
+            'genre': request.form.get('genre').capitalize(),
             'read_book': request.form.get('read-check'),
             'rating': rating,
             'review': request.form.get('book_review'),
