@@ -22,6 +22,8 @@ mongo = PyMongo(app)
 # Route for homepage - Only displayed when logged out
 @app.route('/')
 def homepage():
+    if 'user' in session:
+        return redirect(url_for('logout'))
     return render_template('homepage.html')
 
 
@@ -191,6 +193,7 @@ def add_book():
         # Set the image variable to the form input
         image = request.form.get('book_image')
         rating = request.form.get('rating-drop')
+        datetime_now = datetime.now()
         if rating:
             rating = int(request.form.get('rating-drop'))
 
@@ -206,7 +209,8 @@ def add_book():
             'rating': rating,
             'review': request.form.get('book_review'),
             'added_by': session['user'],
-            'book_image': image
+            'book_image': image,
+            'date_added': datetime_now
         }
         # if the user did not upload an image, use this url
         if not image:
@@ -253,10 +257,18 @@ def logout():
 
 @app.route('/startpage')
 def startpage():
+    books = list(mongo.db.books.find().sort('date_added', -1))
+    all_users = list(mongo.db.users.find().sort('date_joined', -1))
+
+    return render_template('startpage.html', books=books, all_users=all_users)
+
+
+@app.route('/show_all')
+def show_all():
     books = list(mongo.db.books.find())
     all_users = list(mongo.db.users.find())
 
-    return render_template('startpage.html', books=books, all_users=all_users)
+    return render_template('show_all.html', books=books, all_users=all_users)
 
 
 if __name__ == "__main__":
