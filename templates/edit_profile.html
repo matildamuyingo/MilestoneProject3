@@ -24,14 +24,15 @@
 					<label for="last_name">Last Name</label>
 				</div>
 				
+                <!--Icon Changer-->
 				<div class="input-field col s8 offset-s2 m4">
 					<select class="icons" id="user_icon" name="user_icon">
                             <option value="" disabled>Choose your option</option>
                         {% for icon in icons %}
-                            {% if icon.icon_name == username.user_icon %}
+                            {% if icon.icon_link == username.user_icon %}
                                 <option value="{{ icon.icon_link }}" selected>{{ icon.icon_name }}</option>
                         {% else %}
-                                <option value="{{ icon.icon_link }}" selected>{{ icon.icon_name }}</option>
+                                <option value="{{ icon.icon_link }}">{{ icon.icon_name }}</option>
                             {% endif %}
                         {% endfor %}
 				    </select>
@@ -44,7 +45,7 @@
                 <div class="input-field col s6">
                     <select id="user_age" name="user_age">
                             <option value="" disabled>Age</option>
-                        {% for gender in genders %}
+                        {% for age in ages %}
                             <option value="">Age option</option>
                         {% endfor %}
                     </select>
@@ -57,10 +58,10 @@
                     <select id="user_gender" name="user_gender">
                             <option value="" minlength="5" disabled>Gender</option>
                         {% for gender in genders %}
-                            {% if book.book_title.capitalize() == username.fav_book.capitalize() %}
-                                <option value="{{ gender.gender }}" selected>{{ gender.gender }}</option>
+                            {% if gender.gender_name.lower() == username.user_gender.lower() %}
+                                <option value="{{ gender.gender_name.capitalize() }}" selected>{{ gender.gender_name.capitalize() }}</option>
                         {% else %}
-                                <option value="{{ gender.gender }}">{{ gender.gender }}</option>
+                                <option value="{{ gender.gender_name.capitalize() }}">{{ gender.gender_name.capitalize() }}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
@@ -72,12 +73,12 @@
 			<div class="row register-row">
 				<div class="input-field col s6">
                     <select id="fav_book" name="fav_book" minlength="5" maxlength="30">
-                            <option value="" disabled>Favorite Book</option>
+                            <option value="" disabled selected>Favorite Book</option>
                         {% for book in books %}
-                            {% if book.book_title.capitalize() == username.fav_book.capitalize() %}
-                                <option value="{{ username.fav_book }}" selected>{{ book.book_title.capitalize() }}</option>
+                            {% if book.book_title.lower() == username.fav_book.lower() %}
+                                <option value="{{ book.book_title.capitalize() }}" selected>{{ book.book_title.capitalize() }}</option>
                         {% else %}
-                                <option value="{{ username.fav_book }}">{{ book.book_title.capitalize() }}</option>
+                                <option value="{{ book.book_title.capitalize() }}">{{ book.book_title.capitalize() }}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
@@ -87,12 +88,12 @@
                 <!--Favorite Author--> 
                 <div class="input-field col s6">
                     <select id="fav_author" name="fav_author" minlength="5" maxlength="30">
-                            <option value="" disabled>Favorite Author</option>
+                            <option value="" disabled selected>Favorite Author</option>
                         {% for author in authors %}
-                            {% if author.author_name == username.fav_author %}
-                                <option value="{{ username.fav_author }}" selected>{{ author.author_name }}</option>
+                            {% if author.author_name.lower() == username.fav_author.lower() %}
+                                <option value="{{ author.author_name.title() }}" selected>{{ author.author_name.title() }}</option>
                             {% else %}
-                                <option value="{{ username.fav_author }}">{{ author.author_name }}</option>
+                                <option value="{{ author.author_name.title() }}">{{ author.author_name.title() }}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
@@ -106,15 +107,15 @@
 			<div class="row register-row">
 				<div class="input-field col s12">
 					<select id="fav_genre" name="fav_genre" minlength="5" maxlength="30">
-			                        <option value="" disabled>Book Genre</option>
-			                        {% for genre in genres %}
-			                            {% if genre.genre_name == username.fav_genre %}
-			                                <option value="{{ username.fav_genre }}" selected>{{ genre.genre_name }}</option>
-			                            {% else %}
-			                                <option value="{{ username.fav_genre }}">{{ genre.genre_name }}</option>
-			                            {% endif %}
-			                        {% endfor %}
-						    </select>
+			                <option value="" disabled selected>Book Genre</option>
+			            {% for genre in genres %}
+			                {% if genre.genre_name.lower() == username.fav_genre.lower() %}
+			                    <option value="{{ genre.genre_name.capitalize() }}" selected>{{ genre.genre_name.capitalize() }}</option>
+			                {% else %}
+			                    <option value="{{ genre.genre_name.capitalize() }}">{{ genre.genre_name.capitalize() }}</option>
+			                {% endif %}
+			            {% endfor %}
+					</select>
 					<label for="fav_genre">Favorite Genre</label>
 				</div>
 			</div>

@@ -125,8 +125,8 @@ def edit_profile(username):
     books = list(mongo.db.books.find())
     genres = list(mongo.db.genres.find())
     authors = list(mongo.db.authors.find())
-    icons = mongo.db.icons.find()
-
+    genders = list(mongo.db.genders.find())
+    icons = list(mongo.db.icons.find())
     user = mongo.db.users.find_one(
         {'username': username})
 
@@ -151,26 +151,25 @@ def edit_profile(username):
             'fav_author': request.form.get('fav_author'),
             'fav_genre': request.form.get('fav_genre')
         }
+        print(update_info)
         mongo.db.users.update(
             {'_id': ObjectId(user['_id'])}, update_info)
         flash('User info updated!')
-        return render_template('profile.html', username=user, books=books,
-                genres=genres, icons=icons, authors=authors)
 
     else:
         if session['user'] == user['username']:
             return render_template(
                 'edit_profile.html', username=user, books=books,
-                genres=genres, icons=icons, authors=authors)
+                genres=genres, icons=icons, authors=authors, genders=genders)
 
         else:
             return render_template(
                 'edit_profile.html', username=user, books=books,
-                genres=genres, icons=icons, authors=authors)
+                genres=genres, icons=icons, authors=authors, genders=genders)
 
     return render_template(
-        'edit_profile.html', username=user, books=books,
-        genres=genres, icons=icons, authors=authors)
+            'edit_profile.html', username=user, books=books,
+            genres=genres, icons=icons, authors=authors, genders=genders)
 
 
 @app.route('/add_book', methods=["GET", "POST"])

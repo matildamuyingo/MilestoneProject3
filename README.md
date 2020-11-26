@@ -84,6 +84,7 @@ The test DataBase Name is Mile and currently contains the tables Users and UserI
  - #### Discovered Bugs
     - Cards are pushed down on the profile page on computer sometimes
     - The user info edit form is not sending information correctly to mongodb
+        - Solved by changing the jinja templating in the dropdowns to display correctly and debugged by adding  print(update_info) and checking the added information when called
     - The dropdown menu does not display in the navbar 
 
     - The icon in the bottom right corner does not disappear if the user already have a session stored. 
