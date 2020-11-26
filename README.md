@@ -1,5 +1,6 @@
 # Milestone Project 3
 
+    
 ## UX
 
 ### Design
@@ -108,6 +109,7 @@ $('#read-check').click(function() {
 ```
 
  - #### Solved Bugs
+    - The displaying of a modal and confirming delete action [solved with this as help](https://stackoverflow.com/questions/22071042/dynamic-bootstrap-modal-within-a-loop)
     - The text font and styling for the page h3 elements are not loading
         - Solved by commenting out the following code from the style.css file
 ```

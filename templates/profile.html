@@ -60,7 +60,7 @@
                     {% if books|length > 0 %}
 					<ul>
                         {% for book in books if book.added_by|lower == username.username|lower %}
-                            
+                                        
                                 {% if not book.read_book == "on" %}
                                     
                                     <li>
@@ -72,20 +72,30 @@
                                                     {% if session.user == username.username %}
                                                         <div class="sub-book-edit-buttons no-display">
                                                             <a href="#" class="edit-book-button light-blue lighten-1 light-green-text text-lighten-5"><i class="far fa-edit"></i></a>
-                                                            <a href="#modal1" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
+                                                            <a href="#modal{{book._id}}" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
                                                         </div>
                                                     {% endif %}
                                                     <div class="card-content">
                                                         <h5>{{ book.book_title.capitalize() }}</h5>
                                                         <p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }}</p>
-                                                        <a href="{{ url_for('delete_book', book_id=book._id) }}" class="waves-effect waves-green btn-flat">Delete Book</a>
-                                                        
                                                     </div>
-                                
                                                 </div>
+                                                
                                             </div>
+                                            
                                         </div>
+                                        
                                     </li>
+                                    <!-- Modal Structure -->
+                                    <div id="modal{{book._id}}" class="modal">
+                                        <div class="modal-content">
+                                            <h4>Modal Header</h4>
+                                            <p>Are you sure you want to delete {{ book.book_title }}?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{ url_for('delete_book', book_id=book._id) }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                                        </div>
+                                    </div>
 
                                 {% endif %}
 
@@ -119,7 +129,7 @@
                                                     {% if session.user == username.username %}
                                                         <div class="sub-book-edit-buttons no-display">
                                                             <a href="#" class="edit-book-button light-blue lighten-1 light-green-text text-lighten-5"><i class="far fa-edit"></i></a>
-                                                            <a href="#modal1" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
+                                                            <a href="#modal{{book._id}}" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
                                                         </div>
                                                     {% endif %}
                                                 <div class="card-content">
@@ -164,8 +174,19 @@
                                         </div>
                                     </div>
                                 </li>
+                                <!-- Modal Structure -->
+                                <div id="modal{{book._id}}" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Modal Header</h4>
+                                        <p>Are you sure you want to delete {{ book.book_title }}?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{{ url_for('delete_book', book_id=book._id) }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                                    </div>
+                                </div>
 
                             {% endif %}
+
                         {% else %}
                             <h5 class="center-align">No Books Added</h5>
                         {% endfor %}

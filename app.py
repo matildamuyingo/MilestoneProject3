@@ -172,6 +172,19 @@ def edit_profile(username):
             genres=genres, icons=icons, authors=authors, genders=genders)
 
 
+@app.route('/delete/<book_id>')
+def delete_book(book_id):
+
+    mongo.db.books.delete_one({'_id': ObjectId(book_id)})
+    flash('Deleted Book')
+
+    books = list(mongo.db.books.find())
+    user = mongo.db.users.find_one(
+        {'username': session['user']})
+
+    return render_template('profile.html', username=user, books=books)
+
+
 @app.route('/add_book', methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
@@ -228,13 +241,6 @@ def add_book():
     ratings = mongo.db.ratings.find()
     genres = mongo.db.genres.find().sort('genre_name', 1)
     return render_template('add_book.html', ratings=ratings, genres=genres)
-
-
-@app.route('/delete_book/<book_id>')
-def delete_book(book_id):
-    mongo.db.books.delete_one({'_id': ObjectId(book_id)})
-    flash('Deleted Book')
-    return redirect(url_for('profile', username=session['user']))
 
 
 @app.route('/logout')
