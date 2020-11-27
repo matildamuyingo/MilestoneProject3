@@ -195,6 +195,8 @@ The result is that the text is shown only once and then ends the loop
 
 ### Content
 
+- [No Cover added Photo](https://darkseries.fandom.com/wiki/Dark_Tarot)
+
 ### Code
 
 

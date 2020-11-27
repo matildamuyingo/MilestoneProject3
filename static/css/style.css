@@ -1,17 +1,19 @@
 /* ------------------- Imported Fonts ------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,300&family=Questrial&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
-/*
+
+/*          Fonts
 font-family: 'IBM Plex Sans', sans-serif;
 font-family: 'Questrial', sans-serif;
 */
+
 /* -------------------Header------------------------- */
 
 .nav-wrapper {
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
-/* ------------------- Content ------------------------- */
+/* ------------------- Homepage, Content and general styling------------------------- */
 
 body {
     position: relative;
@@ -27,6 +29,40 @@ body {
 
 .top-space {
     margin-top: 60px;
+}
+
+.page-heading {
+    background-color: #1010106b;
+    box-shadow: 0px 15px 50px inset rgb(2 2 2);
+    background-image: url(https://www.incimages.com/uploaded_files/image/1920x1080/rey-seven-nm-mZ4Cs2I-unsplash_397351.jpg);
+    background-size: cover;
+    background-position: fixed;
+    padding: 30px;
+    margin: 0;
+}
+
+h3.main-heading-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 50px;
+    margin-top: 50px;
+    color: white;
+    font-weight: 800;
+}
+
+.promt-font {
+    font-family: 'Prompt', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.duo-buttons {
+    width: 30vw;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.sign-up-par {
+    padding: 15px 0;
 }
 
 .add-book-icon {
@@ -58,29 +94,6 @@ body {
     z-index: 5;
 }
 
-/*-----------------Home Page (and more general styling) -----------------*/
-
-h3.main-heading-text {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 50px;
-    margin-top: 50px;
-}
-
-.promt-font {
-    font-family: 'Prompt', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 500;
-}
-
-.duo-buttons {
-    width: 30vw;
-    font-family: 'IBM Plex Sans', sans-serif;
-}
-
-.sign-up-par {
-    padding: 15px 0;
-}
 
 /* ---------------------Register --------------------*/
 
@@ -130,7 +143,7 @@ h3.main-heading-text {
     border-radius: 7px;
     transition: 0.3s;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12);
-    max-height: 250px;
+    max-height: 350px;
 }
 
 .book-card-style:hover {
@@ -138,7 +151,7 @@ h3.main-heading-text {
     transform: translate(2px,-5px);
 }
 
-/* ---------------------Startpage --------------------*/
+/* ---------------------Startpage / Show All --------------------*/
 
 .user-list-icon {
     height: 100px;
@@ -152,7 +165,10 @@ h3.main-heading-text {
 .review-list-image img {
     margin: 10px;
     width: 80px;
-    max-height: 200px;
+}
+
+.max-height {
+    max-height: 180px;
 }
 
 .user-list-icon i {
@@ -165,7 +181,29 @@ h3.main-heading-text {
     padding-top: 20px;
 }
 
-/* --------------------JavaScript------------------*/
+.all-cards {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.card-content {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.card-content h5 {
+    margin-top: 5px;
+}
+
+.click-rev {
+    font-size: 10px;
+}
+
+.push-review {
+    margin-top: 60px;
+}
+
+/* --------------------JavaScript Css + Icon list------------------*/
 
 .no-display {
     display: none;
@@ -179,10 +217,37 @@ select {
   font-family: 'FontAwesome', 'Second Font name';
 }
 
-/* ---------------------Media --------------------*/
+/* -------------------- Flash Messages ------------------*/
+
+.flashes {
+    margin: 0;
+    height: 50px;
+    background: linear-gradient(10deg, orange, transparent);
+}
+
+.flash-message-text {
+    margin: 0;
+}
+
+/* --------------------- Media --------------------*/
 
 @media screen and (max-width: 760px) {
     .duo-buttons {
         width: 50vw;
+    }
+
+    .card-content p {
+        font-size: 12px;
+    }
+
+    .push-review {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    
+    .card-content h5 {
+        font-size: 17px;
     }
 }

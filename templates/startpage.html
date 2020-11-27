@@ -2,7 +2,7 @@
 {% block content %}
 
     <!--Page Heading-->
-    <div class="row center-align">
+    <div class="page-heading row center-align">
         <h3 class="main-heading-text">Startpage</h3>
     </div>
 
@@ -22,7 +22,7 @@
                             
                                 <!--Book Image-->
 								<div class="card-image col s4 m4 review-list-image no-padding">
-									<img src="{{book.book_image}}" alt="">
+									<img src="{{book.book_image}}" class="max-height" alt="">
 								</div>
 			        
 									<div class="card-stacked col s8 m8 no-padding">
@@ -91,7 +91,7 @@
 			{% endif %}
             <!--Review More-->
 			<div class="row center-align top-space">
-				<a href="{{ url_for('show_all') }}"
+				<a href="{{ url_for('all_books') }}"
 					class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>See All Reviews</i></a>
 			</div>
         </div>
@@ -135,7 +135,7 @@
 			{% endif %}
             <!--Users More-->
                 <div class="row center-align top-space">
-                    <a href="{{ url_for('show_all') }}"
+                    <a href="#"
                         class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>See All Users</i></a>
                 </div>
 

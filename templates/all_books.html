@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!--Page Heading-->
+    <div class="page-heading row center-align">
+        <h3 class="col s12 main-heading-text">All Books</h3>
+    </div>
+
+	<div class="row grey lighten-5 max-height">
+		<!--Review Cards-->
+		<div class="col s12 no-padding grey lighten-2">
+
+            
+            <form action="{{ url_for('search_books') }}" method="post" class="col s12">'
+                <div class="row valign-wrapper center-align">
+                    <div class="col s2 m2 valign-wrapper center-align">Sortera</div>
+                    <div class="input-field col s10 m8">
+                        <input type="text" name="query" id="query" minlength="3" class="validate" required>
+                        <label for="query">Search for Books</label>
+                    </div>
+
+                    <div class="col s12 m2">
+                        <a href="{{ url_for('all_books') }}" class="orange darken-4 btn">Reset</a>
+                        <button type="submit" class="grey darken-1 btn">
+                        <i class="fas fa-search left"></i> Search
+                    </button>
+                    </div>
+                </div>
+            </form>
+			
+        </div>
+    </div>
+            <div class="row">
+			{% if books|length > 0 %}
+			<ul>
+				{% for book in books %}
+                   
+				<li>
+						<div class="col s10 m4 offset-s1 no-padding">
+							<div class="all-cards card horizontal book-card-style">
+                            
+                                <!--Book Image-->
+								<div class="card-image col s4 m4 review-list-image no-padding">
+									<img src="{{book.book_image}}" class="max-height" alt="">
+								</div>
+			        
+									<div class="card-stacked col s8 m8 no-padding">
+                                        <!--If the book was added by the current user the editing buttons will be displayed-->
+                                        {% if session.user == book.added_by %}
+                                            <div class="sub-book-edit-buttons no-display">
+                                                <a class="edit-book-button light-blue lighten-1 light-green-text text-lighten-5"><i class="far fa-edit"></i></a>
+                                                <a class="delete-book-button red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
+                                            </div>
+                                        {% endif %}
+                                        <!--Link that wraps card text-->
+                                        <a href="#!" class="book-hover-link">
+										<div class="card-content max-height">
+											<h5>{{ book.book_title.capitalize() }}</h5>
+											<p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }} <br>
+                                                Added By: {{ book.added_by }}
+											
+                                            <!--Changes the number of stars displayed depending on the rating-->
+                                                {% if book.rating == 1 %}
+                                                    <div>
+                                                        <i class="fas fa-star"></i>
+                                                        {% if book.review %}
+                                                            <span class="click-rev">Click to show review</span>
+                                                        {% endif %}
+                                                    </div>
+                                                {% elif book.rating == 2 %}
+                                                    <div>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        {% if book.review %}
+                                                            <span class="click-rev">Click to show review</span>
+                                                        {% endif %}
+                                                    </div>
+                                                {% elif book.rating == 3 %}
+                                                    <div>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        {% if book.review %}
+                                                            <span class="click-rev">Click to show review</span>
+                                                        {% endif %}
+                                                    </div>
+                                                {% elif book.rating == 4 %}
+                                                    <div>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        {% if book.review %}
+                                                            <span class="click-rev">Click to show review</span>
+                                                        {% endif %}
+                                                    </div>
+                                                {% elif book.rating == 5 %}
+                                                    <div>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        {% if book.review %}
+                                                            <span class="click-rev">Click to show review</span>
+                                                        {% endif %}
+                                                    </div>
+                                                {% endif %}
+                                                </p>
+                                            {% if book.review %}
+                                               <div class="push-review"> {{ book.review }} </div>
+                                            {% endif %}
+										</div>
+                                        </a>
+									</div>
+								</div>
+							</div>
+
+				</li>
+                    
+				{% endfor %}
+			</ul>
+			{% else %}
+			<h5 class="center-align">No Books Added</h5>
+			{% endif %}
+            </div>
+            <!--Review More-->
+			<div class="row center-align top-space">
+				<a href="#"
+					class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>Back to top</i></a>
+			</div>
+        </div>
+
+        
+    
+
+{% endblock %}
