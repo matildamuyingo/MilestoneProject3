@@ -11,12 +11,19 @@
 		<div class="col s12 no-padding grey lighten-2">
 
             
-            <form action="{{ url_for('search_books') }}" method="post" class="col s12">'
+            <form action="{{ url_for('sort_books') }}" method="post" class="col s12">'
                 <div class="row valign-wrapper center-align">
-                    <div class="col s2 m2 valign-wrapper center-align">Sortera</div>
-                    <div class="input-field col s10 m8">
-                        <input type="text" name="query" id="query" minlength="3" class="validate" required>
-                        <label for="query">Search for Books</label>
+
+                    <div class="input-field col s12 m6 offset-m3">
+                        <select id="book_sorting" name="book_sorting">
+                                <option value="" minlength="5" disabled>Sort By</option>
+                                <option value="book_title">Book Title</option>
+                                <option value="author_first_name">Authors First Name sort</option>
+                                <option value="author_last_name">Authors Last Name sort</option>
+                                <option value="genre">Genres</option>
+                                <option value="rating">Rating</option>
+                        </select>
+                        <label for="book_sorting">Sort by</label>
                     </div>
 
                     <div class="col s12 m2">
@@ -57,7 +64,8 @@
 										<div class="card-content max-height">
 											<h5>{{ book.book_title.capitalize() }}</h5>
 											<p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }} <br>
-                                                Added By: {{ book.added_by }}
+                                                Added By: {{ book.added_by }} <br>
+                                                Genre: {{ book.genre.capitalize() }}
 											
                                             <!--Changes the number of stars displayed depending on the rating-->
                                                 {% if book.rating == 1 %}

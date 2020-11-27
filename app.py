@@ -27,7 +27,7 @@ def homepage():
     return render_template('homepage.html')
 
 
-# Route for register form 
+# Route for register form
 @app.route('/register', methods=["GET", "POST"])
 def register():
 
@@ -80,15 +80,16 @@ def register():
         # Flash a message to the user and redirect to the user login page
         flash('Registration Successful!')
         return redirect(url_for('profile', username=session['user']))
-    
+
     # Get the icon options from the database
     icons = mongo.db.icons.find()
 
-    # If the user clicked a link to get to register form, return the rendered template
+    # If the user clicked a link to get
+    # to register form, return the rendered template
     return render_template('register.html', icons=icons)
 
 
-# Route for login form 
+# Route for login form
 @app.route('/login', methods=["GET", "POST"])
 def login():
 
@@ -102,7 +103,8 @@ def login():
         # If the username exists in the database, do the following:
         if existing_user:
 
-            # Check if password matches username and redirect user to profile or login-page
+            # Check if password matches username
+            # and redirect user to profile or login-page
             if check_password_hash(
                     existing_user['password'], request.form.get('password')):
                 session['user'] = request.form.get('username').lower()
@@ -119,23 +121,27 @@ def login():
             flash('Wrong password or username')
             return redirect(url_for('login'))
 
-    # If the user clicked a link to get to login form, return the rendered template
+    # If the user clicked a link to get
+    # to login form, return the rendered template
     return render_template('login.html')
 
 
 # Route for profile pages
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # Gets a list with all books added to the database and sets the user variable
+    # Gets a list with all books added
+    # to the database and sets the user variable
     books = list(mongo.db.books.find())
     user = mongo.db.users.find_one(
         {'username': username})
 
-    # if the username is the same as session user, send user to their own profile
+    # if the username is the same as
+    # session user, send user to their own profile
     if session['user'] == user['username']:
         return render_template(
             'profile.html', username=user, books=books)
-    # if the username is not the same as session user, send user the other userprofile
+    # if the username is not the same as
+    # session user, send user the other userprofile
     else:
         return render_template(
             'profile.html', username=user, books=books)
@@ -158,7 +164,8 @@ def edit_profile(username):
     # If the form is submitted
     if request.method == "POST":
 
-        # Save username, email, password and date joined in variables, these won't be changed
+        # Save username, email, password and
+        # date joined in variables, these won't be changed
         u_name = user['username']
         email = user['email']
         password = user['password']
@@ -186,7 +193,8 @@ def edit_profile(username):
         # Inform the user that the information was successfully updated
         flash('User info updated!')
 
-    # If the user clicked the link to get to the edit info form, pass through variable info
+    # If the user clicked the link to get
+    # to the edit info form, pass through variable info
     return render_template(
             'edit_profile.html', username=user, books=books,
             genres=genres, icons=icons, authors=authors, genders=genders)
@@ -215,7 +223,8 @@ def add_book():
     # If the add book form is submitted
     if request.method == "POST":
 
-        # Set the image, rating and date variable to the form input (optional inputs)
+        # Set the image, rating and date
+        # variable to the form input (optional inputs)
         image = request.form.get('book_image')
         rating = request.form.get('rating-drop')
         datetime_now = datetime.now()
@@ -252,7 +261,8 @@ def add_book():
         # Insert the form information about the book to the database
         mongo.db.books.insert_one(addBook)
 
-        # Add the authors full name into the database merged in a single variable
+        # Add the authors full name into the
+        # database merged in a single variable
         addAuthor = {
             'author_name': request.form.get(
                 'author_first_name').title() + (" ")
@@ -271,11 +281,13 @@ def add_book():
         flash('Book added successfully!')
         return redirect(url_for(
             'profile', username=session['user']))
-    # Save ratings and genres from database in variables and sort genres alphabetically
+    # Save ratings and genres from database
+    # in variables and sort genres alphabetically
     ratings = mongo.db.ratings.find()
     genres = mongo.db.genres.find().sort('genre_name', 1)
 
-    # If user clicked link to access add book page render template with parameters set
+    # If user clicked link to access add book
+    # page render template with parameters set
     return render_template('add_book.html', ratings=ratings, genres=genres)
 
 
@@ -292,7 +304,8 @@ def logout():
 @app.route('/startpage')
 def startpage():
 
-    # Get list with all books and users and save in variables, then render startpage template
+    # Get list with all books and users and
+    # save in variables, then render startpage template
     books = list(mongo.db.books.find().sort('date_added', -1))
     all_users = list(mongo.db.users.find().sort('date_joined', -1))
 
@@ -303,17 +316,46 @@ def startpage():
 @app.route('/all_books')
 def all_books():
 
-    # Get list with all books and users and save in variables, then render all books template
+    # Get list with all books and users and
+    # save in variables, then render all books template
     books = list(mongo.db.books.find())
 
     return render_template('all_books.html', books=books)
 
 
-@app.route('/search_books', methods=["GET", "POST"])
-def search_books():
-    query = request.form.get("query")
-    book_query = list(mongo.db.books.find({"$text": {"$search": query}}))
-    return render_template("all_books.html", books=book_query)
+@app.route('/sort_books', methods=["GET", "POST"])
+def sort_books():
+
+    book_query = list(mongo.db.books.find())
+    if request.method == "POST":
+        sort_method = request.form.get('book_sorting')
+        book_query = list(mongo.db.books.find().sort(sort_method, 1))
+
+    return render_template(
+        "all_books.html", books=book_query)
+
+
+# Route to all books page
+@app.route('/all_users')
+def all_users():
+
+    # Get list with all books and users and
+    # save in variables, then render all books template
+    users = list(mongo.db.users.find())
+
+    return render_template('all_users.html', all_users=users)
+
+
+@app.route('/sort_users', methods=["GET", "POST"])
+def sort_users():
+
+    user_query = list(mongo.db.users.find())
+    if request.method == "POST":
+        sort_method = request.form.get('user_sorting')
+        user_query = list(mongo.db.users.find().sort(sort_method, 1))
+
+    return render_template(
+        "all_users.html", all_users=user_query)
 
 
 if __name__ == "__main__":

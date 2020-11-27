@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!--Page Heading-->
+    <div class="page-heading row center-align">
+        <h3 class="col s12 main-heading-text">All Users</h3>
+    </div>
+
+	<div class="row grey lighten-5 max-height">
+		<!--Review Cards-->
+		<div class="col s12 no-padding grey lighten-2">
+
+            
+            <form action="{{ url_for('sort_users') }}" method="post" class="col s12">'
+                <div class="row valign-wrapper center-align">
+
+                    <div class="input-field col s12 m6 offset-m3">
+                        <select id="user_sorting" name="user_sorting">
+                                <option value="" minlength="5" selected disabled>Sort By</option>
+                                <option value="username">Username</option>
+                                <option value="first_name">First Name sort</option>
+                                <option value="last_name">Last Name sort</option>
+                                <option value="date_joined">Date Joined</option>
+                        </select>
+                        <label for="user_sorting">Sort by</label>
+                    </div>
+
+                    <div class="col s12 m2">
+                        <a href="{{ url_for('all_users') }}" class="orange darken-4 btn">Reset</a>
+                        <button type="submit" class="grey darken-1 btn">
+                        <i class="fas fa-search left"></i> Search
+                    </button>
+                    </div>
+                </div>
+            </form>
+			
+        </div>
+    </div>
+            <div class="row">
+			<!--User Cards-->
+			{% if all_users|length > 0 %}
+			<ul>
+				{% for user in all_users %}
+				<li>
+					<a href="{{ url_for('profile', username=user.username) }}" method="GET">
+						<div class="col s5 offset-s1 no-padding">
+							<div class="card horizontal book-card-style">
+                                <!--User Icon-->
+								<div class="card-image col s4 m4 user-list-icon no-padding center-align">
+									<i class="{{ user.user_icon }}"></i>
+								</div>
+			
+									<div class="card-stacked col s8 m8 no-padding">
+										<div class="card-content">
+											<h5>{{ user.username }}</h5>
+											<p>{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }} <br>
+                                                Date Joined: {{ user.date_joined }}
+											</p>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+			{% else %}
+			<h5 class="center-align">No Users Added</h5>
+			{% endif %}
+
+
+        </div>
+            </div>
+            <!--Review More-->
+			<div class="row center-align top-space">
+				<a href="#"
+					class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>Back to top</i></a>
+			</div>
+        </div>
+
+        
+    
+
+{% endblock %}
