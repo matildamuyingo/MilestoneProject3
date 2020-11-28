@@ -16,10 +16,10 @@
 
                     <div class="input-field col s12 m6 offset-m3">
                         <select id="book_sorting" name="book_sorting">
-                                <option value="" minlength="5" disabled>Sort By</option>
+                                <option value="" minlength="5" disabled selected>Sort By</option>
                                 <option value="book_title">Book Title</option>
-                                <option value="author_first_name">Authors First Name sort</option>
-                                <option value="author_last_name">Authors Last Name sort</option>
+                                <option value="author_first_name">Authors First Name</option>
+                                <option value="author_last_name">Authors Last Name</option>
                                 <option value="genre">Genres</option>
                                 <option value="rating">Rating</option>
                         </select>
@@ -44,7 +44,7 @@
                    
 				<li>
 						<div class="col s10 m4 offset-s1 no-padding">
-							<div class="all-cards card horizontal book-card-style">
+							<div class="all-cards card horizontal book-card-style blue-grey-text text-darken-4">
                             
                                 <!--Book Image-->
 								<div class="card-image col s4 m4 review-list-image no-padding">
@@ -56,11 +56,11 @@
                                         {% if session.user == book.added_by %}
                                             <div class="sub-book-edit-buttons no-display">
                                                 <a class="edit-book-button light-blue lighten-1 light-green-text text-lighten-5"><i class="far fa-edit"></i></a>
-                                                <a class="delete-book-button red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
+                                                <a href="#modal{{book._id}}" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
                                             </div>
                                         {% endif %}
                                         <!--Link that wraps card text-->
-                                        <a href="#!" class="book-hover-link">
+                                        
 										<div class="card-content max-height">
 											<h5>{{ book.book_title.capitalize() }}</h5>
 											<p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }} <br>
@@ -115,15 +115,24 @@
                                                     </div>
                                                 {% endif %}
                                                 </p>
-                                            {% if book.review %}
+                                                {% if book.review %}
                                                <div class="push-review"> {{ book.review }} </div>
-                                            {% endif %}
+                                                {% endif %}
 										</div>
-                                        </a>
+                                        
 									</div>
 								</div>
 							</div>
-
+                        <!-- Confirm Delete Modal -->
+                        <div id="modal{{book._id}}" class="modal">
+                            <div class="modal-content">
+                                <h4>Delete Book</h4>
+                                <p>Are you sure you want to delete {{ book.book_title }}?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{{ url_for('delete_book', book_id=book._id) }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
 				</li>
                     
 				{% endfor %}

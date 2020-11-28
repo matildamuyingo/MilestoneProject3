@@ -23,6 +23,7 @@ mongo = PyMongo(app)
 @app.route('/')
 def homepage():
     if 'user' in session:
+        flash('You have been logged out')
         return redirect(url_for('logout'))
     return render_template('homepage.html')
 
@@ -63,7 +64,7 @@ def register():
             'email': request.form.get('email'),
             'password': generate_password_hash(request.form.get('password')),
             'date_joined': datetime_now,
-            'user_icon': request.form.get('user_icon'),
+            'user_icon': request.form.get('user_icon').lower(),
             'user_age': "",
             'user_gender': "",
             'fav_book': "",
@@ -173,18 +174,18 @@ def edit_profile(username):
 
         # Create an object that gets the values from the update info form
         update_info = {
-            'first_name': request.form.get('first_name').capitalize(),
-            'last_name': request.form.get('last_name').capitalize(),
+            'first_name': request.form.get('first_name').lower(),
+            'last_name': request.form.get('last_name').lower(),
             'username': u_name,
             'email': email,
             'password': password,
             'date_joined': joined,
-            'user_icon': request.form.get('user_icon'),
+            'user_icon': request.form.get('user_icon').lower(),
             'user_age': int(request.form.get('user_age')),
-            'user_gender': request.form.get('user_gender'),
-            'fav_book': request.form.get('fav_book'),
-            'fav_author': request.form.get('fav_author'),
-            'fav_genre': request.form.get('fav_genre')
+            'user_gender': request.form.get('user_gender').lower(),
+            'fav_book': request.form.get('fav_book').title(),
+            'fav_author': request.form.get('fav_author').lower(),
+            'fav_genre': request.form.get('fav_genre').lower()
         }
 
         # Insert the updated info into the database
@@ -235,15 +236,15 @@ def add_book():
 
         # The user information from the form that is going to be added/updated
         addBook = {
-            'book_title': request.form.get('book_title').title(),
+            'book_title': request.form.get('book_title').lower(),
             'author_first_name': request.form.get(
-                'author_first_name').capitalize(),
+                'author_first_name').lower(),
             'author_last_name': request.form.get(
-                'author_last_name').capitalize(),
-            'genre': request.form.get('genre').capitalize(),
+                'author_last_name').lower(),
+            'genre': request.form.get('genre').lower(),
             'read_book': request.form.get('read-check'),
             'rating': rating,
-            'review': request.form.get('book_review'),
+            'review': request.form.get('book_review').capitalize(),
             'added_by': session['user'],
             'book_image': image,
             'date_added': datetime_now
@@ -265,13 +266,13 @@ def add_book():
         # database merged in a single variable
         addAuthor = {
             'author_name': request.form.get(
-                'author_first_name').title() + (" ")
-            + request.form.get('author_last_name').title()
+                'author_first_name').lower() + (" ")
+            + request.form.get('author_last_name').lower()
         }
 
         # Check if the author already exists in the database
         existing_author = mongo.db.authors.find_one(
-            {'author_name': addAuthor['author_name'].title()})
+            {'author_name': addAuthor['author_name'].lower()})
 
         # If the author does not exist, insert name
         if not existing_author:
@@ -289,6 +290,59 @@ def add_book():
     # If user clicked link to access add book
     # page render template with parameters set
     return render_template('add_book.html', ratings=ratings, genres=genres)
+
+
+# Route to edit profile info (only available on books user created)
+@app.route('/edit_book/<book_id>', methods=["GET", "POST"])
+def edit_book(book_id):
+
+    # Get lists with saved database-information and set the user variable
+    genres = list(mongo.db.genres.find().sort('genre_name', 1))
+    ratings = mongo.db.ratings.find()
+
+    book = mongo.db.books.find_one(
+        {'_id': ObjectId(book_id)})
+
+    # If the form is submitted
+    if request.method == "POST":
+
+        # Set the image, rating and date
+        # variable to the form input (optional inputs)
+        image = request.form.get('book_image')
+        rating = request.form.get('rating-drop')
+        datetime_now = datetime.now()
+
+        # if a rating has been added, save it as an integer
+        if rating:
+            rating = int(request.form.get('rating-drop'))
+
+        # Create an object that gets the values from the update book form
+        update_book = {
+            'book_title': request.form.get('book_title').lower(),
+            'author_first_name': request.form.get(
+                'author_first_name').lower(),
+            'author_last_name': request.form.get(
+                'author_last_name').lower(),
+            'genre': request.form.get('genre').lower(),
+            'read_book': request.form.get('read-check'),
+            'rating': rating,
+            'review': request.form.get('book_review').capitalize(),
+            'added_by': session['user'],
+            'book_image': image,
+            'date_added': datetime_now
+        }
+
+        # Insert the updated info into the database
+        mongo.db.books.update(
+            {'_id': ObjectId(book_id)}, update_book)
+        # Inform the user that the book was successfully updated
+        flash('Book updated!')
+
+    # If the user clicked the link to get
+    # to the edit book form, pass through variables
+    return render_template(
+            'edit_book.html', book_id=book, books=book,
+            genres=genres, ratings=ratings)
 
 
 # Route to logout

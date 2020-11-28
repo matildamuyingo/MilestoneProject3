@@ -46,7 +46,7 @@
 
   ## Wireframes
 
-- [All the wireframes for this project can be found on this link](https://wireframe.cc/pro/pp/af3d20833395115)
+- [All the wireframes for this project can be found on this link](https://docs.google.com/presentation/d/1DuUcqRKpWg7ZiIwY2kd2eEBEdwci3eMaHwU-0roaQvA/edit?usp=sharing)
 
 - **Can't view?**
   - Click link to open PDF of wireframes

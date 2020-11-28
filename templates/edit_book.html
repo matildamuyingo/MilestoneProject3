@@ -2,19 +2,19 @@
 {% block content %}
 
     <div class="row center-align">
-        <h3 class="main-heading-text black-text">Add a New Book</h3>
+        <h3 class="main-heading-text black-text">Edit Book</h3>
     </div>
 
 	<div class="row">
 	
-		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_book') }}">
+		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_book', book_id=books._id) }}">
         <div class="card-panel  lime lighten-4">
 			
 
             <!--Book Title--> 
 			<div class="row register-row">
 				<div class="input-field col s12">
-					<input id="book_title" name="book_title" type="text" class="validate" required>
+					<input id="book_title" name="book_title" value="{{ books.book_title.title() }}" type="text" class="validate" required>
 					<label for="book_title">Book Title</label>
 				</div>
 			</div>
@@ -23,13 +23,13 @@
             <div class="row register-row">
                 <!--Author First Name--> 
 				<div class="input-field col s6">
-					<input id="author_first_name" name="author_first_name" type="text" class="validate" required>
+					<input id="author_first_name" name="author_first_name" value="{{ books.author_first_name.title() }}" type="text" class="validate" required>
 					<label for="author_first_name">Author's First Name</label>
 				</div>
 
                 <!--Author Last Name--> 
 				<div class="input-field col s6">
-					<input id="author_last_name" name="author_last_name" type="text" class="validate" required>
+					<input id="author_last_name" name="author_last_name" value="{{ books.author_last_name.title() }}" type="text" class="validate" required>
 					<label for="author_last_name">Author's Last Name</label>
 				</div>
 			</div>
@@ -38,10 +38,14 @@
 			<div class="row register-row">
 				<div class="input-field col s12">
 					<select id="genre" name="genre">
-                        <option value="" disabled selected>Book Genre</option>
+                        <option value="" disabled>Book Genre</option>
                     {% for genre in genres %}
-                        <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
-                    {% endfor %}
+                            {% if genre.genre_name == books.genre %}
+                                <option value="{{ genre.genre_name }}" selected>{{ genre.genre_name }}</option>
+                            {% else %}
+                                <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                            {% endif %}
+                        {% endfor %}
 			    </select>
 				<label for="genre">Book Genre</label>
 				</div>
@@ -49,7 +53,7 @@
 
 			<div class="row">
 				<div class="input-field col s12 m6">
-					<input id="book_image" name="book_image" class="file-path validate" type="text">
+					<input id="book_image" name="book_image" value="{{ books.book_image  }}" class="file-path validate" type="text">
 			        <label for="book_image">Upload an image url</label>
 				</div>
 			</div>
@@ -58,7 +62,7 @@
             <p class="sign-up-par">
 				
                 <label for="read-check">
-                    <input id="read-check" name="read-check" type="checkbox" class="filled-in light-green darken-2"/>
+                    <input id="read-check" name="read-check" value="{{ books.read_book  }}" type="checkbox" class="filled-in light-green darken-2"/>
                     <span>Finished reading?</span>
 				</label>
                 
@@ -68,9 +72,9 @@
             <div class="fin-read no-display">
 			<div class="input-field col s12">
 				<select id="rating-drop" name="rating-drop">
-                  <option value="" disabled selected>Your Rating</option>
+                  <option value="" disabled selected>{{ books.rating }} </option>
                     {% for rating in ratings %}
-                        <option value="{{ rating.book_rating }}">{{ rating.book_rating}}</option>
+                        <option value="{{ books.rating }}">{{ rating.book_rating}}</option>
                     {% endfor %}
 			    </select>
 				<label for="rating-drop">Book Rating</label>
@@ -78,7 +82,7 @@
             
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="book_review" name="book_review" class="materialize-textarea"></textarea>
+					<textarea id="book_review" name="book_review" class="materialize-textarea">{{ books.review }}</textarea>
 					<label for="book_review">Book Review</label>
 				</div>
 			</div>
@@ -86,7 +90,7 @@
            
             <!--Submit Button--> 
             <div class="row center-align">
-                <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Add Book</button>
+                <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Submit Changes</button>
             </div>
         </div>
 		</form>

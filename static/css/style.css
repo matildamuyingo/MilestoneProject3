@@ -94,6 +94,9 @@ h3.main-heading-text {
     z-index: 5;
 }
 
+a .card-content:hover {
+    color: #bbbbbb;
+}
 
 /* ---------------------Register --------------------*/
 

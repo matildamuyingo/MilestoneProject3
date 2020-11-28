@@ -18,8 +18,8 @@
                         <select id="user_sorting" name="user_sorting">
                                 <option value="" minlength="5" selected disabled>Sort By</option>
                                 <option value="username">Username</option>
-                                <option value="first_name">First Name sort</option>
-                                <option value="last_name">Last Name sort</option>
+                                <option value="first_name">First Name</option>
+                                <option value="last_name">Last Name</option>
                                 <option value="date_joined">Date Joined</option>
                         </select>
                         <label for="user_sorting">Sort by</label>
@@ -42,7 +42,7 @@
 			<ul>
 				{% for user in all_users %}
 				<li>
-					<a href="{{ url_for('profile', username=user.username) }}" method="GET">
+					<a href="{{ url_for('profile', username=user.username) }}" class="blue-grey-text text-darken-4" method="GET">
 						<div class="col s5 offset-s1 no-padding">
 							<div class="card horizontal book-card-style">
                                 <!--User Icon-->
@@ -53,7 +53,7 @@
 									<div class="card-stacked col s8 m8 no-padding">
 										<div class="card-content">
 											<h5>{{ user.username }}</h5>
-											<p>{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }} <br>
+											<p>{{ user.first_name.title() }} {{ user.last_name.title() }} <br>
                                                 Date Joined: {{ user.date_joined }}
 											</p>
 											
