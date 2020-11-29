@@ -1,9 +1,9 @@
+cachelib==0.1.1
 click==7.1.2
-dnslib==0.9.14
+dnspython==2.0.0
 Flask==1.1.2
 Flask-PyMongo==2.3.0
+Flask-Session==0.3.2
 itsdangerous==1.1.0
 pymongo==3.11.1
-PyMySQL==0.10.1
-PythonDNS==0.1
 Werkzeug==1.0.1
