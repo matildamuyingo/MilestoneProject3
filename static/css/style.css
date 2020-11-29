@@ -236,7 +236,7 @@ select {
 
 @media screen and (max-width: 760px) {
     .duo-buttons {
-        width: 50vw;
+        width: 80vw;
     }
 
     .card-content p {
@@ -246,6 +246,10 @@ select {
     .push-review {
         margin-top: 50px;
     }
+
+    .flashes {
+        height: 100%;
+}
 }
 
 @media screen and (max-width: 1000px) {

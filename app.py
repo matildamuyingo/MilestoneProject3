@@ -23,8 +23,9 @@ mongo = PyMongo(app)
 @app.route('/')
 def homepage():
     if 'user' in session:
+        session.pop('user')
         flash('You have been logged out')
-        return redirect(url_for('logout'))
+        return redirect(url_for('homepage'))
     return render_template('homepage.html')
 
 
@@ -64,7 +65,7 @@ def register():
             'email': request.form.get('email'),
             'password': generate_password_hash(request.form.get('password')),
             'date_joined': datetime_now,
-            'user_icon': request.form.get('user_icon').lower(),
+            'user_icon': request.form.get('user_icon'),
             'user_age': "",
             'user_gender': "",
             'fav_book': "",
@@ -351,6 +352,7 @@ def logout():
 
     # remove the user from session cookies and redirect to login page
     session.pop('user')
+    flash('You have been logged out')
     return redirect(url_for('login'))
 
 

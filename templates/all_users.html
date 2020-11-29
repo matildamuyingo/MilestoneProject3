@@ -7,7 +7,7 @@
     </div>
 
 	<div class="row grey lighten-5 max-height">
-		<!--Review Cards-->
+		<!--User Sorting Input-->
 		<div class="col s12 no-padding grey lighten-2">
 
             
@@ -43,7 +43,7 @@
 				{% for user in all_users %}
 				<li>
 					<a href="{{ url_for('profile', username=user.username) }}" class="blue-grey-text text-darken-4" method="GET">
-						<div class="col s5 offset-s1 no-padding">
+						<div class="col s10 offset-s1 no-padding">
 							<div class="card horizontal book-card-style">
                                 <!--User Icon-->
 								<div class="card-image col s4 m4 user-list-icon no-padding center-align">
