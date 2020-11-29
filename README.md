@@ -1,5 +1,6 @@
 # Milestone Project 3
 
+This page is created for users to be able to keep track of books that they want to read, have read, or publish a review for other users to read. 
     
 ## UX
 
@@ -19,28 +20,24 @@
 - #### First Time User
   - **As a first time user** I want to easily understand the purpose for the website
 
-  - I want to know how to start using the service
+  - I want to understand how to start using the service
   - I want to be able to use the service on any type of device
-  - I want to be able to register a user
-  - When a user is created I want to be able to add books to my profile
-  - I want to adjust the information that I save along with the book
-  - I also want to be able to add a new book review
-  - I want to see other reviews and other users
-  - I want to be able to like or dislike other's reviews
+  - I want to be able to register a profile that saves my information for future use
+  - I want to easily navigate through the different pages within the website
+  - When a profile has been set up, I want to be able to add books to my profile
+  - I want to have the choice of just saving a book that I want to read, or list it as a book I've already read
+  - When adding a book, I want to have the option of writing a freehand book review
+  - I want to see all books and users that exist on the site
+  - I want to be able to sort books and users, using simple alternatives that apply to what I'm looking for
   - When I'm finished using the site I want to be able to log out
 
 - #### Returning User
-  - **As a returning user** I want to change the information in my profile
+  - **As a returning user** I want to update the information in my profile
 
-  - If I have made any reviews I would like to edit one
-  - I want to see other user's profiles 
+  - If I have added any books I want to be able to edit the information I've provided, or add a review
+  - I want to see other user's profiles and what books that user have added
   - I want to find new books to read
-
-- #### Frequent User
-  - **As a frequent user** I want to add more books that I've read or want to read to my profile
-
-  - I want to se recommendations for new books
-  - I want to read other's reviews and like or dislike them
+  - I want to see if there are any new users on the site
 
 
 
@@ -49,7 +46,7 @@
 - [All the wireframes for this project can be found on this link](https://docs.google.com/presentation/d/1DuUcqRKpWg7ZiIwY2kd2eEBEdwci3eMaHwU-0roaQvA/edit?usp=sharing)
 
 - **Can't view?**
-  - Click link to open PDF of wireframes
+  - [Click link to open PDF of wireframes]("static/wireframes/Wireframes.pdf")
 
 
 ## DataBase
