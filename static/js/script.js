@@ -16,13 +16,13 @@ $(document).ready(function(){
 
     // When mouse enters a card the 'no-display' class will be removed and the edit buttons will be visible
         $('.card-stacked').mouseenter(function(){
-            $('.sub-book-edit-buttons', this).addClass('full-display').removeClass('no-display')
-        })
+            $('.sub-book-edit-buttons', this).addClass('full-display').removeClass('no-display');
+        });
 
     // When mouse leaves a card the 'no-display' class will be added again and the edit buttons will disappear
         $('.card-stacked').mouseleave(function(){
-            $('.sub-book-edit-buttons', this).removeClass('full-display').addClass('no-display')
-        })
+            $('.sub-book-edit-buttons', this).removeClass('full-display').addClass('no-display');
+        });
     
     // When a card displaying a book is clicked
     $('.card-content').click(function(){
