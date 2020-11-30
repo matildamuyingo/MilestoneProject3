@@ -53,7 +53,7 @@
                     <select id="user_gender" name="user_gender">
                             <option value="" minlength="5" disabled>Gender</option>
                         {% for gender in genders %}
-                            {% if gender.gender_name.lower() == username.user_gender.lower() %}
+                            {% if gender.gender_name|lower == username.user_gender|lower %}
                                 <option value="{{ gender.gender_name.capitalize() }}" selected>{{ gender.gender_name.capitalize() }}</option>
                         {% else %}
                                 <option value="{{ gender.gender_name.capitalize() }}">{{ gender.gender_name.capitalize() }}</option>
@@ -70,7 +70,7 @@
                     <select id="fav_book" name="fav_book" minlength="5" maxlength="30">
                             <option value="" disabled selected>Favorite Book</option>
                         {% for book in books %}
-                            {% if book.book_title.lower() == username.fav_book.lower() %}
+                            {% if book.book_title|lower == username.fav_book|lower %}
                                 <option value="{{ book.book_title.capitalize() }}" selected>{{ book.book_title.capitalize() }}</option>
                         {% else %}
                                 <option value="{{ book.book_title.capitalize() }}">{{ book.book_title.capitalize() }}</option>
@@ -85,7 +85,7 @@
                     <select id="fav_author" name="fav_author" minlength="5" maxlength="30">
                             <option value="" disabled selected>Favorite Author</option>
                         {% for author in authors %}
-                            {% if author.author_name.lower() == username.fav_author.lower() %}
+                            {% if author.author_name|lower == username.fav_author|lower %}
                                 <option value="{{ author.author_name.title() }}" selected>{{ author.author_name.title() }}</option>
                             {% else %}
                                 <option value="{{ author.author_name.title() }}">{{ author.author_name.title() }}</option>
@@ -104,7 +104,7 @@
 					<select id="fav_genre" name="fav_genre" minlength="5" maxlength="30">
 			                <option value="" disabled selected>Book Genre</option>
 			            {% for genre in genres %}
-			                {% if genre.genre_name.lower() == username.fav_genre.lower() %}
+			                {% if genre.genre_name|lower == username.fav_genre|lower %}
 			                    <option value="{{ genre.genre_name.capitalize() }}" selected>{{ genre.genre_name.capitalize() }}</option>
 			                {% else %}
 			                    <option value="{{ genre.genre_name.capitalize() }}">{{ genre.genre_name.capitalize() }}</option>
@@ -117,6 +117,7 @@
 
             <!--Submit Button--> 
             <div class="row center-align">
+                <a href="{{ url_for('profile', username=session.user) }}" type="submit" class="btn-large orange darken-4 duo-buttons z-depth-3">Cancel</a>
                 <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Update Info</button>
             </div>
         </div>

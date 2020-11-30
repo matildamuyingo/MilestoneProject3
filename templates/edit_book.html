@@ -39,8 +39,8 @@
 				<div class="input-field col s12">
 					<select id="genre" name="genre">
                         <option value="" disabled>Book Genre</option>
-                    {% for genre in genres %}
-                            {% if genre.genre_name == books.genre %}
+                        {% for genre in genres %}
+                            {% if genre.genre_name|lower == books.genre|lower %}
                                 <option value="{{ genre.genre_name }}" selected>{{ genre.genre_name }}</option>
                             {% else %}
                                 <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
@@ -52,7 +52,7 @@
 			</div>
 
 			<div class="row">
-				<div class="input-field col s12 m6">
+				<div class="input-field col s12">
 					<input id="book_image" name="book_image" value="{{ books.book_image  }}" class="file-path validate" type="text">
 			        <label for="book_image">Upload an image url</label>
 				</div>
@@ -90,6 +90,7 @@
            
             <!--Submit Button--> 
             <div class="row center-align">
+                <a href="{{ url_for('profile', username=session.user) }}" type="submit" class="btn-large orange darken-4 duo-buttons z-depth-3">Cancel</a>
                 <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Submit Changes</button>
             </div>
         </div>

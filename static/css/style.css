@@ -13,6 +13,47 @@ font-family: 'Questrial', sans-serif;
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
+.inline-block {
+	display: inline-block;
+	position: relative;
+	height: 50px;
+	width: 100px;
+}
+
+.inline {
+	position: absolute;
+	top: 25px;
+	height: 4px;
+    background-color: #fff;
+}
+
+#left-parm {
+	transform: rotate(30deg);
+	left: 0;
+	z-index: 2;
+	width: 50px;
+}
+
+#right-parm {
+	transform: rotate(-30deg);
+	right: 0;
+	z-index: 3;
+	width: 50px;
+}
+
+#turn-page {
+	height: 2px;
+	width: 40px;
+	transform: rotate(45deg);
+	right: 46px;
+}
+
+#hover-logo:hover #turn-page {
+	transition-duration: 1s;
+	transform: rotate(150deg);
+	right: 10px;
+}
+
 /* ------------------- Homepage, Content and general styling------------------------- */
 
 body {

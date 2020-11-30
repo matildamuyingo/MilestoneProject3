@@ -337,6 +337,12 @@ def edit_book(book_id):
         mongo.db.books.update(
             {'_id': ObjectId(book_id)}, update_book)
         # Inform the user that the book was successfully updated
+        book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
+
+        return render_template(
+            'edit_book.html', book_id=book, books=update_book,
+            genres=genres, ratings=ratings)
+
         flash('Book updated!')
 
     # If the user clicked the link to get

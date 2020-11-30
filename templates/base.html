@@ -17,7 +17,13 @@
 		<nav>
 			<div class="nav-wrapper green darken-2 grey-text text-lighten-5">
 				{% if session.user %}
-				    <a href="{{ url_for('startpage') }}" class="brand-logo center">Logo</a>
+				    <a href="{{ url_for('startpage') }}" class="brand-logo center">
+                    <div id="hover-logo" class="inline-block">
+                        <div class="inline" id="left-parm"></div>
+                        <div class="inline" id="turn-page"></div>
+                        <div class="inline" id="right-parm"></div>
+                    </div>
+                    </a>
 				{% else %}
 				    <a href="{{ url_for('homepage') }}" class="brand-logo center">Logo</a>
 				{% endif %}
