@@ -151,57 +151,6 @@ def profile(username):
     return redirect(url_for('login'))
 
 
-# Route to edit profile info (only available on the users own profile page)
-@app.route('/edit_profile/<username>', methods=["GET", "POST"])
-def edit_profile(username):
-    # Get lists with saved database-information and set the user variable
-    books = list(mongo.db.books.find().sort('book_title', 1))
-    genres = list(mongo.db.genres.find().sort('genre_name', 1))
-    authors = list(mongo.db.authors.find().sort('author_name', 1))
-    genders = list(mongo.db.genders.find())
-    icons = list(mongo.db.icons.find())
-    user = mongo.db.users.find_one(
-        {'username': username})
-
-    # If the form is submitted
-    if request.method == "POST":
-
-        # Save username, email, password and
-        # date joined in variables, these won't be changed
-        u_name = user['username']
-        email = user['email']
-        password = user['password']
-        joined = user['date_joined']
-
-        # Create an object that gets the values from the update info form
-        update_info = {
-            'first_name': request.form.get('first_name').lower(),
-            'last_name': request.form.get('last_name').lower(),
-            'username': u_name,
-            'email': email,
-            'password': password,
-            'date_joined': joined,
-            'user_icon': request.form.get('user_icon').lower(),
-            'user_age': int(request.form.get('user_age')),
-            'user_gender': request.form.get('user_gender').lower(),
-            'fav_book': request.form.get('fav_book').title(),
-            'fav_author': request.form.get('fav_author').lower(),
-            'fav_genre': request.form.get('fav_genre').lower()
-        }
-
-        # Insert the updated info into the database
-        mongo.db.users.update(
-            {'_id': ObjectId(user['_id'])}, update_info)
-        # Inform the user that the information was successfully updated
-        flash('User info updated!')
-
-    # If the user clicked the link to get
-    # to the edit info form, pass through variable info
-    return render_template(
-            'edit_profile.html', username=user, books=books,
-            genres=genres, icons=icons, authors=authors, genders=genders)
-
-
 # Route to delete a book
 @app.route('/delete/<book_id>')
 def delete_book(book_id):
@@ -293,7 +242,58 @@ def add_book():
     return render_template('add_book.html', ratings=ratings, genres=genres)
 
 
-# Route to edit profile info (only available on books user created)
+# Route to edit profile info (only available on the users own profile page)
+@app.route('/edit_profile/<username>', methods=["GET", "POST"])
+def edit_profile(username):
+    # Get lists with saved database-information and set the user variable
+    books = list(mongo.db.books.find().sort('book_title', 1))
+    genres = list(mongo.db.genres.find().sort('genre_name', 1))
+    authors = list(mongo.db.authors.find().sort('author_name', 1))
+    genders = list(mongo.db.genders.find())
+    icons = list(mongo.db.icons.find())
+    user = mongo.db.users.find_one(
+        {'username': username})
+
+    # If the form is submitted
+    if request.method == "POST":
+
+        # Save username, email, password and
+        # date joined in variables, these won't be changed
+        u_name = user['username']
+        email = user['email']
+        password = user['password']
+        joined = user['date_joined']
+
+        # Create an object that gets the values from the update info form
+        update_info = {
+            'first_name': request.form.get('first_name').lower(),
+            'last_name': request.form.get('last_name').lower(),
+            'username': u_name,
+            'email': email,
+            'password': password,
+            'date_joined': joined,
+            'user_icon': request.form.get('user_icon').lower(),
+            'user_age': int(request.form.get('user_age')),
+            'user_gender': request.form.get('user_gender').lower(),
+            'fav_book': request.form.get('fav_book').title(),
+            'fav_author': request.form.get('fav_author').lower(),
+            'fav_genre': request.form.get('fav_genre').lower()
+        }
+
+        # Insert the updated info into the database
+        mongo.db.users.update(
+            {'_id': ObjectId(user['_id'])}, update_info)
+        # Inform the user that the information was successfully updated
+        flash('User info updated!')
+
+    # If the user clicked the link to get
+    # to the edit info form, pass through variable info
+    return render_template(
+            'edit_profile.html', username=user, books=books,
+            genres=genres, icons=icons, authors=authors, genders=genders)
+
+
+# Route to edit book info (only available on books the user created)
 @app.route('/edit_book/<book_id>', methods=["GET", "POST"])
 def edit_book(book_id):
 

@@ -8,7 +8,7 @@
         </h3>
     </div>
 
-    <div class="row">
+    <div class="row lime lighten-4">
 
             <!--About Me Section-->
             <div class="col s12 m4 lime lighten-4 no-padding">
@@ -207,36 +207,30 @@
             </div>
     </div>
 
+    <!--
     <div>
         <div class="row">
             <h4>My Recomendations</h4>
         </div>
 
-        <div class="row">
+    <div class="row">
+    {% for favs in books %}
+        {% if loop.index < 4 %}
+            {% if favs.genre == username.fav_genre %}
+        
             <div class="col s12 m4">
                 <div class="card-panel teal">
-                    <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                    <span class="white-text">{{favs.genre}}
                 </span>
                 </div>
             </div>
-
-            <div class="col s12 m4">
-                <div class="card-panel teal">
-                    <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                </span>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="card-panel teal">
-                    <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                </span>
-                </div>
-            </div>
-        </div>
+        
+            {% endif %}
+        {% endif %}
+        
+        {% endfor %}
     </div>
+    </div>
+    -->
 
 {% endblock %}

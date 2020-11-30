@@ -201,19 +201,3 @@ The result is that the text is shown only once and then ends the loop
 
 
 
-
-<!--Delete Book Modal
-        <div id="modal1" class="modal center-align">
-            <div class="modal-content">
-            <h4>Delete Book</h4>
-            <p>Are you sure you want to delete this book? <br>
-            <span>(The book can not be restored when deleted)</span></p>
-            </div>
-            
-            <div class="modal-footer center-align">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-                <a href="{{ url_for('delete_book', book_id=book._id) }}" class="modal-close waves-effect waves-green btn-flat">Delete Book</a>
-            </div>
-            
-        </div>
-        -->
