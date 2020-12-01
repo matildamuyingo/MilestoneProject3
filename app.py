@@ -283,8 +283,8 @@ def edit_profile(username):
         # Insert the updated info into the database
         mongo.db.users.update(
             {'_id': ObjectId(user['_id'])}, update_info)
-        # Inform the user that the information was successfully updated
         flash('User info updated!')
+        return redirect(url_for('profile', username=u_name))
 
     # If the user clicked the link to get
     # to the edit info form, pass through variable info
@@ -337,13 +337,8 @@ def edit_book(book_id):
         mongo.db.books.update(
             {'_id': ObjectId(book_id)}, update_book)
         # Inform the user that the book was successfully updated
-        book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
-
-        return render_template(
-            'edit_book.html', book_id=book, books=update_book,
-            genres=genres, ratings=ratings)
-
         flash('Book updated!')
+        return redirect(url_for('profile', username=update_book['added_by']))
 
     # If the user clicked the link to get
     # to the edit book form, pass through variables

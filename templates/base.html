@@ -25,7 +25,13 @@
                     </div>
                     </a>
 				{% else %}
-				    <a href="{{ url_for('homepage') }}" class="brand-logo center">Logo</a>
+				    <a href="{{ url_for('homepage') }}" class="brand-logo center">
+                    <div id="hover-logo" class="inline-block">
+                        <div class="inline" id="left-parm"></div>
+                        <div class="inline" id="turn-page"></div>
+                        <div class="inline" id="right-parm"></div>
+                    </div>
+                    </a>
 				{% endif %}
 				    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-book"></i></a>
 				<ul class="right hide-on-med-and-down">

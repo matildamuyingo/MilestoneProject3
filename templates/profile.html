@@ -77,7 +77,9 @@
                                                     {% endif %}
                                                     <div class="card-content">
                                                         <h5>{{ book.book_title.title() }}</h5>
-                                                        <p>{{ book.author_first_name.title() }} {{ book.author_last_name.title() }}</p>
+                                                        <p><em>{{ book.author_first_name.title() }} {{ book.author_last_name.title() }}</em> <br>
+                                                        {{ book.genre.title() }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 
@@ -134,7 +136,9 @@
                                                     {% endif %}
                                                 <div class="card-content">
                                                     <h5>{{ book.book_title.title() }}</h5>
-                                                    <p>{{ book.author_first_name.title() }} {{ book.author_last_name.title() }}</p>
+                                                    <p><em>{{ book.author_first_name.title() }} {{ book.author_last_name.title() }}</em> <br>
+                                                        {{ book.genre.title() }}
+                                                    </p>
                                                     <p>
                                                         {% if book.rating == 1 %}
                                                             <div>
