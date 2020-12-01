@@ -24,6 +24,7 @@ $(document).ready(function(){
             $('.sub-book-edit-buttons', this).removeClass('full-display').addClass('no-display');
         });
     
+    /*
     // When a card displaying a book is clicked
     $('.card-content').click(function(){
 
@@ -36,6 +37,6 @@ $(document).ready(function(){
             $('.row', this).css('height', cardHeight);
         }
     });
-    
+    */
 
   });

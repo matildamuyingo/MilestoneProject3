@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+	<div class="row">
+        <div class="col s10 offset-s1 m8 offset-m2 card-panel lime lighten-4">
+            <div class="row">
+                
+                <div class="col s6 m3 image-float">
+                        <img src="{{ book_id.book_image  }}" alt="" class="info-photo-cover">
+                </div>
+
+                <div class="col s6 m9">
+                    <!--Book Title--> 
+                    <div class="col s12">
+                        <h4>{{ book_id.book_title.title() }}</h4>
+                    </div>
+
+                    <!--Name Fields-->  
+                    <div class="col s6">
+                        <h5>
+                        {{ book_id.author_first_name.title() }}
+                    
+                        {{ book_id.author_last_name.title() }}
+                        </h5>
+                    </div>
+
+                    <!--Genre--> 
+                    <div class="col s12">
+                        <h6>
+                        <strong>Book Genre:</strong>  {{ book_id.genre.title() }}
+                        </h6>
+                    </div>
+
+                    <div class="col s12">
+                        <strong>Rating:</strong> {{ book_id.rating }}
+                    </div>   
+            </div>	
+	    </div>
+
+        <div class="row">
+            <div class="col s12">
+                <h6>Review by {{ book_id.added_by }}</h6>
+                <p>
+                    {% if book_id.rating == 1 %}
+                        <div>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    {% elif book_id.rating == 2 %}
+                        <div>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    {% elif book_id.rating == 3 %}
+                        <div>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    {% elif book_id.rating == 4 %}
+                        <div>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    {% elif book_id.rating == 5 %}
+                        <div>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    {% endif %}
+                {{ book_id.review }}</p>
+            </div>
+        </div>
+	</div>
+
+           
+    <!--Submit Button--> 
+    <div class="row center-align">
+        <a href="{{ url_for('profile', username=session.user) }}" type="submit" class="btn-large orange darken-4 duo-buttons z-depth-3">Cancel</a>
+        <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Submit Changes</button>
+    </div>
+
+
+{% endblock %}

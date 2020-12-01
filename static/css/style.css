@@ -85,7 +85,7 @@ body {
 h3.main-heading-text {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 50px;
-    margin-top: 50px;
+    margin-top: 75px;
     color: white;
     font-weight: 800;
 }
@@ -266,18 +266,27 @@ select {
 .flashes {
     margin: 0;
     height: 50px;
-    background: linear-gradient(10deg, orange, transparent);
+    position: absolute;
+    width: 100%;
 }
 
 .flash-message-text {
-    margin: 0;
+    margin-top: 0;
+    height: 100%;
+    background: #abb298a1;
+}
+
+/* --------------------- Media --------------------*/
+
+.info-photo-cover {
+    width: 100%;
 }
 
 /* --------------------- Media --------------------*/
 
 @media screen and (max-width: 760px) {
     .duo-buttons {
-        width: 80vw;
+        width: 60vw;
     }
 
     .card-content p {
@@ -288,9 +297,6 @@ select {
         margin-top: 50px;
     }
 
-    .flashes {
-        height: 100%;
-}
 }
 
 @media screen and (max-width: 1000px) {

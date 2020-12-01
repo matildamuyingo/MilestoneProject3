@@ -1,7 +1,9 @@
-# Milestone Project 3
-
-This page is created for users to be able to keep track of books that they want to read, have read, or publish a review for other users to read. 
+# Milestone Project 3 
     
+<img src='static/images/readme/StartpageMockups.png' width='400px'>
+
+This page is created for users to be able to keep track of books that they want to read, have read, or publish a review for other users to read.
+
 ## UX
 
 ### Design
@@ -189,6 +191,7 @@ The result is that the text is shown only once and then ends the loop
 - [Mysqltutorial.org](https://www.mysqltutorial.org/mysql-create-table/) Refreshed memory about database creation
 - [W3Schools.com](https://www.w3schools.com/sql/sql_foreignkey.asp) About MySQL and foreign keys
 - [This Page](https://kb.objectrocket.com/mongo-db/how-to-insert-a-document-into-a-mongodb-collection-using-python-367) How to import date and how to insert it in MongoDB when adding user
+- [hover another element](https://stackoverflow.com/questions/6910049/on-a-css-hover-event-can-i-change-another-divs-styling)
 
 ### Content
 

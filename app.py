@@ -339,12 +339,22 @@ def edit_book(book_id):
         # Inform the user that the book was successfully updated
         flash('Book updated!')
         return redirect(url_for('profile', username=update_book['added_by']))
+    elif request.method == "GET":
+        # If the user clicked the link to get
+        # to the edit book form, pass through variables
+        return render_template(
+                'edit_book.html', book_id=book, books=book,
+                genres=genres, ratings=ratings)
 
-    # If the user clicked the link to get
-    # to the edit book form, pass through variables
-    return render_template(
-            'edit_book.html', book_id=book, books=book,
-            genres=genres, ratings=ratings)
+
+# Route to detailed book info
+@app.route('/book_info/<book_id>', methods=["GET", "POST"])
+def book_info(book_id):
+
+    book = mongo.db.books.find_one(
+        {'_id': ObjectId(book_id)})
+
+    return render_template('book_info.html', book_id=book)
 
 
 # Route to logout

@@ -75,12 +75,14 @@
                                                             <a href="#modal{{book._id}}" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
                                                         </div>
                                                     {% endif %}
+                                                    <a href="{{ url_for('book_info', book_id=book._id) }}">
                                                     <div class="card-content">
                                                         <h5>{{ book.book_title.title() }}</h5>
                                                         <p><em>{{ book.author_first_name.title() }} {{ book.author_last_name.title() }}</em> <br>
                                                         {{ book.genre.title() }}
                                                         </p>
                                                     </div>
+                                                    </a>
                                                 </div>
                                                 
                                             </div>
@@ -134,6 +136,7 @@
                                                             <a href="#modal{{book._id}}" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
                                                         </div>
                                                     {% endif %}
+                                                <a href="{{ url_for('book_info', book_id=book._id) }}">
                                                 <div class="card-content">
                                                     <h5>{{ book.book_title.title() }}</h5>
                                                     <p><em>{{ book.author_first_name.title() }} {{ book.author_last_name.title() }}</em> <br>
@@ -173,7 +176,7 @@
                                                         {% endif %}
                                                     {{ book.review }}</p>
                                                 </div>
-                            
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
