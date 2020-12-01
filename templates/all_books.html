@@ -63,7 +63,7 @@
                                         <a href="{{ url_for('book_info', book_id=book._id) }}">
 										<div class="card-content max-height">
 											<h5>{{ book.book_title.capitalize() }}</h5>
-											<p>{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }} <br>
+											<p class="book-desc-par">{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }} <br>
                                                 Added By: {{ book.added_by }} <br>
                                                 Genre: {{ book.genre.capitalize() }}
 											
@@ -115,11 +115,8 @@
                                                     </div>
                                                 {% endif %}
                                                 </p>
-                                                {% if book.review %}
-                                               <div class="push-review"> {{ book.review }} </div>
-                                                {% endif %}
 										</div>
-                                        
+                                        </a>
 									</div>
 								</div>
 							</div>

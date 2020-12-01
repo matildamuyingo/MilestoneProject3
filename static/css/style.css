@@ -183,11 +183,23 @@ a .card-content:hover {
     margin-left: 20px;
 }
 
+.user-card-style {
+    border-radius: 7px;
+    transition: 0.3s;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12);
+    max-height: 200px;
+}
+
+.user-card-style:hover {
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+    transform: translate(2px,-5px);
+}
+
 .book-card-style {
     border-radius: 7px;
     transition: 0.3s;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12);
-    max-height: 350px;
+    height: 200px;
 }
 
 .book-card-style:hover {
@@ -243,8 +255,8 @@ a .card-content:hover {
     font-size: 10px;
 }
 
-.push-review {
-    margin-top: 60px;
+.book-desc-par {
+    font-size: 12px;
 }
 
 /* --------------------JavaScript Css + Icon list------------------*/
@@ -298,6 +310,7 @@ select {
     }
 
 }
+
 
 @media screen and (max-width: 1000px) {
     
