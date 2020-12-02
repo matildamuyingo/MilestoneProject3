@@ -245,46 +245,50 @@ def add_book():
 # Route to edit profile info (only available on the users own profile page)
 @app.route('/edit_profile/<username>', methods=["GET", "POST"])
 def edit_profile(username):
-    # Get lists with saved database-information and set the user variable
-    books = list(mongo.db.books.find().sort('book_title', 1))
-    genres = list(mongo.db.genres.find().sort('genre_name', 1))
-    authors = list(mongo.db.authors.find().sort('author_name', 1))
-    genders = list(mongo.db.genders.find())
-    icons = list(mongo.db.icons.find())
-    user = mongo.db.users.find_one(
-        {'username': username})
 
-    # If the form is submitted
-    if request.method == "POST":
+    if session['user'] == username:
+        # Get lists with saved database-information and set the user variable
+        books = list(mongo.db.books.find().sort('book_title', 1))
+        genres = list(mongo.db.genres.find().sort('genre_name', 1))
+        authors = list(mongo.db.authors.find().sort('author_name', 1))
+        genders = list(mongo.db.genders.find())
+        icons = list(mongo.db.icons.find())
+        user = mongo.db.users.find_one(
+            {'username': username})
 
-        # Save username, email, password and
-        # date joined in variables, these won't be changed
-        u_name = user['username']
-        email = user['email']
-        password = user['password']
-        joined = user['date_joined']
+        # If the form is submitted
+        if request.method == "POST":
 
-        # Create an object that gets the values from the update info form
-        update_info = {
-            'first_name': request.form.get('first_name').lower(),
-            'last_name': request.form.get('last_name').lower(),
-            'username': u_name,
-            'email': email,
-            'password': password,
-            'date_joined': joined,
-            'user_icon': request.form.get('user_icon').lower(),
-            'user_age': int(request.form.get('user_age')),
-            'user_gender': request.form.get('user_gender').lower(),
-            'fav_book': request.form.get('fav_book').title(),
-            'fav_author': request.form.get('fav_author').lower(),
-            'fav_genre': request.form.get('fav_genre').lower()
-        }
+            # Save username, email, password and
+            # date joined in variables, these won't be changed
+            u_name = user['username']
+            email = user['email']
+            password = user['password']
+            joined = user['date_joined']
 
-        # Insert the updated info into the database
-        mongo.db.users.update(
-            {'_id': ObjectId(user['_id'])}, update_info)
-        flash('User info updated!')
-        return redirect(url_for('profile', username=u_name))
+            # Create an object that gets the values from the update info form
+            update_info = {
+                'first_name': request.form.get('first_name').lower(),
+                'last_name': request.form.get('last_name').lower(),
+                'username': u_name,
+                'email': email,
+                'password': password,
+                'date_joined': joined,
+                'user_icon': request.form.get('user_icon').lower(),
+                'user_age': int(request.form.get('user_age')),
+                'user_gender': request.form.get('user_gender').lower(),
+                'fav_book': request.form.get('fav_book').title(),
+                'fav_author': request.form.get('fav_author').lower(),
+                'fav_genre': request.form.get('fav_genre').lower()
+            }
+
+            # Insert the updated info into the database
+            mongo.db.users.update(
+                {'_id': ObjectId(user['_id'])}, update_info)
+            flash('User info updated!')
+            return redirect(url_for('profile', username=u_name))
+    else:
+        return render_template('404.html')
 
     # If the user clicked the link to get
     # to the edit info form, pass through variable info
@@ -304,47 +308,50 @@ def edit_book(book_id):
     book = mongo.db.books.find_one(
         {'_id': ObjectId(book_id)})
 
-    # If the form is submitted
-    if request.method == "POST":
+    if session['user'] == book['added_by']:
 
-        # Set the image, rating and date
-        # variable to the form input (optional inputs)
-        image = request.form.get('book_image')
-        rating = request.form.get('rating-drop')
-        datetime_now = datetime.now()
+        # If the form is submitted
+        if request.method == "POST":
 
-        # if a rating has been added, save it as an integer
-        if rating:
-            rating = int(request.form.get('rating-drop'))
+            # Set the image, rating and date
+            # variable to the form input (optional inputs)
+            image = request.form.get('book_image')
+            rating = request.form.get('rating-drop')
+            datetime_now = datetime.now()
 
-        # Create an object that gets the values from the update book form
-        update_book = {
-            'book_title': request.form.get('book_title').lower(),
-            'author_first_name': request.form.get(
-                'author_first_name').lower(),
-            'author_last_name': request.form.get(
-                'author_last_name').lower(),
-            'genre': request.form.get('genre').lower(),
-            'read_book': request.form.get('read-check'),
-            'rating': rating,
-            'review': request.form.get('book_review').capitalize(),
-            'added_by': session['user'],
-            'book_image': image,
-            'date_added': datetime_now
-        }
+            # if a rating has been added, save it as an integer
+            if rating:
+                rating = int(request.form.get('rating-drop'))
 
-        # Insert the updated info into the database
-        mongo.db.books.update(
-            {'_id': ObjectId(book_id)}, update_book)
-        # Inform the user that the book was successfully updated
-        flash('Book updated!')
-        return redirect(url_for('profile', username=update_book['added_by']))
-    elif request.method == "GET":
-        # If the user clicked the link to get
-        # to the edit book form, pass through variables
-        return render_template(
-                'edit_book.html', book_id=book, books=book,
-                genres=genres, ratings=ratings)
+            # Create an object that gets the values from the update book form
+            update_book = {
+                'book_title': request.form.get('book_title').lower(),
+                'author_first_name': request.form.get(
+                    'author_first_name').lower(),
+                'author_last_name': request.form.get(
+                    'author_last_name').lower(),
+                'genre': request.form.get('genre').lower(),
+                'read_book': request.form.get('read-check'),
+                'rating': rating,
+                'review': request.form.get('book_review').capitalize(),
+                'added_by': session['user'],
+                'book_image': image,
+                'date_added': datetime_now
+            }
+
+            # Insert the updated info into the database
+            mongo.db.books.update(
+                {'_id': ObjectId(book_id)}, update_book)
+            # Inform the user that the book was successfully updated
+            flash('Book updated!')
+            return redirect(url_for(
+                'profile', username=update_book['added_by']))
+    else:
+        return render_template('404.html')
+
+    return render_template(
+            'edit_book.html', book_id=book, books=book,
+            genres=genres, ratings=ratings)
 
 
 # Route to detailed book info
