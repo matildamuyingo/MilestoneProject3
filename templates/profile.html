@@ -97,6 +97,7 @@
                                             <p>Are you sure you want to delete {{ book.book_title.title() }}?</p>
                                         </div>
                                         <div class="modal-footer">
+                                            <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
                                             <a href="{{ url_for('delete_book', book_id=book._id) }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
                                         </div>
                                     </div>
@@ -188,6 +189,7 @@
                                         <p>Are you sure you want to delete {{ book.book_title.title() }}?</p>
                                     </div>
                                     <div class="modal-footer">
+                                        <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
                                         <a href="{{ url_for('delete_book', book_id=book._id) }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
                                     </div>
                                 </div>
@@ -213,31 +215,5 @@
 
             </div>
     </div>
-
-    <!--
-    <div>
-        <div class="row">
-            <h4>My Recomendations</h4>
-        </div>
-
-    <div class="row">
-    {% for favs in books %}
-        {% if loop.index < 4 %}
-            {% if favs.genre == username.fav_genre %}
-        
-            <div class="col s12 m4">
-                <div class="card-panel teal">
-                    <span class="white-text">{{favs.genre}}
-                </span>
-                </div>
-            </div>
-        
-            {% endif %}
-        {% endif %}
-        
-        {% endfor %}
-    </div>
-    </div>
-    -->
 
 {% endblock %}
