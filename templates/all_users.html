@@ -6,9 +6,9 @@
         <h3 class="col s12 main-heading-text">All Users</h3>
     </div>
 
-	<div class="row grey lighten-5 max-height">
+	<div class="row grey lighten-5 max-height margin-to-padding grey lighten-2">
 		<!--User Sorting Input-->
-		<div class="col s12 no-padding grey lighten-2">
+		<div class="col s12 no-padding">
 
             
             <form action="{{ url_for('sort_users') }}" method="post" class="col s12">'
@@ -36,7 +36,7 @@
 			
         </div>
     </div>
-            <div class="row">
+            <div class="row blue-grey lighten-5 margin-to-padding">
 			<!--User Cards-->
 			{% if all_users|length > 0 %}
 			<ul>
@@ -71,13 +71,13 @@
 
 
         </div>
-            </div>
-            <!--Review More-->
-			<div class="row center-align top-space">
-				<a href="#"
-					class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>Back to top</i></a>
-			</div>
+        
+        <!--Review More-->
+        <div class="row center-align top-space blue-grey lighten-5 margin-to-padding">
+            <a href="#"
+                class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>Back to top</i></a>
         </div>
+        
 
         
     

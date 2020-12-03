@@ -7,6 +7,11 @@ font-family: 'IBM Plex Sans', sans-serif;
 font-family: 'Questrial', sans-serif;
 */
 
+.margin-to-padding {
+    margin: 0;
+    padding: 20px;
+}
+
 /* -------------------Header------------------------- */
 
 .nav-wrapper {
@@ -58,6 +63,8 @@ font-family: 'Questrial', sans-serif;
 
 body {
     position: relative;
+    background-image: url(https://www.incimages.com/uploaded_files/image/1920x1080/rey-seven-nm-mZ4Cs2I-unsplash_397351.jpg);
+
 }
 
 .no-padding {
@@ -69,7 +76,7 @@ body {
 }
 
 .top-space {
-    margin-top: 60px;
+    padding-top: 60px;
 }
 
 .page-heading {

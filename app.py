@@ -364,6 +364,26 @@ def book_info(book_id):
     return render_template('book_info.html', book_id=book)
 
 
+@app.route('/add_review/<book_id>', methods=["GET", "POST"])
+def add_review(book_id):
+
+    book = mongo.db.books.find_one(
+        {'_id': ObjectId(book_id)})
+    ratings = mongo.db.ratings.find()
+
+    if request.method == "POST":
+
+        new_review = {
+            'book_id': book_id,
+            'review_title': request.form.get('review_title'),
+            'rating': int(request.form.get('rating')),
+            'review': request.form.get('review')
+        }
+        mongo.db.reviews.insert_one(new_review)
+
+    return render_template('add_review.html', book_id=book, ratings=ratings)
+
+
 # Route to logout
 @app.route('/logout')
 def logout():

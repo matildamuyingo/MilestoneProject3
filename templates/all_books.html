@@ -6,7 +6,7 @@
         <h3 class="col s12 main-heading-text">All Books</h3>
     </div>
 
-	<div class="row grey lighten-5 max-height">
+	<div class="row grey lighten-5 max-height margin-to-padding blue-grey lighten-2">
 		<!--Review Cards-->
 		<div class="col s12 no-padding grey lighten-2">
 
@@ -37,7 +37,7 @@
 			
         </div>
     </div>
-            <div class="row">
+            <div class="row blue-grey lighten-5 margin-to-padding">
 			{% if books|length > 0 %}
 			<ul>
 				{% for book in books %}
@@ -131,7 +131,7 @@
                                 <a href="{{ url_for('delete_book', book_id=book._id) }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
                             </div>
                         </div>
-                    </a>
+                    
 				</li>
                     
 				{% endfor %}
@@ -141,13 +141,9 @@
 			{% endif %}
             </div>
             <!--Review More-->
-			<div class="row center-align top-space">
+			<div class="row center-align top-space blue-grey lighten-5 margin-to-padding">
 				<a href="#"
 					class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>Back to top</i></a>
 			</div>
-        </div>
-
-        
-    
 
 {% endblock %}

@@ -24,19 +24,8 @@ $(document).ready(function(){
             $('.sub-book-edit-buttons', this).removeClass('full-display').addClass('no-display');
         });
     
-    /*
-    // When a card displaying a book is clicked
-    $('.card-content').click(function(){
-
-        // Check the card height and save it in a variable
-        var cardHeight = $('.card-content').height();
-
-        // If the card height is larger than 130px remove the maxheight for that card so the review paragraph is visible
-        if (cardHeight > 130){
-            $(this).toggleClass('max-height');
-            $('.row', this).css('height', cardHeight);
-        }
+    $('#user_sorting').change(function() {
+        $(this).css('color', 'red');
     });
-    */
 
   });

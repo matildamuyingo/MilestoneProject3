@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class="row center-align">
-        <h3 class="main-heading-text black-text">Edit Book</h3>
+        <h3 class="main-heading-text">Edit Book</h3>
     </div>
 
 	<div class="row">
@@ -91,6 +91,7 @@
             <!--Submit Button--> 
             <div class="row center-align">
                 <a href="{{ url_for('profile', username=session.user) }}" type="submit" class="btn-large orange darken-4 duo-buttons z-depth-3">Cancel</a>
+                <a href="{{ url_for('add_review', book_id=books._id) }}" type="submit" class="btn-large orange darken-4 duo-buttons z-depth-3">Add Review</a>
                 <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Submit Changes</button>
             </div>
         </div>
