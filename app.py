@@ -342,6 +342,17 @@ def edit_book(book_id):
             # Insert the updated info into the database
             mongo.db.books.update(
                 {'_id': ObjectId(book_id)}, update_book)
+
+            new_review = {
+                'book_id': book_id,
+                'added_by': session['user'],
+                'review_title': request.form.get(
+                    'review_title'),
+                'rating': int(request.form.get('rating')),
+                'review': request.form.get('review')
+            }
+            mongo.db.reviews.insert_one(new_review)
+
             # Inform the user that the book was successfully updated
             flash('Book updated!')
             return redirect(url_for(
@@ -360,8 +371,14 @@ def book_info(book_id):
 
     book = mongo.db.books.find_one(
         {'_id': ObjectId(book_id)})
+    reviews = mongo.db.reviews.find(
+        {'book_id': book_id})
 
-    return render_template('book_info.html', book_id=book)
+    rating = mongo.db.reviews.find(
+        {'rating': 3})
+    print(book)
+
+    return render_template('book_info.html', book_id=book, reviews=reviews)
 
 
 @app.route('/add_review/<book_id>', methods=["GET", "POST"])
@@ -375,6 +392,7 @@ def add_review(book_id):
 
         new_review = {
             'book_id': book_id,
+            'added_by': session['user'],
             'review_title': request.form.get('review_title'),
             'rating': int(request.form.get('rating')),
             'review': request.form.get('review')

@@ -79,6 +79,10 @@ body {
     padding-top: 60px;
 }
 
+.bottom-space {
+    padding-bottom: 50px;
+}
+
 .page-heading {
     background-color: #1010106b;
     box-shadow: 0px 15px 50px inset rgb(2 2 2);
@@ -264,6 +268,13 @@ a .card-content:hover {
 
 .book-desc-par {
     font-size: 12px;
+}
+
+/* --------------------Book info styling------------------*/
+
+#book-container-info {
+    margin-top: 100px;
+    padding: 20px;
 }
 
 /* --------------------JavaScript Css + Icon list------------------*/

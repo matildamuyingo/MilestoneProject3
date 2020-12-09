@@ -11,11 +11,11 @@
 		<div class="col s12 no-padding">
 
             
-            <form action="{{ url_for('sort_users') }}" method="post" class="col s12">'
+            <form name="userSorting" action="{{ url_for('sort_users') }}" method="post" class="col s12">'
                 <div class="row valign-wrapper center-align">
 
                     <div class="input-field col s12 m6 offset-m3">
-                        <select id="user_sorting" name="user_sorting">
+                        <select id="user_sorting" name="user_sorting" onchange="updateSearch()">
                                 <option value="" minlength="5" selected disabled>Sort By</option>
                                 <option value="username">Username</option>
                                 <option value="first_name">First Name</option>
@@ -79,7 +79,14 @@
         </div>
         
 
-        
+        <script>
+            function updateSearch() {
+                var searchPar = $('#user_sorting').val();
+                if (searchPar.length > 0){
+                    document.userSorting.submit();
+                }
+            }
+        </script>
     
 
 {% endblock %}

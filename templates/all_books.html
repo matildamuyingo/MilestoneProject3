@@ -11,11 +11,11 @@
 		<div class="col s12 no-padding grey lighten-2">
 
             
-            <form action="{{ url_for('sort_books') }}" method="post" class="col s12">'
+            <form name="bookSorting" action="{{ url_for('sort_books') }}" method="post" class="col s12">'
                 <div class="row valign-wrapper center-align">
 
                     <div class="input-field col s12 m6 offset-m3">
-                        <select id="book_sorting" name="book_sorting">
+                        <select id="book_sorting" name="book_sorting" onchange="updateSearch()">
                                 <option value="" minlength="5" disabled selected>Sort By</option>
                                 <option value="book_title">Book Title</option>
                                 <option value="author_first_name">Authors First Name</option>
@@ -25,13 +25,7 @@
                         </select>
                         <label for="book_sorting">Sort by</label>
                     </div>
-
-                    <div class="col s12 m2">
-                        <a href="{{ url_for('all_books') }}" class="orange darken-4 btn">Reset</a>
-                        <button type="submit" class="grey darken-1 btn">
-                        <i class="fas fa-search left"></i> Search
-                    </button>
-                    </div>
+                    
                 </div>
             </form>
 			
@@ -145,5 +139,14 @@
 				<a href="#"
 					class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>Back to top</i></a>
 			</div>
+
+            <script>
+                function updateSearch() {
+                    var searchPar = $('#book_sorting').val();
+                    if (searchPar.length > 0){
+                        document.bookSorting.submit();
+                    }
+                }
+            </script>
 
 {% endblock %}
