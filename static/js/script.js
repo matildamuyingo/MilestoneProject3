@@ -28,8 +28,4 @@ $(document).ready(function(){
         $(this).css('color', 'red');
     });
 
-// Searchbar update
-
-    
-
   });

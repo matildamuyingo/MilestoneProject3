@@ -318,7 +318,8 @@ def edit_book(book_id):
             # Set the image, rating and date
             # variable to the form input (optional inputs)
             image = request.form.get('book_image')
-            rating = request.form.get('rating-drop')
+            rating = book['rating']
+            review = book['review']
             datetime_now = datetime.now()
 
             # if a rating has been added, save it as an integer
@@ -333,25 +334,16 @@ def edit_book(book_id):
                 'genre': request.form.get('genre').lower(),
                 'read_book': request.form.get('read-check'),
                 'rating': rating,
-                'review': request.form.get('book_review').capitalize(),
+                'review': review,
                 'added_by': session['user'],
                 'book_image': image,
                 'date_added': datetime_now
             }
+            print(update_book['read_book'])
 
             # Insert the updated info into the database
             mongo.db.books.update(
                 {'_id': ObjectId(book_id)}, update_book)
-
-            new_review = {
-                'book_id': book_id,
-                'added_by': session['user'],
-                'review_title': request.form.get(
-                    'review_title'),
-                'rating': int(request.form.get('rating')),
-                'review': request.form.get('review')
-            }
-            mongo.db.reviews.insert_one(new_review)
 
             # Inform the user that the book was successfully updated
             flash('Book updated!')
