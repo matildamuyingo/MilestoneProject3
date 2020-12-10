@@ -181,8 +181,10 @@ def add_book():
         datetime_now = datetime.now()
 
         # if a rating has been added, save it as an integer
-        if rating:
+        if rating.len() > 0:
             rating = int(request.form.get('rating-drop'))
+        else:
+            rating = 'null'
 
         # The user information from the form that is going to be added/updated
         addBook = {
@@ -320,8 +322,6 @@ def edit_book(book_id):
             datetime_now = datetime.now()
 
             # if a rating has been added, save it as an integer
-            if rating:
-                rating = int(request.form.get('rating-drop'))
 
             # Create an object that gets the values from the update book form
             update_book = {
@@ -374,10 +374,6 @@ def book_info(book_id):
     reviews = mongo.db.reviews.find(
         {'book_id': book_id})
 
-    rating = mongo.db.reviews.find(
-        {'rating': 3})
-    print(book)
-
     return render_template('book_info.html', book_id=book, reviews=reviews)
 
 
@@ -387,6 +383,8 @@ def add_review(book_id):
     book = mongo.db.books.find_one(
         {'_id': ObjectId(book_id)})
     ratings = mongo.db.ratings.find()
+    reviews = mongo.db.reviews.find(
+        {'book_id': book_id})
 
     if request.method == "POST":
 
@@ -398,6 +396,8 @@ def add_review(book_id):
             'review': request.form.get('review')
         }
         mongo.db.reviews.insert_one(new_review)
+
+        return render_template('book_info.html', book_id=book, reviews=reviews)
 
     return render_template('add_review.html', book_id=book, ratings=ratings)
 

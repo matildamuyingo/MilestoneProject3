@@ -12,6 +12,12 @@ font-family: 'Questrial', sans-serif;
     padding: 20px;
 }
 
+.col .row {
+    margin-right: 0;
+    padding-right: 0;
+}
+
+
 /* -------------------Header------------------------- */
 
 .nav-wrapper {

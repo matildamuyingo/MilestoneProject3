@@ -54,7 +54,7 @@
                                             </div>
                                         {% endif %}
                                         <!--Link that wraps card text-->
-                                        <a href="{{ url_for('book_info', book_id=book._id) }}">
+                                        <a href="{{ url_for('book_info', book_id=book._id) }}" class="blue-grey-text text-darken-4">
 										<div class="card-content max-height">
 											<h5>{{ book.book_title.capitalize() }}</h5>
 											<p class="book-desc-par">{{ book.author_first_name.capitalize() }} {{ book.author_last_name.capitalize() }} <br>
