@@ -136,112 +136,19 @@ def profile(username):
     books = list(mongo.db.books.find())
     user = mongo.db.users.find_one(
         {'username': username})
-
+    reviews = list(mongo.db.reviews.find())
     # if the username is the same as
     # session user, send user to their own profile
     if session['user'] == user['username']:
         return render_template(
-            'profile.html', username=user, books=books)
+            'profile.html', username=user, books=books, reviews=reviews)
     # if the username is not the same as
     # session user, send user the other userprofile
     else:
         return render_template(
-            'profile.html', username=user, books=books)
+            'profile.html', username=user, books=books, reviews=reviews)
 
     return redirect(url_for('login'))
-
-
-# Route to delete a book
-@app.route('/delete/<book_id>')
-def delete_book(book_id):
-
-    # Find and delete the book with same id as clicked object (book)
-    mongo.db.books.delete_one({'_id': ObjectId(book_id)})
-    flash('Deleted Book')
-
-    # Set variables and render template for user profile after book is deleted
-    books = list(mongo.db.books.find())
-    user = mongo.db.users.find_one(
-        {'username': session['user']})
-
-    return render_template('profile.html', username=user, books=books)
-
-
-# Route to add a new book
-@app.route('/add_book', methods=["GET", "POST"])
-def add_book():
-
-    # If the add book form is submitted
-    if request.method == "POST":
-
-        # Set the image, rating and date
-        # variable to the form input (optional inputs)
-        image = request.form.get('book_image')
-        rating = request.form.get('rating-drop')
-        datetime_now = datetime.now()
-
-        # if a rating has been added, save it as an integer
-        if rating.len() > 0:
-            rating = int(request.form.get('rating-drop'))
-        else:
-            rating = 'null'
-
-        # The user information from the form that is going to be added/updated
-        addBook = {
-            'book_title': request.form.get('book_title').lower(),
-            'author_first_name': request.form.get(
-                'author_first_name').lower(),
-            'author_last_name': request.form.get(
-                'author_last_name').lower(),
-            'genre': request.form.get('genre').lower(),
-            'read_book': request.form.get('read-check'),
-            'rating': rating,
-            'review': request.form.get('book_review').capitalize(),
-            'added_by': session['user'],
-            'book_image': image,
-            'date_added': datetime_now
-        }
-
-        # if the user did not upload an image, use this url as default
-        if not image:
-            addBook['book_image'] = (
-                'https://vignette.wikia.nocookie.net/darkseries/images/9/96/No_book_cover_lg.jpg/revision/latest?cb=20170826200421')
-
-        # if the user uploaded an image, use the uploaded image
-        else:
-            addBook['book_image'] = request.form.get('book_image')
-
-        # Insert the form information about the book to the database
-        mongo.db.books.insert_one(addBook)
-
-        # Add the authors full name into the
-        # database merged in a single variable
-        addAuthor = {
-            'author_name': request.form.get(
-                'author_first_name').lower() + (" ")
-            + request.form.get('author_last_name').lower()
-        }
-
-        # Check if the author already exists in the database
-        existing_author = mongo.db.authors.find_one(
-            {'author_name': addAuthor['author_name'].lower()})
-
-        # If the author does not exist, insert name
-        if not existing_author:
-            mongo.db.authors.insert_one(addAuthor)
-
-        # Flash confirmation message to user and redirect for profile
-        flash('Book added successfully!')
-        return redirect(url_for(
-            'profile', username=session['user']))
-    # Save ratings and genres from database
-    # in variables and sort genres alphabetically
-    ratings = mongo.db.ratings.find()
-    genres = mongo.db.genres.find().sort('genre_name', 1)
-
-    # If user clicked link to access add book
-    # page render template with parameters set
-    return render_template('add_book.html', ratings=ratings, genres=genres)
 
 
 # Route to edit profile info (only available on the users own profile page)
@@ -299,6 +206,79 @@ def edit_profile(username):
             genres=genres, icons=icons, authors=authors, genders=genders)
 
 
+# Route to add a new book
+@app.route('/add_book', methods=["GET", "POST"])
+def add_book():
+
+    # If the add book form is submitted
+    if request.method == "POST":
+
+        # Set the image, rating and date
+        # variable to the form input (optional inputs)
+        image = request.form.get('book_image')
+        rating = request.form.get('rating-drop')
+        datetime_now = datetime.now()
+
+        # if a rating has been added, save it as an integer
+
+        # The user information from the form that is going to be added/updated
+        addBook = {
+            'book_title': request.form.get('book_title').lower(),
+            'author_first_name': request.form.get(
+                'author_first_name').lower(),
+            'author_last_name': request.form.get(
+                'author_last_name').lower(),
+            'genre': request.form.get('genre').lower(),
+            'read_book': 'on' if request.form.get('read-check') else False,
+            'rating': 0 if request.form.get('rating-drop') == 'none' else request.form.get('rating-drop'),
+            'review': request.form.get('book_review').capitalize(),
+            'added_by': session['user'],
+            'book_image': image,
+            'date_added': datetime_now
+        }
+
+        # if the user did not upload an image, use this url as default
+        if not image:
+            addBook['book_image'] = (
+                'https://vignette.wikia.nocookie.net/darkseries/images/9/96/No_book_cover_lg.jpg/revision/latest?cb=20170826200421')
+
+        # if the user uploaded an image, use the uploaded image
+        else:
+            addBook['book_image'] = request.form.get('book_image')
+
+        # Insert the form information about the book to the database
+        mongo.db.books.insert_one(addBook)
+
+        # Add the authors full name into the
+        # database merged in a single variable
+        addAuthor = {
+            'author_name': request.form.get(
+                'author_first_name').lower() + (" ")
+            + request.form.get('author_last_name').lower()
+        }
+
+        # Check if the author already exists in the database
+        existing_author = mongo.db.authors.find_one(
+            {'author_name': addAuthor['author_name'].lower()})
+
+        # If the author does not exist, insert name
+        if not existing_author:
+            mongo.db.authors.insert_one(addAuthor)
+
+        # Flash confirmation message to user and redirect for profile
+        flash('Book added successfully!')
+        return redirect(url_for(
+            'profile', username=session['user']))
+    # Save ratings and genres from database
+    # in variables and sort genres alphabetically
+    ratings = mongo.db.ratings.find()
+    genres = mongo.db.genres.find().sort('genre_name', 1)
+
+    # If user clicked link to access add book
+    # page render template with parameters set
+    return render_template('add_book.html', ratings=ratings, genres=genres)
+
+
 # Route to edit book info (only available on books the user created)
 @app.route('/edit_book/<book_id>', methods=["GET", "POST"])
 def edit_book(book_id):
@@ -332,9 +312,9 @@ def edit_book(book_id):
                 'author_last_name': request.form.get(
                     'author_last_name').lower(),
                 'genre': request.form.get('genre').lower(),
-                'read_book': request.form.get('read-check'),
-                'rating': rating,
-                'review': review,
+                'read_book': 'on' if request.form.get('read-check') else False,
+                'rating': 0 if request.form.get('rating-drop') == 'none' else int(request.form.get('rating-drop')),
+                'review': request.form.get('book_review').capitalize(),
                 'added_by': session['user'],
                 'book_image': image,
                 'date_added': datetime_now
@@ -357,6 +337,22 @@ def edit_book(book_id):
             genres=genres, ratings=ratings)
 
 
+# Route to delete a book
+@app.route('/delete/<book_id>')
+def delete_book(book_id):
+
+    # Find and delete the book with same id as clicked object (book)
+    mongo.db.books.delete_one({'_id': ObjectId(book_id)})
+    flash('Deleted Book')
+
+    # Set variables and render template for user profile after book is deleted
+    books = list(mongo.db.books.find())
+    user = mongo.db.users.find_one(
+        {'username': session['user']})
+
+    return render_template('profile.html', username=user, books=books)
+
+
 # Route to detailed book info
 @app.route('/book_info/<book_id>', methods=["GET", "POST"])
 def book_info(book_id):
@@ -377,6 +373,12 @@ def add_review(book_id):
     ratings = mongo.db.ratings.find()
     reviews = mongo.db.reviews.find(
         {'book_id': book_id})
+    image = book['book_image']
+    title = book['book_title']
+    authorFN = book['author_first_name']
+    authorLN = book['author_last_name']
+    genre = book['genre']
+    datetime_now = datetime.now()
 
     if request.method == "POST":
 
@@ -387,21 +389,29 @@ def add_review(book_id):
             'rating': int(request.form.get('rating')),
             'review': request.form.get('review')
         }
-        mongo.db.reviews.insert_one(new_review)
+
+        update_review = {
+            'book_title': title,
+            'author_first_name': authorFN,
+            'author_last_name': authorLN,
+            'genre': genre,
+            'book_image': image,
+            'added_by': session['user'],
+            'review_title': request.form.get('review_title'),
+            'rating': int(request.form.get('rating')),
+            'review': request.form.get('review'),
+            'date_added': datetime_now
+        }
+
+        if new_review['added_by'] == book['added_by']:
+            mongo.db.books.update(
+                {'_id': ObjectId(book_id)}, update_review)
+        else:
+            mongo.db.reviews.insert_one(new_review)
 
         return render_template('book_info.html', book_id=book, reviews=reviews)
 
     return render_template('add_review.html', book_id=book, ratings=ratings)
-
-
-# Route to logout
-@app.route('/logout')
-def logout():
-
-    # remove the user from session cookies and redirect to login page
-    session.pop('user')
-    flash('You have been logged out')
-    return redirect(url_for('login'))
 
 
 # Route to startpage
@@ -460,6 +470,16 @@ def sort_users():
 
     return render_template(
         "all_users.html", all_users=user_query)
+
+
+# Route to logout
+@app.route('/logout')
+def logout():
+
+    # remove the user from session cookies and redirect to login page
+    session.pop('user')
+    flash('You have been logged out')
+    return redirect(url_for('login'))
 
 
 if __name__ == "__main__":

@@ -67,6 +67,23 @@
 				</label>
                 
             </p>
+
+            <div class="input-field col s12">
+				<select id="rating-drop" name="rating-drop">
+                  <option value="none" disabled selected>None</option>
+                    {% for rating in ratings %}
+                        <option value="{{ rating.book_rating }}">{{ rating.book_rating}}</option>
+                    {% endfor %}
+			    </select>
+				<label for="rating-drop">Book Rating</label>
+			</div>
+            
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="book_review" name="book_review" class="materialize-textarea">{{ books.review }}</textarea>
+					<label for="book_review">Book Review</label>
+				</div>
+			</div>
            
             <!--Submit Button--> 
             <div class="row center-align">

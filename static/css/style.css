@@ -320,6 +320,17 @@ select {
 
 /* --------------------- Media --------------------*/
 
+@media screen and (max-width: 1000px) {
+    
+    .card-content h5 {
+        font-size: 17px;
+    }
+
+    .book-card-style {
+        height: 300px;
+    }
+}
+
 @media screen and (max-width: 760px) {
     .duo-buttons {
         width: 60vw;
@@ -333,12 +344,8 @@ select {
         margin-top: 50px;
     }
 
-}
-
-
-@media screen and (max-width: 1000px) {
-    
-    .card-content h5 {
-        font-size: 17px;
+    .book-card-style {
+        height: 200px;
     }
+
 }
