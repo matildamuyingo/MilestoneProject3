@@ -137,6 +137,13 @@ def profile(username):
     user = mongo.db.users.find_one(
         {'username': username})
     reviews = list(mongo.db.reviews.find())
+    for book in books:
+        for review in reviews:
+            if review['book_id'] == str(book['_id']):
+                print(review['book_id'])
+                print(str(book['_id']))
+                print('this works thank you god')
+
     # if the username is the same as
     # session user, send user to their own profile
     if session['user'] == user['username']:
@@ -216,7 +223,6 @@ def add_book():
         # Set the image, rating and date
         # variable to the form input (optional inputs)
         image = request.form.get('book_image')
-        rating = request.form.get('rating-drop')
         datetime_now = datetime.now()
 
         # if a rating has been added, save it as an integer
@@ -298,8 +304,6 @@ def edit_book(book_id):
             # Set the image, rating and date
             # variable to the form input (optional inputs)
             image = request.form.get('book_image')
-            rating = book['rating']
-            review = book['review']
             datetime_now = datetime.now()
 
             # if a rating has been added, save it as an integer
