@@ -82,7 +82,8 @@
         {% if loop.index % 2 != 0 %}
         <div class="row lime lighten-5">
             <div class="col s12">
-                <h6>Review by {{ review.added_by }}</h6>
+                <h6>"{{ review.review_title }}"</h6>
+                <p><strong> Review by {{ review.added_by }}</strong></p>
                 <p>
                     {% if review.rating == 1 %}
                         <div>

@@ -48,7 +48,7 @@
 
 			<div class="input-field col s12">
 				<select id="rating" name="rating" required>
-                  <option value="" disabled selected>{{ book_id.rating }} </option>
+                  <option value="null" disabled selected>None </option>
                     {% for rating in ratings %}
                         <option value="{{ rating.book_rating}}">{{ rating.book_rating}}</option>
                     {% endfor %}

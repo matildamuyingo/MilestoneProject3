@@ -70,7 +70,7 @@
 
             <div class="input-field col s12">
 				<select id="rating-drop" name="rating-drop">
-                  <option value="none" disabled selected>None</option>
+                  <option value="" disabled selected>None</option>
                     {% for rating in ratings %}
                         <option value="{{ rating.book_rating }}">{{ rating.book_rating}}</option>
                     {% endfor %}

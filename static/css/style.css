@@ -220,6 +220,10 @@ a .card-content:hover {
     max-height: 200px;
 }
 
+.user-card-style {
+    height: 160px;
+}
+
 .user-card-style:hover {
     box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
     transform: translate(2px,-5px);
@@ -330,7 +334,7 @@ select {
     background: #abb298a1;
 }
 
-/* --------------------- Media --------------------*/
+/* --------------------- Photo --------------------*/
 
 .info-photo-cover {
     width: 100%;
@@ -344,9 +348,6 @@ select {
         font-size: 17px;
     }
 
-    .book-card-style {
-        height: 300px;
-    }
 }
 
 @media screen and (max-width: 760px) {
@@ -363,7 +364,11 @@ select {
     }
 
     .book-card-style {
-        height: 200px;
+        height: 300px;
+    }
+
+    .user-card-style {
+        height: 130px;
     }
 
 }

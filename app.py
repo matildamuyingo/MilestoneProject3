@@ -137,12 +137,6 @@ def profile(username):
     user = mongo.db.users.find_one(
         {'username': username})
     reviews = list(mongo.db.reviews.find())
-    for book in books:
-        for review in reviews:
-            if review['book_id'] == str(book['_id']):
-                print(review['book_id'])
-                print(str(book['_id']))
-                print('this works thank you god')
 
     # if the username is the same as
     # session user, send user to their own profile
@@ -224,6 +218,7 @@ def add_book():
         # variable to the form input (optional inputs)
         image = request.form.get('book_image')
         datetime_now = datetime.now()
+        rating = request.form.get('rating-drop')
 
         # if a rating has been added, save it as an integer
 
@@ -236,7 +231,7 @@ def add_book():
                 'author_last_name').lower(),
             'genre': request.form.get('genre').lower(),
             'read_book': 'on' if request.form.get('read-check') else False,
-            'rating': 0 if request.form.get('rating-drop') == 'none' else request.form.get('rating-drop'),
+            'rating': 'None' if rating is None else int(request.form.get('rating-drop')),
             'review': request.form.get('book_review').capitalize(),
             'added_by': session['user'],
             'book_image': image,
@@ -292,6 +287,7 @@ def edit_book(book_id):
     # Get lists with saved database-information and set the user variable
     genres = list(mongo.db.genres.find().sort('genre_name', 1))
     ratings = mongo.db.ratings.find()
+    rating = request.form.get('rating-drop')
 
     book = mongo.db.books.find_one(
         {'_id': ObjectId(book_id)})
@@ -317,7 +313,7 @@ def edit_book(book_id):
                     'author_last_name').lower(),
                 'genre': request.form.get('genre').lower(),
                 'read_book': 'on' if request.form.get('read-check') else False,
-                'rating': 0 if request.form.get('rating-drop') == 'none' else int(request.form.get('rating-drop')),
+                'rating': 'None' if rating is None else int(request.form.get('rating-drop')),
                 'review': request.form.get('book_review').capitalize(),
                 'added_by': session['user'],
                 'book_image': image,
@@ -351,10 +347,12 @@ def delete_book(book_id):
 
     # Set variables and render template for user profile after book is deleted
     books = list(mongo.db.books.find())
+    reviews = list(mongo.db.reviews.find())
     user = mongo.db.users.find_one(
         {'username': session['user']})
 
-    return render_template('profile.html', username=user, books=books)
+    return render_template(
+        'profile.html', username=user, books=books, reviews=reviews)
 
 
 # Route to detailed book info
@@ -383,6 +381,7 @@ def add_review(book_id):
     authorLN = book['author_last_name']
     genre = book['genre']
     datetime_now = datetime.now()
+    rating = request.form.get('rating-drop')
 
     if request.method == "POST":
 
@@ -390,7 +389,7 @@ def add_review(book_id):
             'book_id': book_id,
             'added_by': session['user'],
             'review_title': request.form.get('review_title'),
-            'rating': int(request.form.get('rating')),
+            'rating': 'None' if rating is None else int(request.form.get('rating-drop')),
             'review': request.form.get('review')
         }
 
@@ -400,9 +399,10 @@ def add_review(book_id):
             'author_last_name': authorLN,
             'genre': genre,
             'book_image': image,
+            'read-book': 'on',
             'added_by': session['user'],
             'review_title': request.form.get('review_title'),
-            'rating': int(request.form.get('rating')),
+            'rating': 'None' if rating is None else int(request.form.get('rating-drop')),
             'review': request.form.get('review'),
             'date_added': datetime_now
         }
@@ -416,6 +416,24 @@ def add_review(book_id):
         return render_template('book_info.html', book_id=book, reviews=reviews)
 
     return render_template('add_review.html', book_id=book, ratings=ratings)
+
+
+# Route to delete a review
+@app.route('/delete/<review_id>')
+def delete_review(review_id):
+
+    # Find and delete the book with same id as clicked object (book)
+    mongo.db.reviews.delete_one({'_id': ObjectId(review_id)})
+    flash('Deleted Review')
+
+    # Set variables and render template for user profile after book is deleted
+    reviews = list(mongo.db.reviews.find())
+    books = list(mongo.db.books.find())
+    user = mongo.db.users.find_one(
+        {'username': session['user']})
+
+    return render_template(
+        'profile.html', username=user, books=books, reviews=reviews)
 
 
 # Route to startpage

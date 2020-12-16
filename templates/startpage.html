@@ -74,7 +74,9 @@
                                                                 <i class="fas fa-star"></i>
                                                             </div>
                                                         {% endif %}
-                                            {{ book.review }}
+                                                {% if book.review %}
+                                                    <span class="click-rev">Click to show review</span>
+                                                {% endif %}
                                             </p>
 										</div>
                                         </a>
@@ -103,7 +105,7 @@
             <!--Review More-->
 			<div class="row center-align top-space">
 				<a href="{{ url_for('all_books') }}"
-					class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>See All Reviews</i></a>
+					class="btn-large duo-buttons light-green darken-2 z-depth-3"><i>See All Books</i></a>
 			</div>
         </div>
 
