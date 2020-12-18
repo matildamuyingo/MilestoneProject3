@@ -12,6 +12,16 @@ $(document).ready(function(){
             $('.fin-read').removeClass('no-display').addClass('full-display');
         });
 
+        $('#upload-img').click(function() {
+            $('#upload-img-field').removeClass('no-display').addClass('full-display');
+            $('#upload-url-field').addClass('no-display').removeClass('full-display');
+        })
+
+        $('#upload-url').click(function() {
+            $('#upload-url-field').removeClass('no-display').addClass('full-display');
+            $('#upload-img-field').addClass('no-display').removeClass('full-display');
+        })
+
 // Edit buttons on cards
 
     // When mouse enters a card the 'no-display' class will be removed and the edit buttons will be visible
@@ -27,5 +37,6 @@ $(document).ready(function(){
     $('#user_sorting').change(function() {
         $(this).css('color', 'red');
     });
+
 
   });

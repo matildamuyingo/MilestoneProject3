@@ -207,20 +207,16 @@ def edit_profile(username):
             genres=genres, icons=icons, authors=authors, genders=genders)
 
 
-# Route to add a new book
 @app.route('/add_book', methods=["GET", "POST"])
 def add_book():
 
-    # If the add book form is submitted
     if request.method == "POST":
 
         # Set the image, rating and date
         # variable to the form input (optional inputs)
-        image = request.form.get('book_image')
         datetime_now = datetime.now()
         rating = request.form.get('rating-drop')
-
-        # if a rating has been added, save it as an integer
+        image = request.form.get('book_image')
 
         # The user information from the form that is going to be added/updated
         addBook = {
@@ -232,7 +228,7 @@ def add_book():
             'genre': request.form.get('genre').lower(),
             'read_book': 'on' if request.form.get('read-check') else False,
             'rating': 'None' if rating is None else int(request.form.get('rating-drop')),
-            'review': request.form.get('book_review').capitalize(),
+            'review': request.form.get('book_review'),
             'added_by': session['user'],
             'book_image': image,
             'date_added': datetime_now
@@ -314,7 +310,7 @@ def edit_book(book_id):
                 'genre': request.form.get('genre').lower(),
                 'read_book': 'on' if request.form.get('read-check') else False,
                 'rating': 'None' if rating is None else int(request.form.get('rating-drop')),
-                'review': request.form.get('book_review').capitalize(),
+                'review': request.form.get('book_review'),
                 'added_by': session['user'],
                 'book_image': image,
                 'date_added': datetime_now
@@ -381,15 +377,16 @@ def add_review(book_id):
     authorLN = book['author_last_name']
     genre = book['genre']
     datetime_now = datetime.now()
-    rating = request.form.get('rating-drop')
 
     if request.method == "POST":
+        rating = request.form.get('rating')
+        print(rating)
 
         new_review = {
             'book_id': book_id,
             'added_by': session['user'],
             'review_title': request.form.get('review_title'),
-            'rating': 'None' if rating is None else int(request.form.get('rating-drop')),
+            'rating': 'None' if rating is None else int(request.form.get('rating')),
             'review': request.form.get('review')
         }
 
@@ -399,10 +396,10 @@ def add_review(book_id):
             'author_last_name': authorLN,
             'genre': genre,
             'book_image': image,
-            'read-book': 'on',
+            'read_book': str('on'),
             'added_by': session['user'],
             'review_title': request.form.get('review_title'),
-            'rating': 'None' if rating is None else int(request.form.get('rating-drop')),
+            'rating': 'None' if rating is None else int(request.form.get('rating')),
             'review': request.form.get('review'),
             'date_added': datetime_now
         }

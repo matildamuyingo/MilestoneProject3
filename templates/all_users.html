@@ -25,12 +25,6 @@
                         <label for="user_sorting">Sort by</label>
                     </div>
 
-                    <div class="col s12 m2">
-                        <a href="{{ url_for('all_users') }}" class="orange darken-4 btn">Reset</a>
-                        <button type="submit" class="grey darken-1 btn">
-                        <i class="fas fa-search left"></i> Search
-                    </button>
-                    </div>
                 </div>
             </form>
 			
@@ -43,7 +37,7 @@
 				{% for user in all_users %}
 				<li>
 					<a href="{{ url_for('profile', username=user.username) }}" class="blue-grey-text text-darken-4" method="GET">
-						<div class="col s10 m5 offset-s1 offset-m1 no-padding">
+						<div class="col s10 m4 offset-s1 offset-m1 no-padding">
 							<div class="card horizontal user-card-style">
                                 <!--User Icon-->
 								<div class="card-image col s4 m4 user-list-icon no-padding center-align">
@@ -62,7 +56,8 @@
 								</div>
 							</div>
 					</a>
-				</li>
+                </li>
+                <div class="col m1"></div>
 				{% endfor %}
 			</ul>
 			{% else %}

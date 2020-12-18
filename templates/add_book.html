@@ -47,8 +47,24 @@
 				</div>
 			</div>
 
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button id="upload-img" class="image-choice">Upload</button>
+                    <button id="upload-url" class="image-choice">URL</button>
+                </div>
+            </div>
 			<div class="row">
-				<div class="input-field col s12 m6">
+                <div id="upload-img-field" class="col s12 file-field input-field no-display">
+                    <div class="btn">
+                        <span>File</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input id="book_upload" name="book_upload" class="file-path validate" type="text">
+                        <label for="book_upload">Upload an image</label>
+                    </div>
+                </div>
+				<div id="upload-url-field" class="input-field col s12 no-display">
 					<input id="book_image" name="book_image" class="file-path validate" type="text">
 			        <label for="book_image">Upload an image url</label>
 				</div>

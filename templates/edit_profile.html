@@ -14,13 +14,13 @@
             <div class="row register-row">
                 <!--First Name--> 
 				<div class="input-field col s6 m4">
-					<input id="first_name" name="first_name" minlength="2" maxlength="30" value="{{ username.first_name.capitalize() }}" type="text" class="validate">
+					<input id="first_name" name="first_name" minlength="2" maxlength="30" value="{{ username.first_name.capitalize() }}" type="text" class="validate" required>
 					<label for="first_name">First Name</label>
 				</div>
 
 				<!--Last Name-->
 				<div class="input-field col s6 m4">
-					<input id="last_name" name="last_name" minlength="2" maxlength="30" value="{{ username.last_name.capitalize() }}" type="text" class="validate">
+					<input id="last_name" name="last_name" minlength="2" maxlength="30" value="{{ username.last_name.capitalize() }}" type="text" class="validate" required>
 					<label for="last_name">Last Name</label>
 				</div>
 				
@@ -50,13 +50,13 @@
                 <!--Gender Field--> 
 
                 <div class="input-field col s6">
-                    <select id="user_gender" name="user_gender">
-                            <option value="" minlength="5" disabled>Gender</option>
+                    <select id="user_gender" name="user_gender" class="validate" required>
+                            <option value="" minlength="5" selected disabled>Gender</option>
                         {% for gender in genders %}
                             {% if gender.gender_name|lower == username.user_gender|lower %}
-                                <option value="{{ gender.gender_name.capitalize() }}" selected>{{ gender.gender_name.capitalize() }}</option>
+                                <option value="{{ gender.gender_name }}" selected>{{ gender.gender_name.capitalize() }}</option>
                         {% else %}
-                                <option value="{{ gender.gender_name.capitalize() }}">{{ gender.gender_name.capitalize() }}</option>
+                                <option value="{{ gender.gender_name }}">{{ gender.gender_name.capitalize() }}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
@@ -67,13 +67,13 @@
             <!--Favorite Book--> 
 			<div class="row register-row">
 				<div class="input-field col s6">
-                    <select id="fav_book" name="fav_book" minlength="5" maxlength="30">
+                    <select id="fav_book" name="fav_book" minlength="5" maxlength="30" required>
                             <option value="" disabled selected>Favorite Book</option>
                         {% for book in books %}
                             {% if book.book_title|lower == username.fav_book|lower %}
-                                <option value="{{ book.book_title.capitalize() }}" selected>{{ book.book_title.capitalize() }}</option>
+                                <option value="{{ book.book_title }}" selected>{{ book.book_title.capitalize() }}</option>
                         {% else %}
-                                <option value="{{ book.book_title.capitalize() }}">{{ book.book_title.capitalize() }}</option>
+                                <option value="{{ book.book_title }}">{{ book.book_title.capitalize() }}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
@@ -82,13 +82,13 @@
 			
                 <!--Favorite Author--> 
                 <div class="input-field col s6">
-                    <select id="fav_author" name="fav_author" minlength="5" maxlength="30">
+                    <select id="fav_author" name="fav_author" minlength="5" maxlength="30" required>
                             <option value="" disabled selected>Favorite Author</option>
                         {% for author in authors %}
                             {% if author.author_name|lower == username.fav_author|lower %}
-                                <option value="{{ author.author_name.title() }}" selected>{{ author.author_name.title() }}</option>
+                                <option value="{{ author.author_name }}" selected>{{ author.author_name.title() }}</option>
                             {% else %}
-                                <option value="{{ author.author_name.title() }}">{{ author.author_name.title() }}</option>
+                                <option value="{{ author.author_name }}">{{ author.author_name.title() }}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
@@ -101,13 +101,13 @@
             <!--Favorite Genre--> 
 			<div class="row register-row">
 				<div class="input-field col s12">
-					<select id="fav_genre" name="fav_genre" minlength="5" maxlength="30">
+					<select id="fav_genre" name="fav_genre" minlength="5" maxlength="30" required>
 			                <option value="" disabled selected>Book Genre</option>
 			            {% for genre in genres %}
 			                {% if genre.genre_name|lower == username.fav_genre|lower %}
-			                    <option value="{{ genre.genre_name.capitalize() }}" selected>{{ genre.genre_name.capitalize() }}</option>
+			                    <option value="{{ genre.genre_name }}" selected>{{ genre.genre_name.capitalize() }}</option>
 			                {% else %}
-			                    <option value="{{ genre.genre_name.capitalize() }}">{{ genre.genre_name.capitalize() }}</option>
+			                    <option value="{{ genre.genre_name }}">{{ genre.genre_name.capitalize() }}</option>
 			                {% endif %}
 			            {% endfor %}
 					</select>

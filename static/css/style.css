@@ -217,7 +217,6 @@ a .card-content:hover {
     border-radius: 7px;
     transition: 0.3s;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12);
-    max-height: 200px;
 }
 
 .user-card-style {
@@ -227,6 +226,11 @@ a .card-content:hover {
 .user-card-style:hover {
     box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
     transform: translate(2px,-5px);
+}
+
+.book-card-style {
+    min-height: 200px;
+    max-height: 300px;
 }
 
 .book-card-style p {
@@ -350,7 +354,7 @@ select {
 
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 770px) {
     .duo-buttons {
         width: 60vw;
     }
@@ -364,11 +368,15 @@ select {
     }
 
     .book-card-style {
-        height: 300px;
+        height: 150px;
     }
 
     .user-card-style {
         height: 130px;
+    }
+
+    .user-list-icon i {
+        font-size: 40px;
     }
 
 }

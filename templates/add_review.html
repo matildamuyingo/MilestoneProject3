@@ -48,9 +48,9 @@
 
 			<div class="input-field col s12">
 				<select id="rating" name="rating" required>
-                  <option value="null" disabled selected>None </option>
+                  <option value="" disabled selected>None </option>
                     {% for rating in ratings %}
-                        <option value="{{ rating.book_rating}}">{{ rating.book_rating}}</option>
+                        <option value="{{ rating.book_rating }}">{{ rating.book_rating }}</option>
                     {% endfor %}
 			    </select>
 				<label for="rating">Book Rating</label>
@@ -67,7 +67,7 @@
            
             <!--Submit Button--> 
             <div class="row center-align">
-                <a href="{{ url_for('add_review', book_id=book_id._id) }}" type="submit" class="btn-large orange darken-4 duo-buttons z-depth-3">Cancel</a>
+                <a href="{{ url_for('book_info', book_id=book_id._id) }}" type="submit" class="btn-large orange darken-4 duo-buttons z-depth-3">Cancel</a>
                 <button type="submit" class="btn-large light-green darken-2 duo-buttons z-depth-3">Submit Review</button>
             </div>
         </div>
