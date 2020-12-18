@@ -141,6 +141,7 @@ def profile(username):
     # if the username is the same as
     # session user, send user to their own profile
     if session['user'] == user['username']:
+        print(user['date_joined'].strftime("%d %b %Y"))
         return render_template(
             'profile.html', username=user, books=books, reviews=reviews)
     # if the username is not the same as

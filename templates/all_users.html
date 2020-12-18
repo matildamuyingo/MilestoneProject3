@@ -52,7 +52,7 @@
 										<div class="card-content">
 											<h5>{{ user.username }}</h5>
 											<p>{{ user.first_name.title() }} {{ user.last_name.title() }} <br>
-                                                Date Joined: {{ user.date_joined }}
+                                                Date Joined: {{ user.date_joined.strftime("%d %b %Y") }}
 											</p>
 											
 										</div>

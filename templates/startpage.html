@@ -39,7 +39,7 @@
 											<h5>{{ book.book_title.capitalize() }}</h5>
 											<p>{{ book.author_first_name.title() }} {{ book.author_last_name.title() }} <br>
                                             Added By: {{ book.added_by }} <br>
-                                            Date Added: {{ book.date_added }}
+                                            Date Added: {{ book.date_added.strftime("%d %b %Y") }}
 											</p>
 											<p class="book-review-prev">
                                             <!--Changes the number of stars displayed depending on the rating-->
@@ -131,7 +131,7 @@
 										<div class="card-content">
 											<h5>{{ user.username }}</h5>
 											<p>{{ user.first_name.title() }} {{ user.last_name.title() }} <br>
-                                                Date Joined: {{ user.date_joined }}
+                                                Date Joined: {{ user.date_joined.strftime("%d %b %Y") }}
 											</p>
 											
 										</div>
