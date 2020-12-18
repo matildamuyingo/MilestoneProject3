@@ -16,7 +16,11 @@
 
                     <div class="input-field col s12 m6 offset-m3">
                         <select id="user_sorting" name="user_sorting" onchange="updateSearch()">
-                                <option value="" minlength="5" selected disabled>Sort By</option>
+                                {% if sort_method|length > 0 %}
+                                    <option value="" minlength="5" selected disabled>{{sort_method.capitalize()}}</option>
+                                {% else %}
+                                    <option value="" minlength="5" selected disabled>Sort By</option>
+                                {% endif %}
                                 <option value="username">Username</option>
                                 <option value="first_name">First Name</option>
                                 <option value="last_name">Last Name</option>

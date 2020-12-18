@@ -16,12 +16,16 @@
 
                     <div class="input-field col s12 m6 offset-m3">
                         <select id="book_sorting" name="book_sorting" onchange="updateSearch()">
-                                <option value="" minlength="5" disabled selected>Sort By</option>
-                                <option value="book_title">Book Title</option>
-                                <option value="author_first_name">Authors First Name</option>
-                                <option value="author_last_name">Authors Last Name</option>
-                                <option value="genre">Genres</option>
-                                <option value="rating">Rating</option>
+                            {% if sort_method|length > 0 %}
+                                <option value="" minlength="5" selected disabled>{{sort_method.capitalize()}}</option>
+                            {% else %}
+                                <option value="" minlength="5" selected disabled>Sort By</option>
+                            {% endif %}
+                            <option value="book_title">Book Title</option>
+                            <option value="author_first_name">Authors First Name</option>
+                            <option value="author_last_name">Authors Last Name</option>
+                            <option value="genre">Genres</option>
+                            <option value="rating">Rating</option>
                         </select>
                         <label for="book_sorting">Sort by</label>
                     </div>

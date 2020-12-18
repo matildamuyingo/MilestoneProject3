@@ -465,7 +465,7 @@ def sort_books():
         book_query = list(mongo.db.books.find().sort(sort_method, 1))
 
     return render_template(
-        "all_books.html", books=book_query)
+        "all_books.html", books=book_query, sort_method=sort_method)
 
 
 # Route to all books page
@@ -488,7 +488,7 @@ def sort_users():
         user_query = list(mongo.db.users.find().sort(sort_method, 1))
 
     return render_template(
-        "all_users.html", all_users=user_query)
+        "all_users.html", all_users=user_query, sort_method=sort_method)
 
 
 # Route to logout
