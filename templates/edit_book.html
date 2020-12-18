@@ -62,7 +62,11 @@
             <p class="sign-up-par">
 				
                 <label for="read-check">
+                    {% if books.read_book == 'on' %}
+                    <input id="read-check" name="read-check" value="{{ books.read_book  }}" type="checkbox" checked class="filled-in light-green darken-2"/>
+                    {% else %}
                     <input id="read-check" name="read-check" value="{{ books.read_book  }}" type="checkbox" class="filled-in light-green darken-2"/>
+                    {% endif %}
                     <span>Finished reading?</span>
 				</label>
                 
