@@ -33,10 +33,14 @@ $(document).ready(function(){
         $('.card-stacked').mouseleave(function(){
             $('.sub-book-edit-buttons', this).removeClass('full-display').addClass('no-display');
         });
-    
-    $('#user_sorting').change(function() {
-        $(this).css('color', 'red');
-    });
+
+    // Check card height and set all heights to the max height
+        var maxHeight = 0;
+        $(".book-card-style").each(function(){
+        if ($(this).height() > maxHeight) { maxHeight = $(this).height(); }
+        });
+
+        $(".book-card-style").height(maxHeight);
 
 
   });

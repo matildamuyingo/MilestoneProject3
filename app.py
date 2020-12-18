@@ -410,10 +410,17 @@ def add_review(book_id):
                 {'_id': ObjectId(book_id)}, update_review)
         else:
             mongo.db.reviews.insert_one(new_review)
+        
+        book = mongo.db.books.find_one(
+            {'_id': ObjectId(book_id)})
+        ratings = mongo.db.ratings.find()
+        reviews = mongo.db.reviews.find(
+            {'book_id': book_id})
 
         return render_template('book_info.html', book_id=book, reviews=reviews)
 
-    return render_template('add_review.html', book_id=book, ratings=ratings)
+    return render_template(
+        'add_review.html', book_id=book, ratings=ratings, reviews=reviews)
 
 
 # Route to delete a review

@@ -192,7 +192,7 @@ The result is that the text is shown only once and then ends the loop
 - [W3Schools.com](https://www.w3schools.com/sql/sql_foreignkey.asp) About MySQL and foreign keys
 - [This Page](https://kb.objectrocket.com/mongo-db/how-to-insert-a-document-into-a-mongodb-collection-using-python-367) How to import date and how to insert it in MongoDB when adding user
 - [hover another element](https://stackoverflow.com/questions/6910049/on-a-css-hover-event-can-i-change-another-divs-styling)
-
+[Set div height to same](https://css-tricks.com/snippets/jquery/equalize-heights-of-divs/)
 ### Content
 
 - [No Cover added Photo](https://darkseries.fandom.com/wiki/Dark_Tarot)

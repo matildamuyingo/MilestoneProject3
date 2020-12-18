@@ -37,7 +37,12 @@
         {% if book_id.review|length > 0 %}
         <div class="row">
             <div class="col s12">
-                <h6>Review by {{ book_id.added_by }}</h6>
+                {% if book_id.review_title %}
+                    <h6>{{ book_id.review_title }}</h6>
+                    <p><strong>Review by {{ book_id.added_by }}</strong></p>
+                {% else %}
+                    <h6>Review by {{ book_id.added_by }}</h6>
+                {% endif %}
                 <p>
                     {% if book_id.rating == 1 %}
                         <div>

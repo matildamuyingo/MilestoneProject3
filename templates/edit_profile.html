@@ -51,7 +51,7 @@
 
                 <div class="input-field col s6">
                     <select id="user_gender" name="user_gender" class="validate" required>
-                            <option value="" minlength="5" selected disabled>Gender</option>
+                            <option value="" minlength="5" selected disabled>Select Gender</option>
                         {% for gender in genders %}
                             {% if gender.gender_name|lower == username.user_gender|lower %}
                                 <option value="{{ gender.gender_name }}" selected>{{ gender.gender_name.capitalize() }}</option>

@@ -230,11 +230,6 @@ a .card-content:hover {
 
 .book-card-style {
     min-height: 200px;
-    max-height: 300px;
-}
-
-.book-card-style p {
-    font-size: 11px;
 }
 
 .book-card-style:hover {
@@ -246,8 +241,13 @@ a .card-content:hover {
     background-color: #bddcbc;
 }
 
-.review-card-style p {
+.small-par {
     font-size: 11px;
+}
+
+.review-par {
+    padding-top: 15px;
+    font-size: 14px;
 }
 
 /* ---------------------Startpage / Show All --------------------*/

@@ -76,7 +76,11 @@
 				<select id="rating-drop" name="rating-drop">
                   <option value="" disabled selected>None</option>
                     {% for rating in ratings %}
-                        <option value="{{ rating.book_rating }}">{{ rating.book_rating}}</option>
+                        {% if books.rating == rating.book_rating %}
+                            <option value="{{ rating.book_rating }}" selected>{{ rating.book_rating}}</option>
+                        {% else %}
+                            <option value="{{ rating.book_rating }}">{{ rating.book_rating}}</option>
+                        {% endif %}
                     {% endfor %}
 			    </select>
 				<label for="rating-drop">Book Rating</label>
