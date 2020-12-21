@@ -34,6 +34,16 @@ $(document).ready(function(){
             $('.sub-book-edit-buttons', this).removeClass('full-display').addClass('no-display');
         });
 
+    // When mouse enters a card the 'no-display' class will be removed and the edit buttons will be visible
+        $('.review-card').mouseenter(function(){
+            $('.sub-book-edit-buttons', this).addClass('full-display').removeClass('no-display');
+        });
+
+    // When mouse leaves a card the 'no-display' class will be added again and the edit buttons will disappear
+        $('.review-card').mouseleave(function(){
+            $('.sub-book-edit-buttons', this).removeClass('full-display').addClass('no-display');
+        });
+
     // Check card height and set all heights to the max height
         var maxHeight = 0;
         $(".book-card-style").each(function(){

@@ -82,8 +82,15 @@
 
         {% for review in reviews %}
         {% if loop.index % 2 != 0 %}
-        <div class="row lime lighten-5">
+        <div class="row lime lighten-5 review-card">
             <div class="col s12">
+                {% if session.user == review.added_by %}
+                    <div class="sub-book-edit-buttons no-display">
+                        <a href="{{ url_for('edit_review', review_id=review._id, book_id=review.book_id) }}" class="edit-book-button light-blue lighten-1 light-green-text text-lighten-5"><i class="far fa-edit"></i></a>
+                        <a href="#modal{{review._id}}" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
+                    </div>
+                {% endif %}
+
                 <h6>"{{ review.review_title }}"</h6>
                 <p><strong> Review by {{ review.added_by }}</strong></p>
                 <p>

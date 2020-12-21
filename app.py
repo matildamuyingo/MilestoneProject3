@@ -410,7 +410,56 @@ def add_review(book_id):
                 {'_id': ObjectId(book_id)}, update_review)
         else:
             mongo.db.reviews.insert_one(new_review)
-        
+
+        book = mongo.db.books.find_one(
+            {'_id': ObjectId(book_id)})
+        ratings = mongo.db.ratings.find()
+        reviews = mongo.db.reviews.find(
+            {'book_id': book_id})
+
+        return render_template(
+            'book_info.html', book_id=book, reviews=reviews)
+
+    return render_template(
+        'add_review.html', book_id=book, ratings=ratings, reviews=reviews)
+
+
+@app.route('/edit_review/<review_id>', methods=["GET", "POST"])
+def edit_review(review_id, book_id):
+
+    book = mongo.db.books.find_one(
+        {'_id': ObjectId(book_id)})
+    ratings = mongo.db.ratings.find()
+    review = mongo.db.reviews.find_one(
+        {'_id': ObjectId(review_id)})
+    image = book['book_image']
+    title = book['book_title']
+    authorFN = book['author_first_name']
+    authorLN = book['author_last_name']
+    genre = book['genre']
+    datetime_now = datetime.now()
+
+    if request.method == "POST":
+        rating = request.form.get('rating')
+        print(rating)
+
+        update_review = {
+            'book_title': title,
+            'author_first_name': authorFN,
+            'author_last_name': authorLN,
+            'genre': genre,
+            'book_image': image,
+            'read_book': str('on'),
+            'added_by': session['user'],
+            'review_title': request.form.get('review_title'),
+            'rating': 'None' if rating is None else int(request.form.get('rating')),
+            'review': request.form.get('review'),
+            'date_added': datetime_now
+        }
+
+        mongo.db.reviews.update(
+            {'_id': ObjectId(review_id)}, update_review)
+
         book = mongo.db.books.find_one(
             {'_id': ObjectId(book_id)})
         ratings = mongo.db.ratings.find()
@@ -420,7 +469,7 @@ def add_review(book_id):
         return render_template('book_info.html', book_id=book, reviews=reviews)
 
     return render_template(
-        'add_review.html', book_id=book, ratings=ratings, reviews=reviews)
+        'edit_review.html', book_id=book, ratings=ratings, review_id=review)
 
 
 # Route to delete a review
