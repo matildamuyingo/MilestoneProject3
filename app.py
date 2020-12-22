@@ -277,7 +277,6 @@ def add_book():
     return render_template('add_book.html', ratings=ratings, genres=genres)
 
 
-# Route to edit book info (only available on books the user created)
 @app.route('/edit_book/<book_id>', methods=["GET", "POST"])
 def edit_book(book_id):
 
@@ -425,51 +424,41 @@ def add_review(book_id):
 
 
 @app.route('/edit_review/<review_id>', methods=["GET", "POST"])
-def edit_review(review_id, book_id):
+def edit_review(review_id):
 
-    book = mongo.db.books.find_one(
-        {'_id': ObjectId(book_id)})
-    ratings = mongo.db.ratings.find()
     review = mongo.db.reviews.find_one(
         {'_id': ObjectId(review_id)})
-    image = book['book_image']
-    title = book['book_title']
-    authorFN = book['author_first_name']
-    authorLN = book['author_last_name']
-    genre = book['genre']
-    datetime_now = datetime.now()
+    ratings = mongo.db.ratings.find()
+    book_id = review['book_id']
+    book = mongo.db.books.find_one(
+        {'_id': ObjectId(book_id)})
 
-    if request.method == "POST":
-        rating = request.form.get('rating')
-        print(rating)
+    if session['user'] == review['added_by']:
+    
+        if request.method == "POST":
+            rating = request.form.get('rating')
 
-        update_review = {
-            'book_title': title,
-            'author_first_name': authorFN,
-            'author_last_name': authorLN,
-            'genre': genre,
-            'book_image': image,
-            'read_book': str('on'),
-            'added_by': session['user'],
-            'review_title': request.form.get('review_title'),
-            'rating': 'None' if rating is None else int(request.form.get('rating')),
-            'review': request.form.get('review'),
-            'date_added': datetime_now
-        }
+            update_review = {
+                'book_id': book_id,
+                'added_by': session['user'],
+                'review_title': request.form.get('review_title'),
+                'rating': 'None' if rating is None else int(request.form.get('rating')),
+                'review': request.form.get('review')
+            }
 
-        mongo.db.reviews.update(
-            {'_id': ObjectId(review_id)}, update_review)
+            mongo.db.reviews.update(
+                {'_id': ObjectId(review_id)}, update_review)
 
-        book = mongo.db.books.find_one(
-            {'_id': ObjectId(book_id)})
-        ratings = mongo.db.ratings.find()
-        reviews = mongo.db.reviews.find(
-            {'book_id': book_id})
+            ratings = mongo.db.ratings.find()
+            reviews = mongo.db.reviews.find(
+                {'book_id': book_id})
 
-        return render_template('book_info.html', book_id=book, reviews=reviews)
+            return render_template('book_info.html', reviews=reviews, book_id=book)
+        else:
+            return render_template('404.html')
 
     return render_template(
-        'edit_review.html', book_id=book, ratings=ratings, review_id=review)
+        'edit_review.html', ratings=ratings, review_id=review, book=book)
 
 
 # Route to delete a review

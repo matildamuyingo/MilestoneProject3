@@ -20,13 +20,13 @@
 
 				<!--Last Name-->
 				<div class="input-field col s6 m4">
-					<input id="last_name" name="last_name" minlength="2" maxlength="30" value="{{ username.last_name.capitalize() }}" type="text" class="validate" required>
+					<input id="last_name" name="last_name" minlength="2" maxlength="30" value="{{ username.last_name.capitalize() }}" type="text" class="class="validate" required>
 					<label for="last_name">Last Name</label>
 				</div>
 				
                 <!--Icon Changer-->
 				<div class="input-field col s8 offset-s2 m4">
-					<select class="icons" id="user_icon" name="user_icon">
+					<select class="icons validate" required id="user_icon" name="user_icon">
                             <option value="" disabled>Choose your option</option>
                         {% for icon in icons %}
                             {% if icon.icon_link == username.user_icon %}
@@ -67,7 +67,7 @@
             <!--Favorite Book--> 
 			<div class="row register-row">
 				<div class="input-field col s6">
-                    <select id="fav_book" name="fav_book" minlength="5" maxlength="30" required>
+                    <select id="fav_book" name="fav_book" minlength="5" maxlength="30" class="validate" required>
                             <option value="" disabled selected>Favorite Book</option>
                         {% for book in books %}
                             {% if book.book_title|lower == username.fav_book|lower %}
@@ -82,7 +82,7 @@
 			
                 <!--Favorite Author--> 
                 <div class="input-field col s6">
-                    <select id="fav_author" name="fav_author" minlength="5" maxlength="30" required>
+                    <select id="fav_author" name="fav_author" minlength="5" maxlength="30" class="validate" required>
                             <option value="" disabled selected>Favorite Author</option>
                         {% for author in authors %}
                             {% if author.author_name|lower == username.fav_author|lower %}
@@ -101,7 +101,7 @@
             <!--Favorite Genre--> 
 			<div class="row register-row">
 				<div class="input-field col s12">
-					<select id="fav_genre" name="fav_genre" minlength="5" maxlength="30" required>
+					<select id="fav_genre" name="fav_genre" minlength="5" maxlength="30" class="validate" required>
 			                <option value="" disabled selected>Book Genre</option>
 			            {% for genre in genres %}
 			                {% if genre.genre_name|lower == username.fav_genre|lower %}
