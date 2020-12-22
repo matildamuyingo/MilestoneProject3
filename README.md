@@ -196,6 +196,7 @@ The result is that the text is shown only once and then ends the loop
 ### Content
 
 - [No Cover added Photo](https://darkseries.fandom.com/wiki/Dark_Tarot)
+- [404 Gif](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fgifs%2FoyQ9vezXhFLYRTUx2z%2Fhtml5&psig=AOvVaw1gVv-HS4JvfyMTzRapb8Cp&ust=1608761783663000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCID47ujO4u0CFQAAAAAdAAAAABAI)
 
 ### Code
 

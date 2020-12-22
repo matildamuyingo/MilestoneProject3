@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="row">
-        <div class="col s12 center-align">
+    <div class="row top-space">
+        <div class="col s12 m6 offset-m3 center-align card-panel lime lighten-4">
             <h2>Page not found</h2>
-            <p>Try finding another book instead</p>
+            <p>The page you were trying to access does not excist! <br>
+            Why not <a href="{{ url_for('add_book') }}">add a book instead?</a> </p> 
+            <img class="center-align" src="{{ url_for('static', filename='images/book-gif.gif') }}" alt="">
         </div>
     </div>
 {% endblock %}
