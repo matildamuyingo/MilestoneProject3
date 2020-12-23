@@ -55,19 +55,27 @@ This page is created for users to be able to keep track of books that they want 
 
 In the early stages of the project, the use of MySQL as a database for the project was tested out.
 The test DataBase Name is Mile and currently contains the tables Users and UserInfo
-  					
-|   Users     | UserInfo                                    | Reviews                    | Authors         | Books                                        | Genres         |
-|-------------|---------------------------------------------|----------------------------|-----------------|----------------------------------------------|----------------|
-| first_name  | username (username)                         | heading                    | author_id       | book_id                                      | genre_id       |
-| last_name   | user_height                                 | title (books.title)        | first_name      | author_id (authors.author_id)                | genre_name     |
-| username    | hair_color                                  | author (books.author_name) | last_name       | title                                        | total_in_genre |
-| email       | fav_book (books.title)                      | genre (books.genre)        | number_of_books | author_name (authors.first_name,+ last_name) |                |
-| password    | fav_author (authors.first_name + last_name) | written_by (username)      |                 | genre (genres.genre_id)                      |                |
-|             | fav_genre (genre_name)                      | rating                     |                 |                                              |                |
-|             | user_pic                                    | review                     |                 |                                              |                |
-|             | total_likes                                 |                            |                 |                                              |                |
-|             | date_joined                                 |                            |                 |                                              |                |
-|             | age                                         |                            |                 |                                              |                |
+
+
+After trying out the MySQL database, the project database was changed to use MongoDB instead. The MongoDB contains 8 collections. Below you can see all the collections and fields that are stored in the MongoDB for this project.
+
+|   Users     | Reviews        | Authors       | Books             | Genders      | Ratings       | Icons        | Genders      |
+|-------------|----------------|---------------|-------------------|--------------|---------------|--------------|--------------|
+| _id         | _id            | _id           | _id               | _id          | _id           | _id          | _id          |
+| first_name  | book_id        | author_name   | book_title        | genre_name   | book_rating   | icon_name    | gender_name  |
+| last_name   | added_by       |               | author_first_name |              |               | icon_link    |              |
+| username    | review_title   |               | author_last_name  |              |               | icon_path    |              |
+| email       | rating         |               | genre             |              |               |              |              |
+| password    | review         |               | read_book         |              |               |              |              |
+| date_joined |                |               | rating            |              |               |              |              |
+| user_icon   |                |               | review            |              |               |              |              |
+| user_age    |                |               | added_by          |              |               |              |              |
+| user_gender |                |               | book_image        |              |               |              |              |
+| fav_book    |                |               | date_added        |              |               |              |              |
+| fav_author  |                |               |                   |              |               |              |              |
+| fav_genre   |                |               |                   |              |               |              |              |
+
+
 
   ## Documentation
 
@@ -188,20 +196,26 @@ The result is that the text is shown only once and then ends the loop
 - [FontAwesome]()
 - [Materializecss.com]()
 - [Google Fonts](https://fonts.google.com/)
-- [Mysqltutorial.org](https://www.mysqltutorial.org/mysql-create-table/) Refreshed memory about database creation
-- [W3Schools.com](https://www.w3schools.com/sql/sql_foreignkey.asp) About MySQL and foreign keys
-- [This Page](https://kb.objectrocket.com/mongo-db/how-to-insert-a-document-into-a-mongodb-collection-using-python-367) How to import date and how to insert it in MongoDB when adding user
-- [hover another element](https://stackoverflow.com/questions/6910049/on-a-css-hover-event-can-i-change-another-divs-styling)
-[Set div height to same](https://css-tricks.com/snippets/jquery/equalize-heights-of-divs/)
+
+
 ### Content
 
-- [No Cover added Photo](https://darkseries.fandom.com/wiki/Dark_Tarot)
-- [404 Gif](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fgifs%2FoyQ9vezXhFLYRTUx2z%2Fhtml5&psig=AOvVaw1gVv-HS4JvfyMTzRapb8Cp&ust=1608761783663000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCID47ujO4u0CFQAAAAAdAAAAABAI)
+[No Cover added Photo](https://darkseries.fandom.com/wiki/Dark_Tarot) - This is the source for the photo added when a user decides not to add their own photo to the added book.
+
+[404 Gif](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fgifs%2FoyQ9vezXhFLYRTUx2z%2Fhtml5&psig=AOvVaw1gVv-HS4JvfyMTzRapb8Cp&ust=1608761783663000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCID47ujO4u0CFQAAAAAdAAAAABAI) - If there is an access error, the user will be brought to the 404 page where a book-gif can be seen. The gif comes from Giphy.com 
 
 ### Code
 
+- The javascript code for setting the height of the cards to be equal came from [css-tricks.com](https://css-tricks.com/snippets/jquery/equalize-heights-of-divs/).
+You can find this code on line 40 in the script.js document
+
+- [Objectrocket.com](https://kb.objectrocket.com/mongo-db/how-to-insert-a-document-into-a-mongodb-collection-using-python-367) was used when finding out how to import a date and how to insert it in MongoDB when inserting a document
+- [hover another element](https://stackoverflow.com/questions/6910049/on-a-css-hover-event-can-i-change-another-divs-styling)
 
 ## Acknoledgements
 
+I would like to thank my mentor Arnold Kyeza for continuos help throughout the project, and always helping me to aim higher.
+
+Another big thank you to Code Institue, especially the tutor support team that have been a big help when solving problems in the project and helping me understand certain functionalities.
 
 
