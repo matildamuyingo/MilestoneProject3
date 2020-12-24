@@ -360,7 +360,7 @@ select {
 
 @media screen and (max-width: 770px) {
     .duo-buttons {
-        width: 60vw;
+        width: 50vw;
     }
 
     .card-content p {
@@ -384,3 +384,8 @@ select {
     }
 
 }
+
+@media screen and (max-width: 500px) {
+    .duo-buttons {
+        width: 70vw;
+    }
