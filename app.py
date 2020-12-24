@@ -290,7 +290,6 @@ def edit_book(book_id):
 
     if session['user'] == book['added_by']:
 
-        # If the form is submitted
         if request.method == "POST":
 
             # Set the image, rating and date
@@ -334,7 +333,7 @@ def edit_book(book_id):
 
 
 # Route to delete a book
-@app.route('/delete/<book_id>')
+@app.route('/delete_book/<book_id>')
 def delete_book(book_id):
 
     # Find and delete the book with same id as clicked object (book)
@@ -434,7 +433,7 @@ def edit_review(review_id):
         {'_id': ObjectId(book_id)})
 
     if session['user'] == review['added_by']:
-    
+
         if request.method == "POST":
             rating = request.form.get('rating')
 
@@ -453,30 +452,35 @@ def edit_review(review_id):
             reviews = mongo.db.reviews.find(
                 {'book_id': book_id})
 
-            return render_template('book_info.html', reviews=reviews, book_id=book)
-        else:
-            return render_template('404.html')
+            return render_template(
+                'book_info.html', reviews=reviews, book_id=book)
+    else:
+        return render_template('404.html')
 
     return render_template(
         'edit_review.html', ratings=ratings, review_id=review, book=book)
 
 
 # Route to delete a review
-@app.route('/delete/<review_id>')
+@app.route('/delete_review/<review_id>')
 def delete_review(review_id):
+
+    review = mongo.db.reviews.find_one(
+        {'_id': ObjectId(review_id)})
+    print(review)
+    book_id = review['book_id']
 
     # Find and delete the book with same id as clicked object (book)
     mongo.db.reviews.delete_one({'_id': ObjectId(review_id)})
     flash('Deleted Review')
 
-    # Set variables and render template for user profile after book is deleted
-    reviews = list(mongo.db.reviews.find())
-    books = list(mongo.db.books.find())
-    user = mongo.db.users.find_one(
-        {'username': session['user']})
+    # Set variables and render template for book info after review is deleted
+    reviews = mongo.db.reviews.find({'_id': book_id})
+    book = mongo.db.books.find_one(
+        {'_id': ObjectId(book_id)})
 
     return render_template(
-        'profile.html', username=user, books=books, reviews=reviews)
+        'book_info.html', reviews=reviews, book_id=book)
 
 
 # Route to startpage
