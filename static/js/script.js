@@ -12,6 +12,7 @@ $(document).ready(function(){
             $('.fin-read').removeClass('no-display').addClass('full-display');
         });
 
+var screenWidth = $('body').width();
 
 // Edit buttons on cards
 
@@ -35,6 +36,8 @@ $(document).ready(function(){
         $('.review-card').mouseleave(function(){
             $('.sub-book-edit-buttons', this).removeClass('full-display').addClass('no-display');
         });
+    
+    
 
     // Check card height and set all heights to the max height
         var maxHeight = 0;

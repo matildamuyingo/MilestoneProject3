@@ -2,10 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,300&family=Questrial&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
 
-/*          Fonts
-font-family: 'IBM Plex Sans', sans-serif;
-font-family: 'Questrial', sans-serif;
-*/
 
 .margin-to-padding {
     margin: 0;
@@ -389,3 +385,13 @@ select {
     .duo-buttons {
         width: 70vw;
     }
+
+    .smaller-text h4 {
+        font-size: 23px;
+    }
+
+    .smaller-text h5 {
+        font-size: 18px;
+    }
+
+}
