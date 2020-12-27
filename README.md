@@ -148,7 +148,37 @@ After trying out the MySQL database, the project database was changed to use Mon
 * Edit fields for icon, gender, favorite book, favorite author, favorite genre are dropdown selects with color validation for added input.
 * Favorite book and author lists are generated from all added books and authors that exists in the database.
 * If update info button is clicked, the input information is updated in the user collection of the database.
-  * If a field is missing input, the user is 
+  * If a field is missing input, the user will get a message that input is required.
+
+**Add Book:**
+* When accessing a page, the user sees a form where information about a book can be added. 
+* If the user clicks on the checkbox for 'finished reading', the bottom of the form for filling out book rating and adding a book review is displayed.
+* When hovering the field for adding an image url, a tooltip message is displayed telling the user to paste an image url.
+* If an image is not added, a blank image with the text 'No book cover' will be added instead.
+* When submitting the form, the user will be informed about required fields that have not been filled in.
+
+**Startpage:**
+* When accessing the startpage, displayed the 4 latest added books to the left, and the 7 latest added users to the right.
+* When hovering a book or a user card, move the card up and deepen the shadow underneath the card.
+* If a book card is clicked, bring the user to that specific book page.
+* If a user card is clicked, bring the user to that user's profile.
+* At the end of the column with cards, display one button to bring user to see all books, and another button to bring user to page displaying all users.
+* If hovering a book that was added by the current logged in user, display editing/delete icons.
+    * If delete icon is clicked, open a modal asking for delete confirmation.
+        * If deletion is confirmed, remove book from database, close modal and flash message of delete confirmation to user.
+
+**All Books & All Users:**
+* When accessing pages, display all books/all users stored in database.
+* If the user selects a sorting option in the 'Sort By' input, automatially update sorting conditions and reload page.
+* If a sorting method has been chosen, display the method in the select input.
+* When hovering a card, move card up and deepen shadow underneath.
+* If a book card is clicked, bring user to that book page.
+* If a user card is clicked, bring user to that user's profile.
+* At the end of the list of books and users, generate a button that brings user to the top of the same page.
+* On the 'All books' page, if a book has an added review, display a small 'click to show review' text.
+
+**Book Info:**
+
 
 ***
 
