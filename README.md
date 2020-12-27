@@ -83,6 +83,75 @@ After trying out the MySQL database, the project database was changed to use Mon
 - Created a DataBase in MySQL to test out the building
 
 ***
+
+## Features
+*** 
+
+### Existing Features
+
+**Navigation Bar:**
+* Hover navigation bar at top of the page to get a darker background for the clickable links.
+* On smaller screens, switch navbar to a book-icon that opens a side navigation when clicked.
+* If not logged in, only show links for login, register and homepage.
+* When logged in, show links for startpage, add books, all books, all users, profile and log out.
+* When hovering the page logo, displayed in the middle of the navbar, an animation of a page turning should be showed.
+* If logo is clicked, redirect user to homepage (if not logged in), and to startpage (if logged in)
+
+**Homepage:**
+* Display buttons with links to register and to login pages.
+* When hovering buttons, the button-shadow will get smaller.
+
+**Register:**
+* A form with input fields is displayed.
+* The field for icon is a dropdown select, which displays pictures of the diferent options for profile-icon.
+* Fields for first name, last name, email, username and password are text inputs.
+* When adding text in the input fields, the input bottom-border will turn green.
+* When clicking the submit button, all information added to the register form is inserted in the users collection in the database.
+* If there is an empty field when submitting the form, a message will be displayed to the user that input is required, and field bottom-border will change color to red.
+* If username or email address already exists in database a flash message will be displayed telling the user to pick another username/email.
+* If all information is correct, redirect user to the user profile.
+
+**Login:**
+* Show two text input fields that requires username and password for login.
+* When button for log in is clicked, check if username and password matches any stored user information in the database.
+* If username does not match any username in the database, flash a message that the information is incorrect.
+* If the password does not match the username, flash a message that the information is incorrect.
+* If trying to submit without adding information, a message will pop up telling user that input is required.
+* If all information is correct, redirect user to the user profile.
+* When user is logged in, display a plus icon at the bottom right of every page with link to add book.
+  * If icon is hovered, display tooltip information 'add a new book'.
+
+**Profile:**
+* Display the added first name + s' profile at the top of the profile.
+* If no books have been added by the profile user, display 'No books added' text underneath the 'Saved books' and 'Read books' headings.
+* If no reviews have been added, display 'No added reviews' underneath the Review heading.
+* Display selected user icon and the user information to the left of profile page on larger screens. On smaller screen the about section is displayed directly underneath the page header.
+* If books have been added by user, show books with 'read_book' = 'on' under the 'Have read heading' and books without the condition under the 'Saved Books' heading.
+* When hovering book-cards, lift the card and deepen the shadow.
+* If the book was added by logged in user, show buttons to edit and delete the hovered book.
+    * If the edit icon is clicked, redirect user to the edit_book page, with existing information filled in.
+    * If the trashcan icon is clicked, show a popup modal that asks user if they're sure they want to delete the book. 
+        * If 'Agree' is clicked, remove book from database and flash message that book was removed. 
+        * If cancel is clicked, close modal.
+* If the book card is clicked, redirect user to that specific book-info page.
+* If the profile belongs to the logged in user, display 'Edit Info' button at the bottom of about info, and 'Add new book' at the bottom of lists of books.
+* Display all reviews added by profile user at the bottom of the page.
+* When hovering reviews, show buttons for edit review and delete review.
+  * If the edit icon is clicked, redirect user to the edit_review page, with existing information filled in.
+  * If the trashcan icon is clicked, show a popup modal that asks user if they're sure they want to delete the review. 
+    * If 'Agree' is clicked, remove review from database and flash message that review was removed. 
+    * If cancel is clicked, close modal.
+* If review is clicked, bring user to the book info page belonging to that review.
+
+**Edit Profile:**
+* If page is acessed with url by someone who is not the user of the profile that is being edited, user is redirected to the 404 error page.
+* Edit fields for icon, gender, favorite book, favorite author, favorite genre are dropdown selects with color validation for added input.
+* Favorite book and author lists are generated from all added books and authors that exists in the database.
+* If update info button is clicked, the input information is updated in the user collection of the database.
+  * If a field is missing input, the user is 
+
+***
+
 ## Testing
 
 ### Code Validation
