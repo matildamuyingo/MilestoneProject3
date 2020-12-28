@@ -12,7 +12,6 @@ $(document).ready(function(){
             $('.fin-read').removeClass('no-display').addClass('full-display');
         });
 
-var screenWidth = $('body').width();
 
 // Edit buttons on cards
 
@@ -40,13 +39,14 @@ var screenWidth = $('body').width();
     
 
     // Check card height and set all heights to the max height
+    
         var maxHeight = 0;
         $(".book-card-style").each(function(){
         if ($(this).height() > maxHeight) { maxHeight = $(this).height(); }
         });
 
         $(".book-card-style").height(maxHeight);
-
+    
 
     validateMaterializeSelect();
     function validateMaterializeSelect() {

@@ -91,6 +91,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 **Navigation Bar:**
 * Hover navigation bar at top of the page to get a darker background for the clickable links.
+
 * On smaller screens, switch navbar to a book-icon that opens a side navigation when clicked.
 * If not logged in, only show links for login, register and homepage.
 * When logged in, show links for startpage, add books, all books, all users, profile and log out.
@@ -99,10 +100,12 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 **Homepage:**
 * Display buttons with links to register and to login pages.
+
 * When hovering buttons, the button-shadow will get smaller.
 
 **Register:**
 * A form with input fields is displayed.
+
 * The field for icon is a dropdown select, which displays pictures of the diferent options for profile-icon.
 * Fields for first name, last name, email, username and password are text inputs.
 * When adding text in the input fields, the input bottom-border will turn green.
@@ -113,6 +116,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 **Login:**
 * Show two text input fields that requires username and password for login.
+
 * When button for log in is clicked, check if username and password matches any stored user information in the database.
 * If username does not match any username in the database, flash a message that the information is incorrect.
 * If the password does not match the username, flash a message that the information is incorrect.
@@ -123,6 +127,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 **Profile:**
 * Display the added first name + s' profile at the top of the profile.
+
 * If no books have been added by the profile user, display 'No books added' text underneath the 'Saved books' and 'Read books' headings.
 * If no reviews have been added, display 'No added reviews' underneath the Review heading.
 * Display selected user icon and the user information to the left of profile page on larger screens. On smaller screen the about section is displayed directly underneath the page header.
@@ -145,6 +150,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 **Edit Profile:**
 * If page is acessed with url by someone who is not the user of the profile that is being edited, user is redirected to the 404 error page.
+
 * Edit fields for icon, gender, favorite book, favorite author, favorite genre are dropdown selects with color validation for added input.
 * Favorite book and author lists are generated from all added books and authors that exists in the database.
 * If update info button is clicked, the input information is updated in the user collection of the database.
@@ -152,6 +158,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 **Add Book:**
 * When accessing a page, the user sees a form where information about a book can be added. 
+
 * If the user clicks on the checkbox for 'finished reading', the bottom of the form for filling out book rating and adding a book review is displayed.
 * When hovering the field for adding an image url, a tooltip message is displayed telling the user to paste an image url.
 * If an image is not added, a blank image with the text 'No book cover' will be added instead.
@@ -159,6 +166,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 **Startpage:**
 * When accessing the startpage, displayed the 4 latest added books to the left, and the 7 latest added users to the right.
+
 * When hovering a book or a user card, move the card up and deepen the shadow underneath the card.
 * If a book card is clicked, bring the user to that specific book page.
 * If a user card is clicked, bring the user to that user's profile.
@@ -169,6 +177,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 **All Books & All Users:**
 * When accessing pages, display all books/all users stored in database.
+
 * If the user selects a sorting option in the 'Sort By' input, automatially update sorting conditions and reload page.
 * If a sorting method has been chosen, display the method in the select input.
 * When hovering a card, move card up and deepen shadow underneath.
@@ -179,6 +188,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 **Book Info:**
 
+<br>
 
 ***
 
@@ -186,17 +196,21 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 ### Code Validation
 
+<br>
+
 ### Bugs
 
- - #### Discovered Bugs
-    - Cards are pushed down on the profile page on computer sometimes
-    - The user info edit form is not sending information correctly to mongodb
-        - Solved by changing the jinja templating in the dropdowns to display correctly and debugged by adding  print(update_info) and checking the added information when called
-    - The dropdown menu does not display in the navbar 
+**Discovered Bugs**
 
-    - The icon in the bottom right corner does not disappear if the user already have a session stored. 
+- Cards are pushed down on the profile page on computer sometimes
+- The user info edit form is not sending information correctly to mongodb
+    - Solved by changing the jinja templating in the dropdowns to display correctly and debugged by adding  print(update_info) and checking the added information when called
+- The dropdown menu does not display in the navbar 
 
-    - The function of displaying a longer form when the checkbox is clicked, needs to include a function for the extended form to disappear, but this is not working as expected.
+- The icon in the bottom right corner does not disappear if the user already have a session stored. 
+
+- The function of displaying a longer form when the checkbox is clicked, needs to include a function for the extended form to disappear, but this is not working as expected.
+
 ```
 $('#read-check').click(function() {
         $('.fin-read').removeClass('no-display').addClass('full-display');
@@ -214,10 +228,11 @@ $('#read-check').click(function() {
     });
 ```
 
- - #### Solved Bugs
-    - The displaying of a modal and confirming delete action [solved with this as help](https://stackoverflow.com/questions/22071042/dynamic-bootstrap-modal-within-a-loop)
-    - The text font and styling for the page h3 elements are not loading
-        - Solved by commenting out the following code from the style.css file
+**Solved Bugs**
+
+- The displaying of a modal and confirming delete action [solved with this as help](https://stackoverflow.com/questions/22071042/dynamic-bootstrap-modal-within-a-loop)
+- The text font and styling for the page h3 elements are not loading
+    - Solved by commenting out the following code from the style.css file
 ```
 /*
     font-family: 'IBM Plex Sans', sans-serif;
@@ -282,7 +297,12 @@ The result is that the text is shown only once and then ends the loop
         mongo.db.users.replace_one({'_id': ObjectId(user['_id'])}, update_info)
 ```
 
+<br>
+
 ### Device Compability
+
+<br>
+
 ***
 ## Credit
 
@@ -296,12 +316,15 @@ The result is that the text is shown only once and then ends the loop
 - [Materializecss.com]()
 - [Google Fonts](https://fonts.google.com/)
 
+<br>
 
 ### Content
 
 [No Cover added Photo](https://darkseries.fandom.com/wiki/Dark_Tarot) - This is the source for the photo added when a user decides not to add their own photo to the added book.
 
 [404 Gif](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fgifs%2FoyQ9vezXhFLYRTUx2z%2Fhtml5&psig=AOvVaw1gVv-HS4JvfyMTzRapb8Cp&ust=1608761783663000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCID47ujO4u0CFQAAAAAdAAAAABAI) - If there is an access error, the user will be brought to the 404 page where a book-gif can be seen. The gif comes from Giphy.com 
+
+<br>
 
 ### Code
 
@@ -310,6 +333,8 @@ You can find this code on line 40 in the script.js document
 
 - [Objectrocket.com](https://kb.objectrocket.com/mongo-db/how-to-insert-a-document-into-a-mongodb-collection-using-python-367) was used when finding out how to import a date and how to insert it in MongoDB when inserting a document
 - [hover another element](https://stackoverflow.com/questions/6910049/on-a-css-hover-event-can-i-change-another-divs-styling)
+
+<br>
 
 ## Acknoledgements
 
