@@ -358,7 +358,10 @@ def book_info(book_id):
     reviews = mongo.db.reviews.find(
         {'book_id': book_id})
 
-    return render_template('book_info.html', book_id=book, reviews=reviews)
+    if not book:
+        return render_template('404.html')
+    else:
+        return render_template('book_info.html', book_id=book, reviews=reviews)
 
 
 @app.route('/add_review/<book_id>', methods=["GET", "POST"])
