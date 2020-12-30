@@ -17,7 +17,7 @@
                     <div class="input-field col s12 m6 offset-m3">
                         <select id="book_sorting" name="book_sorting" onchange="updateSearch()">
                             {% if sort_method|length > 0 %}
-                                <option value="" minlength="5" selected disabled>{{sort_method.capitalize()}}</option>
+                                <option value="" minlength="5" selected disabled>{{sort_method.title()}}</option>
                             {% else %}
                                 <option value="" minlength="5" selected disabled>Sort By</option>
                             {% endif %}

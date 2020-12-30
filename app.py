@@ -141,7 +141,6 @@ def profile(username):
     # if the username is the same as
     # session user, send user to their own profile
     if session['user'] == user['username']:
-        print(user['date_joined'].strftime("%d %b %Y"))
         return render_template(
             'profile.html', username=user, books=books, reviews=reviews)
     # if the username is not the same as
@@ -512,10 +511,11 @@ def sort_books():
     book_query = list(mongo.db.books.find())
     if request.method == "POST":
         sort_method = request.form.get('book_sorting')
+        display_value = sort_method.replace("_", " ")
         book_query = list(mongo.db.books.find().sort(sort_method, 1))
 
     return render_template(
-        "all_books.html", books=book_query, sort_method=sort_method)
+        "all_books.html", books=book_query, sort_method=display_value)
 
 
 # Route to all books page
@@ -535,10 +535,11 @@ def sort_users():
     user_query = list(mongo.db.users.find())
     if request.method == "POST":
         sort_method = request.form.get('user_sorting')
+        display_value = sort_method.replace("_", " ")
         user_query = list(mongo.db.users.find().sort(sort_method, 1))
 
     return render_template(
-        "all_users.html", all_users=user_query, sort_method=sort_method)
+        "all_users.html", all_users=user_query, sort_method=display_value)
 
 
 # Route to logout
