@@ -187,6 +187,16 @@ After trying out the MySQL database, the project database was changed to use Mon
 * On the 'All books' page, if a book has an added review, display a small 'click to show review' text.
 
 **Book Info:**
+* Display selected books detailed info (all info available).
+
+* If there are reviews added, display them.
+    * If there is more than one review added to the book, make the background color change for every second review.
+* If the review was added by the same user that added the book, use 'Review added by' as review headline.
+    * If user have updated review to include a review title, display the review title as headline instead.
+* If user hovers a review added by themself, display editing buttons.
+    * If edit icon is clicked, bring user to the edit review page.
+    * If delete icon is clicked, open a modal to confirm review deletion.
+        * If delete action is confirmed, remove review from database.
 
 <br>
 
