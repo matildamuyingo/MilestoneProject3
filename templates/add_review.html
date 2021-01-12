@@ -41,13 +41,13 @@
         {% if book_id.added_by == session.user %}
             <div class="row">
 				<div class="input-field col s12">
-					<input id="review_title" name="review_title" value="{{ book_id.review_title }}" type="text" required>
+					<input id="review_title" name="review_title" class="validate" value="{{ book_id.review_title }}" type="text" required>
                     <label for="review_title">Review Title</label>
 				</div>
 			</div>
 
 			<div class="input-field col s12">
-				<select id="rating" name="rating" required>
+				<select id="rating" name="rating" class="validate" required>
                   <option value="" disabled selected>None </option>
                     {% for rating in ratings %}
                         {% if book_id.rating == rating.book_rating %}
@@ -62,24 +62,24 @@
             
 			<div class="row">
 				<div class="input-field col s12">
-                    <input id="review" name="review" value="{{ book_id.review }}" type="text" required>
+                    <input id="review" name="review" class="validate" value="{{ book_id.review }}" type="text" required>
                     <label for="review">Review</label>
 				</div>
             </div>
         {% else %}
             <div class="row">
 				<div class="input-field col s12">
-					<input id="review_title" name="review_title" type="text" required>
+					<input id="review_title" class="validate" name="review_title" type="text" required>
                     <label for="review_title">Review Title</label>
 				</div>
 			</div>
 
 			<div class="input-field col s12">
-				<select id="rating" name="rating" required>
+				<select id="rating" name="rating" class="validate" required>
                   <option value="" disabled selected>None </option>
                     {% for rating in ratings %}
                         {% if book_id.rating == rating.book_rating %}
-                            <option value="{{ rating.book_rating }}" selected>{{ rating.book_rating }}</option>
+                            <option value="{{ rating.book_rating }}">{{ rating.book_rating }}</option>
                         {% else %}
                             <option value="{{ rating.book_rating }}">{{ rating.book_rating }}</option>
                         {% endif %}
@@ -90,7 +90,7 @@
             
 			<div class="row">
 				<div class="input-field col s12">
-                    <input id="review" name="review" type="text" required>
+                    <input id="review" name="review" class="validate" type="text" required>
                     <label for="review">Review</label>
 				</div>
             </div>

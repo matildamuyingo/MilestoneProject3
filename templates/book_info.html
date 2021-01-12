@@ -140,8 +140,14 @@
                 </div>
             </div>
         {% else %}
-            <div class="row">
+        <div class="row review-card">
             <div class="col s12">
+                {% if session.user == review.added_by %}
+                    <div class="sub-book-edit-buttons no-display">
+                        <a href="{{ url_for('edit_review', review_id=review._id, book_id=review.book_id) }}" class="edit-book-button light-blue lighten-1 light-green-text text-lighten-5"><i class="far fa-edit"></i></a>
+                        <a href="#modal1{{review._id}}" class="delete-book-button modal-trigger red darken-2 light-green-text text-lighten-5"><i class="far fa-trash-alt"></i></a>
+                    </div>
+                {% endif %}
                 <h6>Review by {{ review.added_by }}</h6>
                 <p>
                     {% if review.rating == 1 %}
@@ -177,6 +183,17 @@
                     {% endif %}
                 {{ review.review }}</p>
             </div>
+            </div>
+            <!-- Modal Structure -->
+            <div id="modal1{{review._id}}" class="modal">
+                <div class="modal-content">
+                    <h4>Delete Review</h4>
+                    <p>Are you sure you want to delete this review?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                    <a href="{{ url_for('delete_review', review_id=review._id) }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
             </div>
         {% endif %}
         {% endfor %}

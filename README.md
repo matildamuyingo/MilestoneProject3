@@ -1,4 +1,6 @@
 # Milestone Project 3 
+
+[View the live project here](http://bookers-milestone-project.herokuapp.com/)
     
 <img src='static/images/readme/StartpageMockups.png' width='400px'>
 
@@ -7,13 +9,15 @@ This page is created for users to be able to keep track of books that they want 
 ## UX
 
 ### Design
+The page design has been made with simplicity in thought, but at the same time calming and easy colors and fonts. 
 
 #### Colors
+**Hex-number & Materializecss name:**
   - #689f38 - light-green darken-2  
   - #388e3c - green darken-2
 
 #### Typography
-- Fonts used:
+**Fonts used:**
   - 'IBM Plex Sans'
   - 'Questrial'
 
@@ -87,116 +91,135 @@ After trying out the MySQL database, the project database was changed to use Mon
 ## Features
 *** 
 
-### Existing Features
+### Existing Features 
+[Jump to testing section](#project-walktrough)
 
-**Navigation Bar:**
-* Hover navigation bar at top of the page to get a darker background for the clickable links.
+#### Navigation Bar:
+* **1.1** Hover navigation bar at top of the page to get a darker background for the clickable links.
 
-* On smaller screens, switch navbar to a book-icon that opens a side navigation when clicked.
-* If not logged in, only show links for login, register and homepage.
-* When logged in, show links for startpage, add books, all books, all users, profile and log out.
-* When hovering the page logo, displayed in the middle of the navbar, an animation of a page turning should be showed.
-* If logo is clicked, redirect user to homepage (if not logged in), and to startpage (if logged in)
+* **1.2** On smaller screens, switch navbar to a book-icon that opens a side navigation when clicked.
+* **1.3** If not logged in, only show links for login, register and homepage.
+* **1.4** When logged in, show links for startpage, add books, all books, all users, profile and log out.
+* **1.5** When hovering the page logo, displayed in the middle of the navbar, an animation of a page turning should be showed.
+* **1.6** If logo is clicked, redirect user to homepage (if not logged in), and to startpage (if logged in)
 
-**Homepage:**
-* Display buttons with links to register and to login pages.
+#### Homepage:
+* **2.1** Display buttons with links to register and to login pages.
 
-* When hovering buttons, the button-shadow will get smaller.
+* **2.2** When hovering buttons, the button-shadow will get smaller.
+* **2.3** If a user was logged in when accessing the homepage, log them out/remove session cookies.
+    * **2.3.1** Flash message that the user was logged out.
 
-**Register:**
-* A form with input fields is displayed.
+#### Register:
+* **3.1** A form with input fields is displayed.
 
-* The field for icon is a dropdown select, which displays pictures of the diferent options for profile-icon.
-* Fields for first name, last name, email, username and password are text inputs.
-* When adding text in the input fields, the input bottom-border will turn green.
-* When clicking the submit button, all information added to the register form is inserted in the users collection in the database.
-* If there is an empty field when submitting the form, a message will be displayed to the user that input is required, and field bottom-border will change color to red.
-* If username or email address already exists in database a flash message will be displayed telling the user to pick another username/email.
-* If all information is correct, redirect user to the user profile.
+* **3.2** The field for icon is a dropdown select, which displays pictures of the diferent options for profile-icon.
+* **3.3** Fields for first name, last name, email, username and password are text inputs.
+* **3.4** When adding text in the input fields, the input bottom-border will turn green.
+* **3.5** When clicking the submit button, all information added to the register form is inserted in the users collection in the database.
+* **3.6** If there is an empty field when submitting the form, a message will be displayed to the user that input is required, and field bottom-border will change color to red.
+* **3.7** If username or email address already exists in database a flash message will be displayed telling the user to pick another username/email.
+* **3.8** If all information is correct, redirect user to the user profile.
 
-**Login:**
-* Show two text input fields that requires username and password for login.
 
-* When button for log in is clicked, check if username and password matches any stored user information in the database.
-* If username does not match any username in the database, flash a message that the information is incorrect.
-* If the password does not match the username, flash a message that the information is incorrect.
-* If trying to submit without adding information, a message will pop up telling user that input is required.
-* If all information is correct, redirect user to the user profile.
-* When user is logged in, display a plus icon at the bottom right of every page with link to add book.
-  * If icon is hovered, display tooltip information 'add a new book'.
+#### Login:
+* **4.1** Show two text input fields that requires username and password for login.
 
-**Profile:**
-* Display the added first name + s' profile at the top of the profile.
+* **4.2** When button for log in is clicked, check if username and password matches any stored user information in the database.
+* **4.3** If username does not match any username in the database, flash a message that the information is incorrect.
+* **4.4** If the password does not match the username, flash a message that the information is incorrect.
+* **4.5** If trying to submit without adding information, a message will pop up telling user that input is required.
+* **4.6** If all information is correct, redirect user to the user profile.
+* **4.7** When user is logged in, display a plus icon at the bottom right of every page with link to add book.
+  * **4.7.1** If icon is hovered, display tooltip information 'add a new book'.
 
-* If no books have been added by the profile user, display 'No books added' text underneath the 'Saved books' and 'Read books' headings.
-* If no reviews have been added, display 'No added reviews' underneath the Review heading.
-* Display selected user icon and the user information to the left of profile page on larger screens. On smaller screen the about section is displayed directly underneath the page header.
-* If books have been added by user, show books with 'read_book' = 'on' under the 'Have read heading' and books without the condition under the 'Saved Books' heading.
-* When hovering book-cards, lift the card and deepen the shadow.
-* If the book was added by logged in user, show buttons to edit and delete the hovered book.
-    * If the edit icon is clicked, redirect user to the edit_book page, with existing information filled in.
-    * If the trashcan icon is clicked, show a popup modal that asks user if they're sure they want to delete the book. 
-        * If 'Agree' is clicked, remove book from database and flash message that book was removed. 
-        * If cancel is clicked, close modal.
-* If the book card is clicked, redirect user to that specific book-info page.
-* If the profile belongs to the logged in user, display 'Edit Info' button at the bottom of about info, and 'Add new book' at the bottom of lists of books.
-* Display all reviews added by profile user at the bottom of the page.
-* When hovering reviews, show buttons for edit review and delete review.
-  * If the edit icon is clicked, redirect user to the edit_review page, with existing information filled in.
-  * If the trashcan icon is clicked, show a popup modal that asks user if they're sure they want to delete the review. 
-    * If 'Agree' is clicked, remove review from database and flash message that review was removed. 
-    * If cancel is clicked, close modal.
-* If review is clicked, bring user to the book info page belonging to that review.
+#### Profile:
+* **5.1** Display the added first name + s' profile at the top of the profile.
 
-**Edit Profile:**
-* If page is acessed with url by someone who is not the user of the profile that is being edited, user is redirected to the 404 error page.
+* **5.2** If no books have been added by the profile user, display 'No books added' text underneath the 'Saved books' and 'Read books' headings.
+* **5.3** If no reviews have been added, display 'No added reviews' underneath the Review heading.
+* **5.4** Display selected user icon and the user information to the left of profile page on larger screens. On smaller screen the about section is displayed directly underneath the page header.
+* **5.5** If books have been added by user, show books with 'read_book' = 'on' under the 'Have read heading' and books without the condition under the 'Saved Books' heading.
+* **5.6** When hovering book-cards, lift the card and deepen the shadow.
+* **5.7** If the book was added by logged in user, show buttons to edit and delete the hovered book.
+    * **5.7.1** If the edit icon is clicked, redirect user to the edit_book page, with existing information filled in.
+    * **5.7.2** If the trashcan icon is clicked, show a popup modal that asks user if they're sure they want to delete the book. 
+        * **5.7.2.1** If 'Agree' is clicked, remove book from database and flash message that book was removed. 
+        * **5.7.2.2** If cancel is clicked, close modal.
+* **5.8** If the book card is clicked, redirect user to that specific book-info page.
+* **5.9** If the profile belongs to the logged in user, display 'Edit Info' button at the bottom of about info, and 'Add new book' at the bottom of lists of books.
+* **5.10** Display all reviews added by profile user at the bottom of the page.
+* **5.11** When hovering reviews, show buttons for edit review and delete review.
+  * **5.11.1** If the edit icon is clicked, redirect user to the edit_review page, with existing information filled in.
+  * **5.11.2** If the trashcan icon is clicked, show a popup modal that asks user if they're sure they want to delete the review. 
+    * **5.11.2.1** If 'Agree' is clicked, remove review from database and flash message that review was removed. 
+    * **5.11.2.2** If cancel is clicked, close modal.
+* **5.12** If review is clicked, bring user to the book info page belonging to that review.
 
-* Edit fields for icon, gender, favorite book, favorite author, favorite genre are dropdown selects with color validation for added input.
-* Favorite book and author lists are generated from all added books and authors that exists in the database.
-* If update info button is clicked, the input information is updated in the user collection of the database.
-  * If a field is missing input, the user will get a message that input is required.
+#### Edit Profile:
+* **6.1** If page is acessed with url by someone who is not the user of the profile that is being edited, user is redirected to the 404 error page.
 
-**Add Book:**
-* When accessing a page, the user sees a form where information about a book can be added. 
+* **6.2** Edit fields for icon, gender, favorite book, favorite author, favorite genre are dropdown selects with color validation for added input.
+* **6.3** Favorite book and author lists are generated from all added books and authors that exists in the database.
+* **6.4** If update info button is clicked, the input information is updated in the user collection of the database.
+  * **6.4.1** If a field is missing input, the user will get a message that input is required.
 
-* If the user clicks on the checkbox for 'finished reading', the bottom of the form for filling out book rating and adding a book review is displayed.
-* When hovering the field for adding an image url, a tooltip message is displayed telling the user to paste an image url.
-* If an image is not added, a blank image with the text 'No book cover' will be added instead.
-* When submitting the form, the user will be informed about required fields that have not been filled in.
+#### Add Book:
+* **7.1** When accessing a page, the user sees a form where information about a book can be added. 
 
-**Startpage:**
-* When accessing the startpage, displayed the 4 latest added books to the left, and the 7 latest added users to the right.
+* **7.2** If the user clicks on the checkbox for 'finished reading', the bottom of the form for filling out book rating and adding a book review is displayed.
+* **7.3** When hovering the field for adding an image url, a tooltip message is displayed telling the user to paste an image url.
+* **7.4** If an image is not added, a blank image with the text 'No book cover' will be added instead.
+* **7.5** When submitting the form, the user will be informed about required fields that have not been filled in.
 
-* When hovering a book or a user card, move the card up and deepen the shadow underneath the card.
-* If a book card is clicked, bring the user to that specific book page.
-* If a user card is clicked, bring the user to that user's profile.
-* At the end of the column with cards, display one button to bring user to see all books, and another button to bring user to page displaying all users.
-* If hovering a book that was added by the current logged in user, display editing/delete icons.
-    * If delete icon is clicked, open a modal asking for delete confirmation.
-        * If deletion is confirmed, remove book from database, close modal and flash message of delete confirmation to user.
+#### Startpage:
+* **8.1** When accessing the startpage, displayed the 4 latest added books to the left, and the 7 latest added users to the right.
 
-**All Books & All Users:**
-* When accessing pages, display all books/all users stored in database.
+* **8.2** When hovering a book or a user card, move the card up and deepen the shadow underneath the card.
+* **8.3** If a book card is clicked, bring the user to that specific book page.
+* **8.4** If a user card is clicked, bring the user to that user's profile.
+* **8.5** At the end of the column with cards, display one button to bring user to see all books, and another button to bring user to page displaying all users.
+* **8.6** If hovering a book that was added by the current logged in user, display editing/delete icons.
+    * **8.6.1** If delete icon is clicked, open a modal asking for delete confirmation.
+        * **8.6.1.1** If deletion is confirmed, remove book from database, close modal and flash message of delete confirmation to user.
 
-* If the user selects a sorting option in the 'Sort By' input, automatially update sorting conditions and reload page.
-* If a sorting method has been chosen, display the method in the select input.
-* When hovering a card, move card up and deepen shadow underneath.
-* If a book card is clicked, bring user to that book page.
-* If a user card is clicked, bring user to that user's profile.
-* At the end of the list of books and users, generate a button that brings user to the top of the same page.
-* On the 'All books' page, if a book has an added review, display a small 'click to show review' text.
+#### All Books & All Users:
+* **9.1** When accessing pages, display all books/all users stored in database.
 
-**Book Info:**
-* Display selected books detailed info (all info available).
+* **9.2** If the user selects a sorting option in the 'Sort By' input, automatially update sorting conditions and reload page.
+* **9.3** If a sorting method has been chosen, display the method in the select input.
+* **9.4** When hovering a card, move card up and deepen shadow underneath.
+* **9.5** If a book card is clicked, bring user to that book page.
+* **9.6** If a user card is clicked, bring user to that user's profile.
+* **9.7** At the end of the list of books and users, generate a button that brings user to the top of the same page.
+* **9.8** On the 'All books' page, if a book has an added review, display a small 'click to show review' text.
 
-* If there are reviews added, display them.
-    * If there is more than one review added to the book, make the background color change for every second review.
-* If the review was added by the same user that added the book, use 'Review added by' as review headline.
-    * If user have updated review to include a review title, display the review title as headline instead.
-* If user hovers a review added by themself, display editing buttons.
-    * If edit icon is clicked, bring user to the edit review page.
-    * If delete icon is clicked, open a modal to confirm review deletion.
-        * If delete action is confirmed, remove review from database.
+#### Book Info:
+* **10.1** Display selected books detailed info (all info available).
+
+* **10.2** If there are reviews added, display them.
+    * **10.2.1** If there is more than one review added to the book, make the background color change for every second review.
+* **10.2** If the review was added by the same user that added the book, use 'Review added by' as review headline.
+    * **10.2.1** If user have updated review to include a review title, display the review title as headline instead.
+* **10.3** If user hovers a review added by themself, display editing buttons.
+    * **10.3.1** If edit icon is clicked, bring user to the edit review page.
+    * **10.3.2** If delete icon is clicked, open a modal to confirm review deletion.
+        * **10.3.2.1** If delete action is confirmed, remove review from database.
+
+#### Add Review:
+* **11.1** If link is accessed from the book info page by the user that originally added the book, allow the user to update their review instead of adding a new review.
+    * **11.1.1** Let the fields be filled in with existing information.
+
+* **11.2** If link is accessed by a user that did not add the original review, let the user access a blank form with review info to fill out.
+* **11.3** If the user clicks the cancel button, redirect them back to the book info page without changing anything.
+
+#### Edit Review:
+* **12.1** When clicking the edit icon for a review, the user will be brought to the edit form, with all previously added information filled in.
+
+* **12.2** When clicking submit review, the field information will be updated in the database for that specific review.
+* **12.3** If a user tries to access a review through url, without being the creator of the original review, the user will be redirected to the 404 page.
+* **12.4** If a user tries to submit the form without having filled in all fields, there will be a message telling the user that the field is required.
+* **12.5** If the user clickes the cancel button, they will be brought back to the book info page, without updating/changing any information.
 
 <br>
 
@@ -204,7 +227,16 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 ## Testing
 
+### Project Walktrough
+The testing of the project is based on the [Existing Features](#existing-features) part of the readme. Each test-heading will be linked to the list of features on that page. If you want to doubble check what features have been tested, follow the correlated list numbering.
+
 ### Code Validation
+
+**HTML Validation:**
+
+**CSS Validation:**
+
+**JavaScript Validation:**
 
 <br>
 
@@ -240,51 +272,32 @@ $('#read-check').click(function() {
 
 **Solved Bugs**
 
-- The displaying of a modal and confirming delete action [solved with this as help](https://stackoverflow.com/questions/22071042/dynamic-bootstrap-modal-within-a-loop)
-- The text font and styling for the page h3 elements are not loading
-    - Solved by commenting out the following code from the style.css file
-```
-/*
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-family: 'Questrial', sans-serif;
-*/
-```
-    - Displaying a text about there being no books added on a user profile, if that specific user haven't added any books
-**The code was changed from**
-```
-{% if books|length > 0 %}
-					<ul>
-                        {% for book in books %}
-                            {% if book.added_by|lower == username.username|lower %}
-                            {% else %}
-                                <h5 class="center-align">No Books Added</h5>
-```
-This resulted in the text 'No Books Added' being displayed as many times as the amount of books in the database
-**To**
-```
-{% if books|length > 0 %}
-					<ul>
-                        {% for book in books if book.added_by|lower == username.username|lower %}
-                        {% else %}
-                            <h5 class="center-align">No Books Added</h5>
-```
-The condition for the for loop was changed so that only the books that have the same 'added_by' as the profile username will be iterated through.
+- The displaying of a modal and confirming delete action [solved with this as help](https://stackoverflow.com/questions/22071042/dynamic-bootstrap-modal-within-a-loop). The modal was being displayed inside the card, instead of inside the window. Solved by moving the code to the end of the card loop.
 
-The result is that the text is shown only once and then ends the loop
+- Displaying a text about there being no books added on a user profile, if that specific user haven't added any books
+    - The bug appeared as a problem because of div closing. The indentation prevented some text to appear since div had already been closed. The code was also changed so that the text would only appear one time, instead of once for every iteration of existing books in the database.
 
 - When adding editing buttons to the cards created by the current user, the a tag that wraps every list item was pushed to only cover the image in the card, and the image size was reduced to about half.
     - The bug was solved by moving the a tag so that it wraps the card content/text instead of the whole card.
 
-    - **Bug solved by moving the a tag from right after the opening li tag, to after the code for the editing buttons**
-
-
 - The images for the list with reviews and users were not lining up with the card-left-border. 
     - I started with adding (.row .col) to the style.css document and set padding:0. This solved the problem but removed the padding for every col and row on the page. To solve it I created a new class called no-padding and applied it to the concerned elements 
 
-- when trying to update the user data, the login information that needs to be unchanged was being overwritten. This bug was solved by storing the static values in variables and then updating them with the same value as what they previously contained
+- Cards displaying books on a user profile created the bug of pushing the cards down and breaking the rows. This was due to each card containing a diferent amount of text in the review. 
+This was first solved by adding a specific height to the cards:
+```
+.book-card-style {
+        height: 300px;
+    }
+```
+
+This made all cards very big and unpleasing to the eye, and one of the cards contained a longer review, the text would push over. To solve it a piece of code from [css-tricks.com](https://css-tricks.com/snippets/jquery/equalize-heights-of-divs/) was used to set the card height to the largest value for the exsisting cards.
+
+- When trying to update the user data, the login information that needs to be unchanged was being overwritten. This bug was solved by storing the static values in variables and then updating them with the same value as what they previously contained
 ```
     if request.method == "POST":
-
+    
+//These variables were created to get the stored information 
         u_name = user['username']
         email = user['email']
         password = user['password']
@@ -293,10 +306,13 @@ The result is that the text is shown only once and then ends the loop
         update_info = {
             'first_name': request.form.get('first_name').capitalize(),
             'last_name': request.form.get('last_name').capitalize(),
+
+// The variables were added as the information to be updated to prevent a loss of the original information
             'username': u_name,
             'email': email,
             'password': password,
             'date_joined': joined,
+
             'user_icon': request.form.get('user_icon'),
             'user_age': request.form.get('user_age'),
             'user_gender': request.form.get('user_gender'),
