@@ -494,6 +494,9 @@ In the console, type:
 1. pip3 freeze --local >requirements.txt
 2. echo web:python.app > Procfile
 ```
+
+Make sure all required files are installed, and that an env.py containing the IP, PORT, SECRET_KEY, MONGO_URI and MONGO_DBNAME variables are set.
+
 Go to [Heroku.com](https://www.heroku.com/) and create a profile/log in.
 
 - When logged in, find the 'Create a New App' button on the dashboard.
