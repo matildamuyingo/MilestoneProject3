@@ -242,154 +242,154 @@ The testing of the project is based on the [Existing Features](#existing-feature
 
 [Navigation Bar](#navigation-bar)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|1.1     |x      |works |    |           |
-|1.2     |x      |works |    |           |
-|1.3     |x      |works |    |           |
-|1.4     |x      |works |    |           |
-|1.5     |x      |works |    |           |
-|1.6     |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|1.1     |x      |works |-     |           |
+|1.2     |x      |works |works |           |
+|1.3     |x      |works |works |           |
+|1.4     |x      |works |works |           |
+|1.5     |x      |works |works*|This works if the logo is clicked. There is a bug on mobile that makes the logo animation display worong sometimes.  |
+|1.6     |x      |works |works |           |
 
 
 [Homepage](#homepage)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|2.1     |x      |works |    |           |
-|2.2     |x      |works |    |           |
-|2.3     |x      |works |    |           |
-|2.4     |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|2.1     |x      |works |works |           |
+|2.2     |x      |works |-   |Not displayed on smaller devices |
+|2.3     |x      |works |works |           |
+|2.4     |x      |works |works |           |
 
 [Register](#register)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|3.1     |x      |works*|    |The icon text is a bit to big to fit the field on screen sizes between 600px - 900px           |
-|3.2     |x      |works |    |           |
-|3.3     |x      |works |    |           |
-|3.4     |x      |works |    |           |
-|3.5     |x      |works |    |           |
-|3.6     |x      |works |    |           |
-|3.7     |x      |works |    |           |
-|3.8     |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|3.1     |x      |works*|works |The icon text is a bit to big to fit the field on screen sizes between 600px - 900px           |
+|3.2     |x      |works |works |           |
+|3.3     |x      |works |works |           |
+|3.4     |x      |works |works |           |
+|3.5     |x      |works |works |           |
+|3.6     |x      |works |works |           |
+|3.7     |x      |works |works |           |
+|3.8     |x      |works |works |           |
 
 [Login](#login)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|4.1     |x      |works |    |           |
-|4.2     |x      |works |    |           |
-|4.3     |x      |works |    |           |
-|4.4     |x      |works |    |           |
-|4.5     |x      |works |    |           |
-|4.6     |x      |works |    |           |
-|4.7     |x      |works |    |           |
-|4.7.1   |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|4.1     |x      |works |works |           |
+|4.2     |x      |works |works |           |
+|4.3     |x      |works |works |           |
+|4.4     |x      |works |works |           |
+|4.5     |x      |works |works |           |
+|4.6     |x      |works |works |           |
+|4.7     |x      |works |works |           |
+|4.7.1   |x      |works*|works |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display. There is a bug that makes the tooltip stick to one spot on the page.|
 
 [Profile](#profile)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|5.1     |x      |works |    |           |
-|5.2     |x      |works*|    |If the user have added a book to either the category of 'saved books' or 'have read' books, the text for the other category disappears.|
-|5.3     |x      |works |    |           |
-|5.4     |x      |works |    |           |
-|5.5     |x      |works |    |           |
-|5.6     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
-|5.7     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
-|5.7.1   |x      |works |    |           |
-|5.7.2   |x      |works |    |           |
-|5.7.2.1 |x      |works |    |           |
-|5.7.2.2 |x      |works |    |           |
-|5.8     |x      |works |    |           |
-|5.9     |x      |works |    |           |
-|5.10    |x      |works |    |           |
-|5.11    |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
-|5.11.1  |x      |works |    |           |
-|5.11.2  |x      |works |    |           |
-|5.11.2.1|x      |works |    |           |
-|5.11.2.2|x      |works |    |           |
-|5.12    |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|5.1     |x      |works |works |           |
+|5.2     |x      |works*|works |If the user have added a book to either the category of 'saved books' or 'have read' books, the text for the other category disappears.|
+|5.3     |x      |works |works |           |
+|5.4     |x      |works |works |           |
+|5.5     |x      |works |works |           |
+|5.6     |x      |works |works |           |
+|5.7     |x      |works |works*|The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|5.7.1   |x      |works |works |           |
+|5.7.2   |x      |works |works |           |
+|5.7.2.1 |x      |works |works |           |
+|5.7.2.2 |x      |works |works |           |
+|5.8     |x      |works |works |           |
+|5.9     |x      |works |works |           |
+|5.10    |x      |works |works |           |
+|5.11    |x      |works |works*|The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|5.11.1  |x      |works |works |           |
+|5.11.2  |x      |works |works |           |
+|5.11.2.1|x      |works |works |           |
+|5.11.2.2|x      |works |works |           |
+|5.12    |x      |works |works |           |
 
 [Edit Profile](#edit-profile)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|6.1     |x      |works |    |           |
-|6.2     |x      |works |    |           |
-|6.3     |x      |works |    |           |
-|6.4     |x      |works |    |           |
-|6.4.1   |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|6.1     |x      |works |works |           |
+|6.2     |x      |works |works |           |
+|6.3     |x      |works |works |           |
+|6.4     |x      |works |works |           |
+|6.4.1   |x      |works |works |           |
 
 [Add Book](#add-book)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|7.1     |x      |works |    |           |
-|7.2     |x      |works |    |           |
-|7.3     |x      |works*|    |The hover function works on all devices if the field is selected.|
-|7.4     |x      |works*|    |If the url added does not exist, the picture displayed will be one of the standard no image. |
-|7.5     |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|7.1     |x      |works |works |           |
+|7.2     |x      |works |works |           |
+|7.3     |x      |works*|works |The hover function works on all devices if the field is selected.|
+|7.4     |x      |works*|works |If the url added does not exist, the picture displayed will be one of the standard no image. |
+|7.5     |x      |works |works |           |
 
 [Startpage](#startpage)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|8.1     |x      |works |    |           |
-|8.2     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
-|8.3     |x      |works |    |           |
-|8.4     |x      |works |    |           |
-|8.5     |x      |works |    |           |
-|8.6     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
-|8.6.1   |x      |works |    |           |
-|8.6.1.1 |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|8.1     |x      |works |works |           |
+|8.2     |x      |works |works |           |
+|8.3     |x      |works |works |           |
+|8.4     |x      |works |works |           |
+|8.5     |x      |works |works |           |
+|8.6     |x      |works*|works |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|8.6.1   |x      |works |works |           |
+|8.6.1.1 |x      |works |works |           |
 
 [All Books and All Users](#all-books-and-all-users)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|9.1     |x      |works |    |           |
-|9.2     |x      |works |    |           |
-|9.3     |x      |works |    |           |
-|9.4     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
-|9.5     |x      |works |    |           |
-|9.6     |x      |works |    |           |
-|9.7     |x      |works |    |           |
-|9.8     |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|9.1     |x      |works |works |           |
+|9.2     |x      |works |works |           |
+|9.3     |x      |works |does not work*|This is a larger bug that appears on some mobile devices. The options pushes the alternatives down to pick the second option over the one clicked.  |
+|9.4     |x      |works |works |           |
+|9.5     |x      |works |works |           |
+|9.6     |x      |works |works |           |
+|9.7     |x      |works |works |           |
+|9.8     |x      |works |works |           |
 
 [Book Info](#book-info)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|10.1    |x      |works |    |           |
-|10.2    |x      |works |    |           |
-|10.2.1  |x      |works |    |           |
-|10.3    |x      |works |    |           |
-|10.3.1  |x      |works |    |           |
-|10.4    |x      |works*|    |This feature is not implemented for reviews added by the original book submitter |
-|10.4.1  |x      |works |    |           |
-|10.4.2  |x      |works |    |           |
-|10.4.2.1|x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|10.1    |x      |works |works |           |
+|10.2    |x      |works |works |           |
+|10.2.1  |x      |works |works |           |
+|10.3    |x      |works |works |           |
+|10.3.1  |x      |works |works |           |
+|10.4    |x      |works*|works*|This feature is not implemented for reviews added by the original book submitter. Only works on mobile devices if clicked. |
+|10.4.1  |x      |works |works |           |
+|10.4.2  |x      |works |works |           |
+|10.4.2.1|x      |works |works |           |
 
 [Add Review](#add-review)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|11.1    |x      |works*|    |Edit buttons for originally added reviews are left to be implemented. |
-|11.1.1  |x      |works |    |           |
-|11.2    |x      |works |    |           |
-|11.3    |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|11.1    |x      |works*|works |Edit buttons for originally added reviews are left to be implemented. |
+|11.1.1  |x      |works |works |           |
+|11.2    |x      |works |works |           |
+|11.3    |x      |works |works |           |
 
 [Edit Review](#edit-review)
 
-|Feature |Tested |Chrome|IOS |Commentary |
-|--------|-------|------|----|-----------|
-|12.1    |x      |works |    |           |
-|12.2    |x      |works |    |           |
-|12.3    |x      |works*|    |This only works for urls only containing the review id. If both book id and review id is included in the url, the redirection does not work. |
-|12.4    |x      |works |    |           |
-|12.5    |x      |works |    |           |
+|Feature |Tested |Chrome|IOS   |Commentary |
+|--------|-------|------|------|-----------|
+|12.1    |x      |works |works |           |
+|12.2    |x      |works |works |           |
+|12.3    |x      |works*|works |This only works for urls only containing the review id. If both book id and review id is included in the url, the redirection does not work. If id is not in the database at all, the page throws an error. |
+|12.4    |x      |works |works |           |
+|12.5    |x      |works |works |           |
 
 ### Code Validation
 
