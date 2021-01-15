@@ -391,6 +391,9 @@ The testing of the project is based on the [Existing Features](#existing-feature
 |12.4    |x      |works |works |           |
 |12.5    |x      |works |works |           |
 
+
+The bugs on this list left unsolved was so since the page works despite the existence of the bugs, and due to more reasearch being needed to find the solution.
+***
 ### Code Validation
 
 **HTML Validation:**
