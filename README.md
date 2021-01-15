@@ -421,6 +421,12 @@ There are a few errors related to a few lines being to long. This is a problem t
 
 ### Bugs
 
+**Discovered bugs**
+
+Most discovered bugs can be seen in the project walktrough section.
+
+An additional bug existing is that some Materializecss components loses the custom styling on mobile devices. This only appears sometimes, and is unclear why.
+
 
 **Solved Bugs**
 
