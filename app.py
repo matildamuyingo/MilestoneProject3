@@ -32,6 +32,10 @@ def homepage():
 # Route for register form
 @app.route('/register', methods=["GET", "POST"])
 def register():
+    if 'user' in session:
+        session.pop('user')
+        flash('You have been logged out')
+        return redirect(url_for('register'))
 
     # If the request method is post (sign up button has been clicked):
     if request.method == "POST":
@@ -94,6 +98,10 @@ def register():
 # Route for login form
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    if 'user' in session:
+        session.pop('user')
+        flash('You have been logged out')
+        return redirect(url_for('login'))
 
     # If the request method is post (login button has been clicked):
     if request.method == "POST":
