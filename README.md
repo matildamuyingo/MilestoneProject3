@@ -6,6 +6,15 @@
 
 This page is created for users to be able to keep track of books that they want to read, have read, or publish a review for other users to read.
 
+# Table of Content
+
+1. [UX](#ux)
+2. [Features](#features)
+3. [Testing](#testing)
+4. [Bugs](#bugs)
+5. [Credit](#credit)
+
+
 ## UX
 
 ### Design
@@ -45,15 +54,13 @@ The page design has been made with simplicity in thought, but at the same time c
   - I want to find new books to read
   - I want to see if there are any new users on the site
 
+<br>
 
+## Wireframes
 
-  ## Wireframes
+[All the wireframes for this project can be found on this link](https://docs.google.com/presentation/d/1DuUcqRKpWg7ZiIwY2kd2eEBEdwci3eMaHwU-0roaQvA/edit?usp=sharing)
 
-- [All the wireframes for this project can be found on this link](https://docs.google.com/presentation/d/1DuUcqRKpWg7ZiIwY2kd2eEBEdwci3eMaHwU-0roaQvA/edit?usp=sharing)
-
-- **Can't view?**
-  - [Click link to open PDF of wireframes]("static/wireframes/Wireframes.pdf")
-
+<br>
 
 ## DataBase
 
@@ -94,7 +101,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 ### Existing Features 
 [Jump to testing section](#project-walktrough)
 
-#### Navigation Bar:
+#### Navigation Bar
 * **1.1** Hover navigation bar at top of the page to get a darker background for the clickable links.
 
 * **1.2** On smaller screens, switch navbar to a book-icon that opens a side navigation when clicked.
@@ -103,14 +110,14 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **1.5** When hovering the page logo, displayed in the middle of the navbar, an animation of a page turning should be showed.
 * **1.6** If logo is clicked, redirect user to homepage (if not logged in), and to startpage (if logged in)
 
-#### Homepage:
+#### Homepage
 * **2.1** Display buttons with links to register and to login pages.
 
 * **2.2** When hovering buttons, the button-shadow will get smaller.
 * **2.3** If a user was logged in when accessing the homepage, log them out/remove session cookies.
     * **2.3.1** Flash message that the user was logged out.
 
-#### Register:
+#### Register
 * **3.1** A form with input fields is displayed.
 
 * **3.2** The field for icon is a dropdown select, which displays pictures of the diferent options for profile-icon.
@@ -122,7 +129,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **3.8** If all information is correct, redirect user to the user profile.
 
 
-#### Login:
+#### Login
 * **4.1** Show two text input fields that requires username and password for login.
 
 * **4.2** When button for log in is clicked, check if username and password matches any stored user information in the database.
@@ -133,7 +140,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **4.7** When user is logged in, display a plus icon at the bottom right of every page with link to add book.
   * **4.7.1** If icon is hovered, display tooltip information 'add a new book'.
 
-#### Profile:
+#### Profile
 * **5.1** Display the added first name + s' profile at the top of the profile.
 
 * **5.2** If no books have been added by the profile user, display 'No books added' text underneath the 'Saved books' and 'Read books' headings.
@@ -156,7 +163,7 @@ After trying out the MySQL database, the project database was changed to use Mon
     * **5.11.2.2** If cancel is clicked, close modal.
 * **5.12** If review is clicked, bring user to the book info page belonging to that review.
 
-#### Edit Profile:
+#### Edit Profile
 * **6.1** If page is acessed with url by someone who is not the user of the profile that is being edited, user is redirected to the 404 error page.
 
 * **6.2** Edit fields for icon, gender, favorite book, favorite author, favorite genre are dropdown selects with color validation for added input.
@@ -164,7 +171,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **6.4** If update info button is clicked, the input information is updated in the user collection of the database.
   * **6.4.1** If a field is missing input, the user will get a message that input is required.
 
-#### Add Book:
+#### Add Book
 * **7.1** When accessing a page, the user sees a form where information about a book can be added. 
 
 * **7.2** If the user clicks on the checkbox for 'finished reading', the bottom of the form for filling out book rating and adding a book review is displayed.
@@ -172,7 +179,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **7.4** If an image is not added, a blank image with the text 'No book cover' will be added instead.
 * **7.5** When submitting the form, the user will be informed about required fields that have not been filled in.
 
-#### Startpage:
+#### Startpage
 * **8.1** When accessing the startpage, displayed the 4 latest added books to the left, and the 7 latest added users to the right.
 
 * **8.2** When hovering a book or a user card, move the card up and deepen the shadow underneath the card.
@@ -183,7 +190,7 @@ After trying out the MySQL database, the project database was changed to use Mon
     * **8.6.1** If delete icon is clicked, open a modal asking for delete confirmation.
         * **8.6.1.1** If deletion is confirmed, remove book from database, close modal and flash message of delete confirmation to user.
 
-#### All Books & All Users:
+#### All Books and All Users
 * **9.1** When accessing pages, display all books/all users stored in database.
 
 * **9.2** If the user selects a sorting option in the 'Sort By' input, automatially update sorting conditions and reload page.
@@ -194,26 +201,26 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **9.7** At the end of the list of books and users, generate a button that brings user to the top of the same page.
 * **9.8** On the 'All books' page, if a book has an added review, display a small 'click to show review' text.
 
-#### Book Info:
+#### Book Info
 * **10.1** Display selected books detailed info (all info available).
 
 * **10.2** If there are reviews added, display them.
     * **10.2.1** If there is more than one review added to the book, make the background color change for every second review.
-* **10.2** If the review was added by the same user that added the book, use 'Review added by' as review headline.
-    * **10.2.1** If user have updated review to include a review title, display the review title as headline instead.
-* **10.3** If user hovers a review added by themself, display editing buttons.
-    * **10.3.1** If edit icon is clicked, bring user to the edit review page.
-    * **10.3.2** If delete icon is clicked, open a modal to confirm review deletion.
-        * **10.3.2.1** If delete action is confirmed, remove review from database.
+* **10.3** If the review was added by the same user that added the book, use 'Review added by' as review headline.
+    * **10.3.1** If user have updated review to include a review title, display the review title as headline instead.
+* **10.4** If user hovers a review added by themself, display editing buttons.
+    * **10.4.1** If edit icon is clicked, bring user to the edit review page.
+    * **10.4.2** If delete icon is clicked, open a modal to confirm review deletion.
+        * **10.4.2.1** If delete action is confirmed, remove review from database.
 
-#### Add Review:
+#### Add Review
 * **11.1** If link is accessed from the book info page by the user that originally added the book, allow the user to update their review instead of adding a new review.
     * **11.1.1** Let the fields be filled in with existing information.
 
 * **11.2** If link is accessed by a user that did not add the original review, let the user access a blank form with review info to fill out.
 * **11.3** If the user clicks the cancel button, redirect them back to the book info page without changing anything.
 
-#### Edit Review:
+#### Edit Review
 * **12.1** When clicking the edit icon for a review, the user will be brought to the edit form, with all previously added information filled in.
 
 * **12.2** When clicking submit review, the field information will be updated in the database for that specific review.
@@ -229,46 +236,188 @@ After trying out the MySQL database, the project database was changed to use Mon
 
 ### Project Walktrough
 The testing of the project is based on the [Existing Features](#existing-features) part of the readme. Each test-heading will be linked to the list of features on that page. If you want to doubble check what features have been tested, follow the correlated list numbering.
+<br>
+[Click here](#code-validation) to skip the feature testing section.
+
+
+[Navigation Bar](#navigation-bar)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|1.1     |       |      |    |           |
+|1.2     |       |      |    |           |
+|1.3     |       |      |    |           |
+|1.4     |       |      |    |           |
+|1.5     |       |      |    |           |
+|1.6     |       |      |    |           |
+
+
+[Homepage](#homepage)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|2.1     |       |      |    |           |
+|2.2     |       |      |    |           |
+|2.3     |       |      |    |           |
+|2.4     |       |      |    |           |
+
+[Register](#register)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|3.1     |       |      |    |           |
+|3.2     |       |      |    |           |
+|3.3     |       |      |    |           |
+|3.4     |       |      |    |           |
+|3.5     |       |      |    |           |
+|3.6     |       |      |    |           |
+|3.7     |       |      |    |           |
+|3.8     |       |      |    |           |
+
+[Login](#login)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|4.1     |       |      |    |           |
+|4.2     |       |      |    |           |
+|4.3     |       |      |    |           |
+|4.4     |       |      |    |           |
+|4.5     |       |      |    |           |
+|4.6     |       |      |    |           |
+|4.7     |       |      |    |           |
+|4.7.1   |       |      |    |           |
+
+[Profile](#profile)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|5.1     |       |      |    |           |
+|5.2     |       |      |    |           |
+|5.3     |       |      |    |           |
+|5.4     |       |      |    |           |
+|5.5     |       |      |    |           |
+|5.6     |       |      |    |           |
+|5.7     |       |      |    |           |
+|5.7.1   |       |      |    |           |
+|5.7.2   |       |      |    |           |
+|5.7.2.1 |       |      |    |           |
+|5.7.2.2 |       |      |    |           |
+|5.8     |       |      |    |           |
+|5.9     |       |      |    |           |
+|5.10    |       |      |    |           |
+|5.11    |       |      |    |           |
+|5.11.1  |       |      |    |           |
+|5.11.2  |       |      |    |           |
+|5.11.2.1|       |      |    |           |
+|5.11.2.2|       |      |    |           |
+|5.12    |       |      |    |           |
+
+[Edit Profile](#edit-profile)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|6.1     |       |      |    |           |
+|6.2     |       |      |    |           |
+|6.3     |       |      |    |           |
+|6.4     |       |      |    |           |
+|6.4.1   |       |      |    |           |
+
+[Add Book](#add-book)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|7.1     |       |      |    |           |
+|7.2     |       |      |    |           |
+|7.3     |       |      |    |           |
+|7.4     |       |      |    |           |
+|7.5     |       |      |    |           |
+
+[Startpage](#startpage)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|8.1     |       |      |    |           |
+|8.2     |       |      |    |           |
+|8.3     |       |      |    |           |
+|8.4     |       |      |    |           |
+|8.5     |       |      |    |           |
+|8.6     |       |      |    |           |
+|8.6.1   |       |      |    |           |
+|8.6.1.1 |       |      |    |           |
+
+[All Books and All Users](#all-books-and-all-users)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|9.1     |       |      |    |           |
+|9.2     |       |      |    |           |
+|9.3     |       |      |    |           |
+|9.4     |       |      |    |           |
+|9.5     |       |      |    |           |
+|9.6     |       |      |    |           |
+|9.7     |       |      |    |           |
+|9.8     |       |      |    |           |
+
+[Book Info](#book-info)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|10.1    |       |      |    |           |
+|10.2    |       |      |    |           |
+|10.2.1  |       |      |    |           |
+|10.3    |       |      |    |           |
+|10.3.1  |       |      |    |           |
+|10.4    |       |      |    |           |
+|10.4.1  |       |      |    |           |
+|10.4.2  |       |      |    |           |
+|10.4.2.1|       |      |    |           |
+
+[Add Review](#add-review)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|11.1    |       |      |    |           |
+|11.1.1  |       |      |    |           |
+|11.2    |       |      |    |           |
+|11.3    |       |      |    |           |
+
+[Edit Review](#edit-review)
+
+|Feature |Tested |Chrome|IOS |Commentary |
+|--------|-------|------|----|-----------|
+|12.1    |       |      |    |           |
+|12.2    |       |      |    |           |
+|12.3    |       |      |    |           |
+|12.4    |       |      |    |           |
+|12.5    |       |      |    |           |
 
 ### Code Validation
 
 **HTML Validation:**
 
+All pages were checked using the [W3C Markup Validation Service](https://validator.w3.org/).
+Since the project uses jinja2 templating there are errors regarding this format, but all other html-elements passed.
+
 **CSS Validation:**
+
+The custom CSS file was checked using [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/).
+<br>
+Code passed without any errors.
 
 **JavaScript Validation:**
 
+The custom JavaScript file was checked using [JShint](https://jshint.com/).
 <br>
+Code passed without any errors.
+
+**Python Validation:**
+
+The python code was validated using [PEP8 online check](http://pep8online.com/checkresult).
+There are a few errors related to a few lines being to long. This is a problem that was decided to be left in the project to not interfere with existing url links or non-breakable code lines.
+
 
 ### Bugs
 
-**Discovered Bugs**
-
-- Cards are pushed down on the profile page on computer sometimes
-- The user info edit form is not sending information correctly to mongodb
-    - Solved by changing the jinja templating in the dropdowns to display correctly and debugged by adding  print(update_info) and checking the added information when called
-- The dropdown menu does not display in the navbar 
-
-- The icon in the bottom right corner does not disappear if the user already have a session stored. 
-
-- The function of displaying a longer form when the checkbox is clicked, needs to include a function for the extended form to disappear, but this is not working as expected.
-
-```
-$('#read-check').click(function() {
-        $('.fin-read').removeClass('no-display').addClass('full-display');
-        /*
-        var isCheck = $(this).hasClass('no-display');
-        if (isCheck == true){
-            $('.fin-read').removeClass('no-display').addClass('full-display');
-            console.log("Removed, works fine");
-        } 
-        else {
-            $('.fin-read').removeClass('full-display').addClass('no-display');
-            console.log("Displayed, works fine");
-        }
-        */
-    });
-```
 
 **Solved Bugs**
 
@@ -323,28 +472,72 @@ This made all cards very big and unpleasing to the eye, and one of the cards con
         mongo.db.users.replace_one({'_id': ObjectId(user['_id'])}, update_info)
 ```
 
+- The user info edit form was not sending information correctly to mongodb 
+    - Solved by changing the jinja templating in the dropdowns to display correctly and debugged by adding  print(update_info) and checking the added information when called
+
+- The icon in the bottom right corner does not disappear if the user already have a session stored. 
+    - Solved by automatically removing stored sessions if homepage is accessed with a stored session.
+
 <br>
 
-### Device Compability
+***
+
+## Deployment
+
+
+### Deploying to Heroku
+
+To get the project to run correctly we first have to make sure all dependecies are installed and can be found in the requirements.txt file:
+
+In the console, type:
+``` 
+1. pip3 freeze --local >requirements.txt
+2. echo web:python.app > Procfile
+```
+Go to [Heroku.com](https://www.heroku.com/) and create a profile/log in.
+
+- When logged in, find the 'Create a New App' button on the dashboard.
+- Give your app a name using dashes instead of spaces.
+- Click 'Create App'.
+
+To set up automatic deployment from Github to Heroku, do the following:
+
+- Click the github logo on the deploy page.
+- Connect your github account and select the correct repository.
+- Click 'Connect' to connect the repository to your app.
+
+Go to the Settings tab and click 'Reveal Config Vars'
+
+- Fill in the values for the variables hidden in the env.py file (IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME)
+- Go back to the deploy tab and click 'Enable Automatic Deplolyment'
 
 <br>
+
+When making changes in the github file, do the following in the console:
+```
+1. $ git status
+2. $ git add file
+3. $ git push -m "message"
+```
 
 ***
 ## Credit
 
 ### Resources
 
-- [Wireframes.cc](https://wireframe.cc/)
-- [Mockups](http://ami.responsivedesign.is/)
-- [Github]()
-- [MongoDB]() Database
-- [FontAwesome]()
-- [Materializecss.com]()
-- [Google Fonts](https://fonts.google.com/)
+- [Responsivedesign.is](http://ami.responsivedesign.is/) was used to make mockups that can be seen at the start of the readme file.
+- [Github](https://github.com/) is the project host
+- [MongoDB](https://www.mongodb.com/) is the database host that was used in the project to store all data.
+- [FontAwesome](https://fontawesome.com/) provided all icons that are seen in the project.
+- [Materializecss.com]() is the framework used to make the project responsive on all screen sizes and provided many pre-made components that can be found throughout the project.
+- [Google Fonts](https://fonts.google.com/) was used to import the fonts used in the project.
+- [JQuery](http://code.jquery.com/) was used when writing custom JavaScript and is also required for some of the Materializecss components to work.
 
 <br>
 
 ### Content
+
+[Books Backgroun Image](https://www.incimages.com/uploaded_files/image/1920x1080/rey-seven-nm-mZ4Cs2I-unsplash_397351.jpg) that can be seen throughout the page comes from this link.
 
 [No Cover added Photo](https://darkseries.fandom.com/wiki/Dark_Tarot) - This is the source for the photo added when a user decides not to add their own photo to the added book.
 
@@ -358,7 +551,8 @@ This made all cards very big and unpleasing to the eye, and one of the cards con
 You can find this code on line 40 in the script.js document
 
 - [Objectrocket.com](https://kb.objectrocket.com/mongo-db/how-to-insert-a-document-into-a-mongodb-collection-using-python-367) was used when finding out how to import a date and how to insert it in MongoDB when inserting a document
-- [hover another element](https://stackoverflow.com/questions/6910049/on-a-css-hover-event-can-i-change-another-divs-styling)
+- [Stackoverflow.com](https://stackoverflow.com/questions/6910049/on-a-css-hover-event-can-i-change-another-divs-styling) provided code for how to use the hover function on one element to change another element. This is used in the top book-logo animation.
+- The code for the JavaScript function validateMaterializeSelect() was provided by Code Institue. The code can be found in the script.js file on line 51-77.
 
 <br>
 
