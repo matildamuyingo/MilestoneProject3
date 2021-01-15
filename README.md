@@ -113,12 +113,12 @@ After trying out the MySQL database, the project database was changed to use Mon
 #### Homepage
 * **2.1** Display buttons with links to register and to login pages.
 
-* **2.2** When hovering buttons, the button-shadow will get smaller.
-* **2.3** If a user was logged in when accessing the homepage, log them out/remove session cookies.
-    * **2.3.1** Flash message that the user was logged out.
+    * **2.1.1** When hovering buttons, the button-shadow will get smaller.
+* **2.2** If a user was logged in when accessing the homepage, log them out/remove session cookies.
+    * **2.2.1** Flash message that the user was logged out.
 
 #### Register
-* **3.1** A form with input fields is displayed.
+* **3.1** A responsive size form with input fields is displayed.
 
 * **3.2** The field for icon is a dropdown select, which displays pictures of the diferent options for profile-icon.
 * **3.3** Fields for first name, last name, email, username and password are text inputs.
@@ -148,13 +148,13 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **5.4** Display selected user icon and the user information to the left of profile page on larger screens. On smaller screen the about section is displayed directly underneath the page header.
 * **5.5** If books have been added by user, show books with 'read_book' = 'on' under the 'Have read heading' and books without the condition under the 'Saved Books' heading.
 * **5.6** When hovering book-cards, lift the card and deepen the shadow.
-* **5.7** If the book was added by logged in user, show buttons to edit and delete the hovered book.
+* **5.7** If the book was added by the logged in user, show buttons to edit and delete the hovered book.
     * **5.7.1** If the edit icon is clicked, redirect user to the edit_book page, with existing information filled in.
     * **5.7.2** If the trashcan icon is clicked, show a popup modal that asks user if they're sure they want to delete the book. 
         * **5.7.2.1** If 'Agree' is clicked, remove book from database and flash message that book was removed. 
         * **5.7.2.2** If cancel is clicked, close modal.
 * **5.8** If the book card is clicked, redirect user to that specific book-info page.
-* **5.9** If the profile belongs to the logged in user, display 'Edit Info' button at the bottom of about info, and 'Add new book' at the bottom of lists of books.
+* **5.9** If the profile belongs to the logged in user, display 'Edit Info' button at the bottom of about info, and 'Add new book' at the bottom of My Books.
 * **5.10** Display all reviews added by profile user at the bottom of the page.
 * **5.11** When hovering reviews, show buttons for edit review and delete review.
   * **5.11.1** If the edit icon is clicked, redirect user to the edit_review page, with existing information filled in.
@@ -169,7 +169,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **6.2** Edit fields for icon, gender, favorite book, favorite author, favorite genre are dropdown selects with color validation for added input.
 * **6.3** Favorite book and author lists are generated from all added books and authors that exists in the database.
 * **6.4** If update info button is clicked, the input information is updated in the user collection of the database.
-  * **6.4.1** If a field is missing input, the user will get a message that input is required.
+  * **6.4.1** If a required field is missing input, the user will get a message that input is required.
 
 #### Add Book
 * **7.1** When accessing a page, the user sees a form where information about a book can be added. 
@@ -180,7 +180,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **7.5** When submitting the form, the user will be informed about required fields that have not been filled in.
 
 #### Startpage
-* **8.1** When accessing the startpage, displayed the 4 latest added books to the left, and the 7 latest added users to the right.
+* **8.1** When accessing the startpage, displayed the 4 latest added books to the left, and the 7 latest added users to the right. On smaller screens the books will be displayed first and users after books.
 
 * **8.2** When hovering a book or a user card, move the card up and deepen the shadow underneath the card.
 * **8.3** If a book card is clicked, bring the user to that specific book page.
@@ -244,152 +244,152 @@ The testing of the project is based on the [Existing Features](#existing-feature
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|1.1     |       |      |    |           |
-|1.2     |       |      |    |           |
-|1.3     |       |      |    |           |
-|1.4     |       |      |    |           |
-|1.5     |       |      |    |           |
-|1.6     |       |      |    |           |
+|1.1     |x      |works |    |           |
+|1.2     |x      |works |    |           |
+|1.3     |x      |works |    |           |
+|1.4     |x      |works |    |           |
+|1.5     |x      |works |    |           |
+|1.6     |x      |works |    |           |
 
 
 [Homepage](#homepage)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|2.1     |       |      |    |           |
-|2.2     |       |      |    |           |
-|2.3     |       |      |    |           |
-|2.4     |       |      |    |           |
+|2.1     |x      |works |    |           |
+|2.2     |x      |works |    |           |
+|2.3     |x      |works |    |           |
+|2.4     |x      |works |    |           |
 
 [Register](#register)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|3.1     |       |      |    |           |
-|3.2     |       |      |    |           |
-|3.3     |       |      |    |           |
-|3.4     |       |      |    |           |
-|3.5     |       |      |    |           |
-|3.6     |       |      |    |           |
-|3.7     |       |      |    |           |
-|3.8     |       |      |    |           |
+|3.1     |x      |works*|    |The icon text is a bit to big to fit the field on screen sizes between 600px - 900px           |
+|3.2     |x      |works |    |           |
+|3.3     |x      |works |    |           |
+|3.4     |x      |works |    |           |
+|3.5     |x      |works |    |           |
+|3.6     |x      |works |    |           |
+|3.7     |x      |works |    |           |
+|3.8     |x      |works |    |           |
 
 [Login](#login)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|4.1     |       |      |    |           |
-|4.2     |       |      |    |           |
-|4.3     |       |      |    |           |
-|4.4     |       |      |    |           |
-|4.5     |       |      |    |           |
-|4.6     |       |      |    |           |
-|4.7     |       |      |    |           |
-|4.7.1   |       |      |    |           |
+|4.1     |x      |works |    |           |
+|4.2     |x      |works |    |           |
+|4.3     |x      |works |    |           |
+|4.4     |x      |works |    |           |
+|4.5     |x      |works |    |           |
+|4.6     |x      |works |    |           |
+|4.7     |x      |works |    |           |
+|4.7.1   |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
 
 [Profile](#profile)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|5.1     |       |      |    |           |
-|5.2     |       |      |    |           |
-|5.3     |       |      |    |           |
-|5.4     |       |      |    |           |
-|5.5     |       |      |    |           |
-|5.6     |       |      |    |           |
-|5.7     |       |      |    |           |
-|5.7.1   |       |      |    |           |
-|5.7.2   |       |      |    |           |
-|5.7.2.1 |       |      |    |           |
-|5.7.2.2 |       |      |    |           |
-|5.8     |       |      |    |           |
-|5.9     |       |      |    |           |
-|5.10    |       |      |    |           |
-|5.11    |       |      |    |           |
-|5.11.1  |       |      |    |           |
-|5.11.2  |       |      |    |           |
-|5.11.2.1|       |      |    |           |
-|5.11.2.2|       |      |    |           |
-|5.12    |       |      |    |           |
+|5.1     |x      |works |    |           |
+|5.2     |x      |works*|    |If the user have added a book to either the category of 'saved books' or 'have read' books, the text for the other category disappears.|
+|5.3     |x      |works |    |           |
+|5.4     |x      |works |    |           |
+|5.5     |x      |works |    |           |
+|5.6     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|5.7     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|5.7.1   |x      |works |    |           |
+|5.7.2   |x      |works |    |           |
+|5.7.2.1 |x      |works |    |           |
+|5.7.2.2 |x      |works |    |           |
+|5.8     |x      |works |    |           |
+|5.9     |x      |works |    |           |
+|5.10    |x      |works |    |           |
+|5.11    |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|5.11.1  |x      |works |    |           |
+|5.11.2  |x      |works |    |           |
+|5.11.2.1|x      |works |    |           |
+|5.11.2.2|x      |works |    |           |
+|5.12    |x      |works |    |           |
 
 [Edit Profile](#edit-profile)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|6.1     |       |      |    |           |
-|6.2     |       |      |    |           |
-|6.3     |       |      |    |           |
-|6.4     |       |      |    |           |
-|6.4.1   |       |      |    |           |
+|6.1     |x      |works |    |           |
+|6.2     |x      |works |    |           |
+|6.3     |x      |works |    |           |
+|6.4     |x      |works |    |           |
+|6.4.1   |x      |works |    |           |
 
 [Add Book](#add-book)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|7.1     |       |      |    |           |
-|7.2     |       |      |    |           |
-|7.3     |       |      |    |           |
-|7.4     |       |      |    |           |
-|7.5     |       |      |    |           |
+|7.1     |x      |works |    |           |
+|7.2     |x      |works |    |           |
+|7.3     |x      |works*|    |The hover function works on all devices if the field is selected.|
+|7.4     |x      |works*|    |If the url added does not exist, the picture displayed will be one of the standard no image. |
+|7.5     |x      |works |    |           |
 
 [Startpage](#startpage)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|8.1     |       |      |    |           |
-|8.2     |       |      |    |           |
-|8.3     |       |      |    |           |
-|8.4     |       |      |    |           |
-|8.5     |       |      |    |           |
-|8.6     |       |      |    |           |
-|8.6.1   |       |      |    |           |
-|8.6.1.1 |       |      |    |           |
+|8.1     |x      |works |    |           |
+|8.2     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|8.3     |x      |works |    |           |
+|8.4     |x      |works |    |           |
+|8.5     |x      |works |    |           |
+|8.6     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|8.6.1   |x      |works |    |           |
+|8.6.1.1 |x      |works |    |           |
 
 [All Books and All Users](#all-books-and-all-users)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|9.1     |       |      |    |           |
-|9.2     |       |      |    |           |
-|9.3     |       |      |    |           |
-|9.4     |       |      |    |           |
-|9.5     |       |      |    |           |
-|9.6     |       |      |    |           |
-|9.7     |       |      |    |           |
-|9.8     |       |      |    |           |
+|9.1     |x      |works |    |           |
+|9.2     |x      |works |    |           |
+|9.3     |x      |works |    |           |
+|9.4     |x      |works*|    |The hover function only works on computer devices. On other types of devices, the component has to be clicked for the hover function to display.|
+|9.5     |x      |works |    |           |
+|9.6     |x      |works |    |           |
+|9.7     |x      |works |    |           |
+|9.8     |x      |works |    |           |
 
 [Book Info](#book-info)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|10.1    |       |      |    |           |
-|10.2    |       |      |    |           |
-|10.2.1  |       |      |    |           |
-|10.3    |       |      |    |           |
-|10.3.1  |       |      |    |           |
-|10.4    |       |      |    |           |
-|10.4.1  |       |      |    |           |
-|10.4.2  |       |      |    |           |
-|10.4.2.1|       |      |    |           |
+|10.1    |x      |works |    |           |
+|10.2    |x      |works |    |           |
+|10.2.1  |x      |works |    |           |
+|10.3    |x      |works |    |           |
+|10.3.1  |x      |works |    |           |
+|10.4    |x      |works*|    |This feature is not implemented for reviews added by the original book submitter |
+|10.4.1  |x      |works |    |           |
+|10.4.2  |x      |works |    |           |
+|10.4.2.1|x      |works |    |           |
 
 [Add Review](#add-review)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|11.1    |       |      |    |           |
-|11.1.1  |       |      |    |           |
-|11.2    |       |      |    |           |
-|11.3    |       |      |    |           |
+|11.1    |x      |works*|    |Edit buttons for originally added reviews are left to be implemented. |
+|11.1.1  |x      |works |    |           |
+|11.2    |x      |works |    |           |
+|11.3    |x      |works |    |           |
 
 [Edit Review](#edit-review)
 
 |Feature |Tested |Chrome|IOS |Commentary |
 |--------|-------|------|----|-----------|
-|12.1    |       |      |    |           |
-|12.2    |       |      |    |           |
-|12.3    |       |      |    |           |
-|12.4    |       |      |    |           |
-|12.5    |       |      |    |           |
+|12.1    |x      |works |    |           |
+|12.2    |x      |works |    |           |
+|12.3    |x      |works*|    |This only works for urls only containing the review id. If both book id and review id is included in the url, the redirection does not work. |
+|12.4    |x      |works |    |           |
+|12.5    |x      |works |    |           |
 
 ### Code Validation
 
