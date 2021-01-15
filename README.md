@@ -180,7 +180,7 @@ After trying out the MySQL database, the project database was changed to use Mon
 * **7.5** When submitting the form, the user will be informed about required fields that have not been filled in.
 
 #### Startpage
-* **8.1** When accessing the startpage, displayed the 4 latest added books to the left, and the 7 latest added users to the right. On smaller screens the books will be displayed first and users after books.
+* **8.1** When accessing the startpage, displayed the 4 latest added books to the left, and the 6 latest added users to the right. On smaller screens the books will be displayed first and users after books.
 
 * **8.2** When hovering a book or a user card, move the card up and deepen the shadow underneath the card.
 * **8.3** If a book card is clicked, bring the user to that specific book page.
