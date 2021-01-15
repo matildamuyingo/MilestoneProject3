@@ -378,6 +378,10 @@ select {
         font-size: 40px;
     }
 
+    .flashes {
+        height: 100px;
+    }
+
 }
 
 @media screen and (max-width: 500px) {
